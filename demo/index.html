@@ -350,7 +350,7 @@ button{background:none;border:0;padding:0;cursor:pointer}
       </section>
 
       <!-- ============ PANEL ============ -->
-      <section id="pane-panel" role="tabpanel" aria-labelledby="tab-panel" hidden>
+      <section id="pane-panel" role="tabpanel" aria-labelledby="tab-panel">
         <div class="dm-pane-body">
           <div class="dm-tiles" id="tiles"><div class="dm-tile dm-tile--accent"><b>۵</b><span>در انتظار</span></div><div class="dm-tile"><b>۱</b><span>در صف</span></div><div class="dm-tile"><b>۲</b><span>ارسال‌شده</span></div><div class="dm-tile"><b>۱</b><span>ناموفق</span></div><div class="dm-tile"><b>۱</b><span>متوقف‌شده</span></div></div>
 
@@ -1051,6 +1051,7 @@ button{background:none;border:0;padding:0;cursor:pointer}
   window.addEventListener("scroll", onScroll, { passive: true });
 
   /* first paint */
+  switchTab("shop");
   render();
 })();
 
