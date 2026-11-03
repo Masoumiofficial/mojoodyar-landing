@@ -17,6 +17,7 @@ index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
 assets/app.js         header state, in-view reveal, hero mock, demo state machine, copy-facts
 fonts/                Vazirmatn 400/500/700 woff2 (self-hosted, OFL licence included)
+demo/                 standalone interactive demo (single file + its own README)
 docs/                 CALL 1 spec
 ```
 

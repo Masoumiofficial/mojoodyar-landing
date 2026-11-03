@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دمؤ موجودیار — فروشگاه و پنل، بدون نصب</title>
+<meta name="description" content="دموی تعاملی موجودیار: فرم «خبرم کن» در فروشگاه و پنل مدیریت، با داده‌های ساختگی. هیچ پیامکی فرستاده نمی‌شود.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#EEF4F2">
+<link rel="preload" href="../fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/Vazirmatn-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ===== tokens ===== */
+@font-face{font-family:"Vazirmatn";src:url("../fonts/Vazirmatn-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("../fonts/Vazirmatn-Medium.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Vazirmatn";src:url("../fonts/Vazirmatn-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+:root{
+  --mjy-primary:#0E5C55;--mjy-primary-ink:#0A423D;--mjy-accent:#F2A93B;
+  --mjy-bg:#EEF4F2;--mjy-surface:#FFFFFF;--mjy-ink:#0B1F1C;--mjy-muted:#55706B;
+  --mjy-line:rgba(14,92,85,.14);--mjy-danger:#B3261E;
+  --radius-lg:20px;--radius-md:14px;--radius-sm:10px;
+  --tint:rgba(14,92,85,.06);--tint2:rgba(14,92,85,.10);
+  --amber:rgba(242,169,59,.14);--danger-bg:rgba(179,38,30,.06);
+  --shadow:0 1px 2px rgba(11,31,28,.04),0 12px 32px -12px rgba(11,31,28,.14);
+  --shadow-lg:0 1px 2px rgba(11,31,28,.05),0 24px 48px -18px rgba(11,31,28,.2);
+  --tap:44px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mjy-bg);color:var(--mjy-ink);
+  font-family:"Vazirmatn",system-ui,"Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.85;text-align:start}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--mjy-primary-ink);outline-offset:2px;border-radius:4px}
+::selection{background:var(--tint2)}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block;font-variant-numeric:tabular-nums}
+.sr{position:absolute;inline-size:1px;block-size:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+[hidden]{display:none}
+.num{font-variant-numeric:tabular-nums}
+
+/* ===== shell ===== */
+.dm-wrap{max-inline-size:1240px;margin-inline:auto;padding-inline:20px}
+.dm-top{position:sticky;inset-block-start:0;z-index:30;background:var(--mjy-bg);
+  border-block-end:1px solid transparent;transition:background-color .2s ease-out,border-color .2s ease-out}
+.dm-top.is-stuck{background:rgba(255,255,255,.9);border-block-end-color:var(--mjy-line)}
+@supports (backdrop-filter:blur(1px)){.dm-top.is-stuck{backdrop-filter:blur(14px) saturate(140%)}}
+.dm-top-in{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-block-size:64px;padding-block:8px}
+.dm-brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:16px;color:var(--mjy-ink);text-decoration:none}
+.dm-mark{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:var(--radius-sm);background:var(--mjy-primary);color:#fff;flex:0 0 auto}
+.dm-ver{font-size:11px;font-weight:500;color:var(--mjy-muted);border:1px solid var(--mjy-line);border-radius:999px;padding-inline:8px;line-height:1.9}
+.dm-seg{margin-inline-start:auto;display:inline-flex;gap:2px;padding:3px;background:var(--mjy-surface);
+  border:1px solid var(--mjy-line);border-radius:999px;box-shadow:var(--shadow)}
+.dm-seg button{min-block-size:44px;padding-inline:16px;border-radius:999px;font-size:14px;font-weight:500;color:var(--mjy-muted);transition:background-color .16s ease-out,color .16s ease-out}
+.dm-seg button[aria-selected="true"]{background:var(--mjy-primary);color:#fff}
+.dm-seg button:hover{color:var(--mjy-ink)}
+.dm-seg button[aria-selected="true"]:hover{color:#fff}
+.dm-back{font-size:13px;color:var(--mjy-muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(14,92,85,.3);min-block-size:var(--tap);display:inline-flex;align-items:center}
+.dm-back:hover{color:var(--mjy-primary-ink)}
+
+.dm-main{display:grid;grid-template-columns:286px minmax(0,1fr);gap:20px;padding-block:20px 40px;align-items:start}
+
+/* ===== rail ===== */
+.dm-rail{display:grid;gap:8px;position:sticky;inset-block-start:84px}
+.dm-rail h2{font-size:12px;font-weight:500;color:var(--mjy-muted);margin-block-end:2px}
+.dm-rail-btn{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;text-align:start;
+  background:var(--mjy-surface);border:1px solid var(--mjy-line);border-radius:var(--radius-md);
+  padding:10px 12px;min-block-size:var(--tap);transition:border-color .16s ease-out,background-color .16s ease-out,transform .16s ease-out}
+.dm-rail-btn:hover{border-color:rgba(14,92,85,.34);background:#fff}
+.dm-rail-btn:active{transform:translateY(1px)}
+.dm-rail-btn.is-running{border-color:var(--mjy-primary);background:var(--tint)}
+.dm-rail-btn:disabled{opacity:.55;cursor:progress}
+.dm-rail-n{display:grid;place-items:center;inline-size:24px;block-size:24px;border-radius:999px;border:1px solid rgba(14,92,85,.3);
+  color:var(--mjy-primary);font-size:12px;font-weight:700;line-height:1}
+.dm-rail-t{font-size:13.5px;font-weight:500;line-height:1.65}
+.dm-rail-s{display:block;font-size:11.5px;color:var(--mjy-muted);line-height:1.7;margin-block-start:2px}
+
+/* ===== frame ===== */
+.dm-frame{position:relative;background:var(--mjy-surface);border:1px solid var(--mjy-line);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden}
+.dm-frame-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;
+  padding:8px 14px;background:var(--tint);border-block-end:1px solid var(--mjy-line)}
+.dm-badge{font-size:11.5px;font-weight:700;color:var(--mjy-ink);background:var(--mjy-accent);
+  border-radius:999px;padding:2px 10px;line-height:1.9}
+.dm-frame-state{font-size:11.5px;color:var(--mjy-muted);font-variant-numeric:tabular-nums}
+.dm-pane-body{padding:16px}
+.dm-pane-foot{display:flex;align-items:center;gap:8px;justify-content:space-between;flex-wrap:wrap;
+  padding:10px 16px;border-block-start:1px solid var(--mjy-line);background:var(--mjy-bg);
+  font-size:12px;color:var(--mjy-muted)}
+
+/* ===== shop ===== */
+.dm-shop{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:start;padding-block:6px}
+.dm-media{display:grid;place-items:center;aspect-ratio:4/3;background:linear-gradient(160deg,var(--tint2),var(--tint));
+  border:1px solid var(--mjy-line);border-radius:var(--radius-md);color:var(--mjy-primary);font-size:44px;font-weight:700;line-height:1}
+.dm-crumb{font-size:12px;color:var(--mjy-muted);margin-block-end:6px}
+.dm-prod-name{font-size:clamp(20px,2.4vw,27px);font-weight:700;line-height:1.4}
+.dm-prod-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-block:8px 14px}
+.dm-price{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+.dm-stock{font-size:12.5px;font-weight:500;border-radius:999px;padding:2px 10px;line-height:1.9}
+.dm-stock.out{color:var(--mjy-danger);background:var(--danger-bg)}
+.dm-stock.in{color:var(--mjy-ink);background:var(--amber)}
+.dm-desc{font-size:13.5px;color:var(--mjy-muted);max-inline-size:34em}
+.dm-form{margin-block-start:16px;padding:14px;background:var(--mjy-bg);border:1px solid var(--mjy-line);border-radius:var(--radius-md);display:grid;gap:10px}
+.dm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dm-field{display:grid;gap:4px}
+.dm-field label{font-size:12px;color:var(--mjy-muted)}
+.dm-field label .opt{color:var(--mjy-muted);font-size:11.5px}
+.dm-input{inline-size:100%;min-block-size:var(--tap);padding:8px 12px;background:var(--mjy-surface);
+  border:1px solid rgba(14,92,85,.24);border-radius:var(--radius-sm);font-size:14px;line-height:1.7}
+.dm-input:focus-visible{outline:2px solid var(--mjy-primary);outline-offset:1px}
+.dm-input[aria-invalid="true"]{border-color:var(--mjy-danger)}
+.dm-hint{font-size:11.5px;color:var(--mjy-muted)}
+.dm-hint.err{color:var(--mjy-danger)}
+.dm-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-block-size:var(--tap);
+  padding:8px 18px;background:var(--mjy-primary);color:#fff;border:1px solid transparent;border-radius:var(--radius-md);
+  font-size:14px;font-weight:500;line-height:1.6;transition:background-color .16s ease-out,transform .16s ease-out}
+.dm-btn:hover{background:var(--mjy-primary-ink)}
+.dm-btn:active{transform:translateY(1px)}
+.dm-btn:focus-visible{outline:2px solid var(--mjy-accent);outline-offset:-6px}
+.dm-btn--ghost{background:transparent;color:var(--mjy-primary-ink);border-color:var(--mjy-line)}
+.dm-btn--ghost:hover{background:var(--tint);border-color:rgba(14,92,85,.3)}
+.dm-btn--sm{min-block-size:44px;padding-inline:12px;font-size:13px;border-radius:var(--radius-sm)}
+.dm-btn--block{inline-size:100%}
+.dm-btn[disabled]{opacity:.5;cursor:not-allowed}
+.dm-success{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;background:var(--amber);
+  border:1px solid rgba(242,169,59,.55);border-radius:var(--radius-md)}
+.dm-success-mark{display:grid;place-items:center;inline-size:28px;block-size:28px;border-radius:999px;background:var(--mjy-accent);color:var(--mjy-ink)}
+.dm-success p{font-size:13.5px;font-weight:500;line-height:1.75}
+.dm-success small{display:block;font-size:11.5px;color:var(--mjy-muted)}
+
+/* ===== panel ===== */
+.dm-tiles{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-block-end:14px}
+.dm-tile{background:var(--mjy-bg);border:1px solid var(--mjy-line);border-radius:var(--radius-md);padding:10px 12px}
+.dm-tile b{display:block;font-size:20px;font-weight:700;line-height:1.4;font-variant-numeric:tabular-nums}
+.dm-tile span{font-size:11.5px;color:var(--mjy-muted);line-height:1.7}
+.dm-tile--accent b{color:var(--mjy-primary)}
+.dm-panel-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+.dm-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-block-end:10px}
+.dm-toolbar .spacer{margin-inline-start:auto}
+.dm-select{min-block-size:44px;padding:4px 10px;background:var(--mjy-surface);border:1px solid var(--mjy-line);border-radius:var(--radius-sm);font-size:13px}
+.dm-count{font-size:12px;color:var(--mjy-muted);font-variant-numeric:tabular-nums}
+.dm-bulk{display:none;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;margin-block-end:10px;
+  background:var(--tint);border:1px solid rgba(14,92,85,.22);border-radius:var(--radius-sm);font-size:13px}
+.dm-bulk.on{display:flex}
+
+.dm-table-wrap{overflow-x:auto;border:1px solid var(--mjy-line);border-radius:var(--radius-md)}
+.dm-table{inline-size:100%;border-collapse:collapse;font-size:13px;min-inline-size:620px}
+.dm-table caption{text-align:start;font-size:11.5px;color:var(--mjy-muted);padding:8px 10px 6px}
+.dm-table th,.dm-table td{padding:8px 10px;border-block-end:1px solid var(--mjy-line);text-align:start;vertical-align:middle}
+.dm-table thead th{background:var(--tint);font-size:11.5px;font-weight:500;color:var(--mjy-muted);white-space:nowrap;position:sticky;inset-block-start:0}
+.dm-table tbody tr:last-child td{border-block-end:0}
+.dm-table tbody tr:hover td{background:rgba(14,92,85,.035)}
+.dm-table td.nm{font-weight:500}
+.dm-table .anon{color:var(--mjy-muted);font-weight:400}
+.dm-sort{display:inline-flex;align-items:center;gap:5px;font:inherit;color:inherit;min-block-size:44px}
+.dm-sort:hover{color:var(--mjy-ink)}
+.dm-sort svg{opacity:.45}
+.dm-sort[aria-sort="ascending"] svg,.dm-sort[aria-sort="descending"] svg{opacity:1;color:var(--mjy-primary)}
+.dm-check{inline-size:20px;block-size:20px;accent-color:var(--mjy-primary);margin:0}
+.dm-checkwrap{display:grid;place-items:center;min-inline-size:44px;min-block-size:44px;margin:-11px 0;cursor:pointer}
+
+.dm-pill{display:inline-block;font-size:11.5px;font-weight:500;line-height:1.9;border-radius:999px;padding:1px 9px;border:1px solid transparent;white-space:nowrap}
+.p-wait{color:var(--mjy-muted);background:rgba(14,92,85,.07)}
+.p-queue{color:var(--mjy-primary-ink);background:var(--tint2)}
+.p-sent{color:var(--mjy-ink);background:var(--amber);border-color:rgba(242,169,59,.5)}
+.p-fail{color:var(--mjy-danger);background:var(--danger-bg);border-color:rgba(179,38,30,.28)}
+.p-block{color:var(--mjy-danger);background:transparent;border-color:rgba(179,38,30,.45);border-style:dashed}
+.p-cancel{color:var(--mjy-muted);background:transparent;border-color:var(--mjy-line)}
+.p-closed{color:var(--mjy-muted);background:transparent;border-color:rgba(14,92,85,.3)}
+
+.dm-detail td{background:var(--mjy-bg);padding:12px}
+.dm-detail-in{display:grid;gap:10px;max-inline-size:60em}
+.dm-kv{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--mjy-muted)}
+.dm-kv b{color:var(--mjy-ink);font-weight:500;font-variant-numeric:tabular-nums}
+.dm-explain{font-size:13px;line-height:1.85}
+.dm-explain strong{font-weight:700}
+.dm-pre{margin:0;direction:ltr;text-align:start;unicode-bidi:isolate;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11.5px;line-height:1.7;color:var(--mjy-muted);background:var(--mjy-surface);border:1px solid var(--mjy-line);
+  border-radius:var(--radius-sm);padding:8px 10px;overflow-x:auto;white-space:pre-wrap;word-break:break-word}
+.dm-call{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dm-call-log{font-size:12px;color:var(--mjy-muted)}
+.dm-call-log b{color:var(--mjy-ink);font-weight:500}
+
+/* ===== side panels ===== */
+.dm-side{display:grid;gap:12px}
+.dm-card{background:var(--mjy-surface);border:1px solid var(--mjy-line);border-radius:var(--radius-md);padding:12px}
+.dm-card h3{font-size:12px;font-weight:500;color:var(--mjy-muted);margin-block-end:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dm-qrow{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-block:4px;font-size:12.5px;color:var(--mjy-muted);border-block-end:1px dashed var(--mjy-line)}
+.dm-qrow:last-of-type{border-block-end:0}
+.dm-qrow b{color:var(--mjy-ink);font-weight:500;font-variant-numeric:tabular-nums}
+.dm-abandoned{margin-block-start:8px;padding:8px;border-radius:var(--radius-sm);background:var(--danger-bg);
+  border:1px solid rgba(179,38,30,.28);font-size:12px;color:var(--mjy-danger);display:grid;gap:6px}
+.dm-log{display:grid;gap:8px;max-block-size:420px;overflow-y:auto}
+.dm-ev{border:1px solid var(--mjy-line);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;line-height:1.8;background:var(--mjy-surface)}
+.dm-ev-t{display:flex;gap:6px;align-items:baseline;justify-content:space-between}
+.dm-ev-t b{font-weight:500}
+.dm-ev-time{font-size:10.5px;color:var(--mjy-muted);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.dm-ev p{color:var(--mjy-muted);margin-block-start:2px}
+.dm-ev--ok{border-color:rgba(242,169,59,.5);background:rgba(242,169,59,.07)}
+.dm-ev--warn{border-color:rgba(179,38,30,.28);background:var(--danger-bg)}
+.dm-ev--warn .dm-ev-t b{color:var(--mjy-danger)}
+.dm-empty{font-size:12px;color:var(--mjy-muted)}
+
+/* ===== takeaway ===== */
+.dm-take{display:flex;gap:8px;align-items:flex-start;padding:10px 16px;border-block-start:1px solid var(--mjy-line);
+  background:var(--tint);font-size:13px;color:var(--mjy-primary-ink)}
+.dm-take b{font-weight:700;flex:0 0 auto}
+
+.dm-note{font-size:12px;color:var(--mjy-muted);margin-block-start:10px;line-height:1.9}
+.dm-note a{color:var(--mjy-primary);text-underline-offset:4px}
+
+@media (max-width:1000px){
+  .dm-main{grid-template-columns:1fr}
+  .dm-rail{position:static;grid-template-columns:1fr 1fr;gap:8px}
+  .dm-rail h2{grid-column:1 / -1}
+  .dm-panel-grid{grid-template-columns:1fr}
+  .dm-shop{grid-template-columns:1fr}
+  .dm-media{aspect-ratio:16/9}
+  .dm-tiles{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:620px){
+  .dm-wrap{padding-inline:14px}
+  .dm-rail{grid-template-columns:1fr}
+  .dm-seg button{padding-inline:12px;font-size:13px}
+  .dm-form-row{grid-template-columns:1fr}
+  .dm-tiles{grid-template-columns:repeat(2,1fr)}
+  .dm-tile b{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms;transition-duration:.01ms}
+}
+@media print{
+  .dm-rail,.dm-seg,.dm-back{display:none}
+  .dm-frame{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<a class="sr" href="#stage">رفتن به دمو</a>
+
+<header class="dm-top" id="top">
+  <div class="dm-wrap dm-top-in">
+    <a class="dm-brand" href="../index.html">
+      <span class="dm-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.3-6"></path><path d="M20 12a8 8 0 0 1-13.3 6"></path><path d="M17 3.5v4h-4"></path><path d="M7 20.5v-4h4"></path></svg>
+      </span>
+      <span>موجودیار</span>
+      <span class="dm-ver">دمو</span>
+    </a>
+
+    <div class="dm-seg" role="tablist" aria-label="سطح دمو">
+      <button type="button" role="tab" id="tab-shop" aria-controls="pane-shop" aria-selected="true">فروشگاه</button>
+      <button type="button" role="tab" id="tab-panel" aria-controls="pane-panel" aria-selected="false" tabindex="-1">پنل</button>
+    </div>
+
+    <span class="dm-badge">دمو — داده‌های ساختگی</span>
+    <a class="dm-back" href="../index.html#demo">بازگشت به صفحهٔ اصلی</a>
+  </div>
+</header>
+
+<main class="dm-wrap dm-main">
+
+  <!-- scenario rail -->
+  <aside class="dm-rail" aria-labelledby="rail-title">
+    <h2 id="rail-title">شش سناریو — روی هرکدام بزنید</h2>
+
+    <button type="button" class="dm-rail-btn" data-sc="1">
+      <span class="dm-rail-n" aria-hidden="true">۱</span>
+      <span class="dm-rail-t">ثبت درخواست<span class="dm-rail-s">فرم دیده می‌شود، ردیف در پنل بالای جدول می‌نشیند.</span></span>
+    </button>
+    <button type="button" class="dm-rail-btn" data-sc="2">
+      <span class="dm-rail-n" aria-hidden="true">۲</span>
+      <span class="dm-rail-t">برگشت ۵ عدد از ۱۰٬۰۰۰<span class="dm-rail-s">پنج نفر قدیمی‌تر خبردار می‌شوند، نه ده هزار نفر.</span></span>
+    </button>
+    <button type="button" class="dm-rail-btn" data-sc="3">
+      <span class="dm-rail-n" aria-hidden="true">۳</span>
+      <span class="dm-rail-t">الگوی پیامک بلندتر از سقف<span class="dm-rail-s">پیش از درگاه رد می‌شود و تلاش مصرف نمی‌کند.</span></span>
+    </button>
+    <button type="button" class="dm-rail-btn" data-sc="4">
+      <span class="dm-rail-n" aria-hidden="true">۴</span>
+      <span class="dm-rail-t">خطای درگاه<span class="dm-rail-s">تلاش اول و دوم، با زمان‌بندی بعدی در گزارش.</span></span>
+    </button>
+    <button type="button" class="dm-rail-btn" data-sc="5">
+      <span class="dm-rail-n" aria-hidden="true">۵</span>
+      <span class="dm-rail-t">صف گیرکرده<span class="dm-rail-s">یک ردیف رهاشده، و آزادسازی‌اش.</span></span>
+    </button>
+    <button type="button" class="dm-rail-btn" data-sc="6">
+      <span class="dm-rail-n" aria-hidden="true">۶</span>
+      <span class="dm-rail-t">پیگیری تلفنی<span class="dm-rail-s">تماس اول بی‌پاسخ، تماس دوم سفارش.</span></span>
+    </button>
+
+    <p class="dm-note">هر سناریو حالت همین صفحه را عوض می‌کند؛ بارگذاری دوباره همه‌چیز را به دادهٔ اولیه برمی‌گرداند.</p>
+  </aside>
+
+  <!-- stage -->
+  <div id="stage">
+    <div class="dm-frame" id="frame">
+      <div class="dm-frame-bar">
+        <p class="dm-badge">دمو — داده‌های ساختگی</p>
+        <p class="dm-frame-state" id="frame-state"></p>
+      </div>
+
+      <!-- ============ SHOP ============ -->
+      <section id="pane-shop" role="tabpanel" aria-labelledby="tab-shop">
+        <div class="dm-pane-body">
+          <div class="dm-shop">
+            <div class="dm-media" aria-hidden="true">ک</div>
+            <div>
+              <p class="dm-crumb">فروشگاه › کوله و کیف › کوله‌های سفری</p>
+              <h1 class="dm-prod-name">کوله‌پشتی سفری ۳۰ لیتری</h1>
+              <div class="dm-prod-meta">
+                <span class="dm-price">۱٬۲۸۰٬۰۰۰ تومان</span>
+                <span class="dm-stock out" id="shop-stock">ناموجود</span>
+              </div>
+              <p class="dm-desc">برزنتی ضدآب، دو جیب جانبی، بند قابل تنظیم. صفحهٔ محصول در حالت ناموجود؛ فرم زیر فقط در همین حالت دیده می‌شود.</p>
+
+              <form class="dm-form" id="shop-form" novalidate>
+                <div class="dm-form-row">
+                  <div class="dm-field">
+                    <label for="shop-name">نام <span class="opt">(اختیاری)</span></label>
+                    <input class="dm-input" id="shop-name" name="name" type="text" autocomplete="off" placeholder="سارا محمدی">
+                  </div>
+                  <div class="dm-field">
+                    <label for="shop-tel">شمارهٔ موبایل</label>
+                    <input class="dm-input" id="shop-tel" name="tel" type="tel" inputmode="tel" autocomplete="off" placeholder="۰۹۱۲۳۴۵۶۴۷" aria-describedby="shop-hint">
+                  </div>
+                </div>
+                <p class="dm-hint" id="shop-hint">فقط شماره لازم است. اگر نام خالی بماند، پیامک با «همراه گرامی» نمی‌آید — بدون نام ارسال می‌شود.</p>
+                <button class="dm-btn dm-btn--block" type="submit" id="shop-submit">خبرم کن</button>
+              </form>
+
+              <div class="dm-success" id="shop-success" role="status" aria-live="polite" hidden>
+                <span class="dm-success-mark" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <div>
+                  <p id="shop-success-text">ثبت شد — به‌محض موجود شدن پیامک می‌کنیم</p>
+                  <small id="shop-success-meta">ردیف در «پنل» هم دیده می‌شود.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="dm-pane-foot">
+          <span>این صفحه تقلید سمت مشتری است؛ چیزی به فروشگاه شما وصل نیست.</span>
+          <span>هیچ پیامکی فرستاده نمی‌شود.</span>
+        </p>
+      </section>
+
+      <!-- ============ PANEL ============ -->
+      <section id="pane-panel" role="tabpanel" aria-labelledby="tab-panel" hidden>
+        <div class="dm-pane-body">
+          <div class="dm-tiles" id="tiles"><div class="dm-tile dm-tile--accent"><b>۵</b><span>در انتظار</span></div><div class="dm-tile"><b>۱</b><span>در صف</span></div><div class="dm-tile"><b>۲</b><span>ارسال‌شده</span></div><div class="dm-tile"><b>۱</b><span>ناموفق</span></div><div class="dm-tile"><b>۱</b><span>متوقف‌شده</span></div></div>
+
+          <div class="dm-panel-grid">
+            <div>
+              <div class="dm-toolbar">
+                <label class="dm-count" for="filter">وضعیت</label>
+                <select class="dm-select" id="filter">
+                  <option value="all">همه</option>
+                  <option value="waiting">در انتظار</option>
+                  <option value="queued">در صف</option>
+                  <option value="sent">پیام ارسال شد</option>
+                  <option value="failed">ناموفق</option>
+                  <option value="blocked">متوقف‌شده</option>
+                  <option value="cancelled">لغوشده</option>
+                  <option value="closed">بسته</option>
+                </select>
+                <span class="dm-count" id="shown-count">۱۲ ردیف</span>
+                <span class="spacer"></span>
+                <button class="dm-btn dm-btn--ghost dm-btn--sm" type="button" id="csv">خروجی <span lang="en" dir="ltr" class="ltr">CSV</span></button>
+              </div>
+
+              <div class="dm-bulk" id="bulk">
+                <span id="bulk-count">۰ ردیف انتخاب شده</span>
+                <button class="dm-btn dm-btn--sm" type="button" id="bulk-retry">تلاش دوباره</button>
+                <span class="dm-count">فقط ردیف‌های ناموفق و متوقف‌شده دوباره در صف می‌نشینند.</span>
+              </div>
+
+              <div class="dm-table-wrap">
+                <table class="dm-table">
+                  <caption>لیست انتظار — <span id="total-caption">نمایش ۱۲ ردیف از ۱۰٬۰۰۰ ثبت‌شده</span></caption>
+                  <thead>
+                    <tr>
+                      <th scope="col"><input class="dm-check" type="checkbox" id="check-all" aria-label="انتخاب همهٔ ردیف‌ها"></th>
+                      <th scope="col">نام</th>
+                      <th scope="col">موبایل</th>
+                      <th scope="col">
+                        <button type="button" class="dm-sort" id="sort-date" aria-sort="descending">
+                          تاریخ
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button type="button" class="dm-sort" id="sort-status" aria-sort="none">
+                          وضعیت
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+                        </button>
+                      </th>
+                      <th scope="col"><span class="sr">جزئیات</span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="wl-body"><tr data-id="2"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="2" aria-label="انتخاب علی رضایی"></label></td><td class="nm">علی رضایی</td><td class="num">۰۹۳۵…۵۶</td><td class="num">۱۴۰۵/۰۸/۱۲</td><td><span class="dm-pill p-queue">در صف</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="2" aria-expanded="false">جزئیات</button></td></tr><tr data-id="1"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="1" aria-label="انتخاب سارا محمدی"></label></td><td class="nm">سارا محمدی</td><td class="num">۰۹۱۲…۴۷</td><td class="num">۱۴۰۵/۰۸/۱۲</td><td><span class="dm-pill p-wait">در انتظار</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="1" aria-expanded="false">جزئیات</button></td></tr><tr data-id="4"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="4" aria-label="انتخاب حسین کریمی"></label></td><td class="nm">حسین کریمی</td><td class="num">۰۹۰۱…۹۰</td><td class="num">۱۴۰۵/۰۸/۱۱</td><td><span class="dm-pill p-sent">پیام ارسال شد</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="4" aria-expanded="false">جزئیات</button></td></tr><tr data-id="3"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="3" aria-label="انتخاب مریم احمدی"></label></td><td class="nm">مریم احمدی</td><td class="num">۰۹۱۹…۶۷</td><td class="num">۱۴۰۵/۰۸/۱۱</td><td><span class="dm-pill p-wait">در انتظار</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="3" aria-expanded="false">جزئیات</button></td></tr><tr data-id="6"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="6" aria-label="انتخاب ۰۹۱۲۹۹۰۱۲۳"></label></td><td class="nm"><span class="anon">بدون نام</span></td><td class="num">۰۹۱۲…۲۳</td><td class="num">۱۴۰۵/۰۸/۱۰</td><td><span class="dm-pill p-fail">ناموفق</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="6" aria-expanded="false">جزئیات</button></td></tr><tr data-id="5"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="5" aria-label="انتخاب نگار موسوی"></label></td><td class="nm">نگار موسوی</td><td class="num">۰۹۳۷…۹۱</td><td class="num">۱۴۰۵/۰۸/۱۰</td><td><span class="dm-pill p-wait">در انتظار</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="5" aria-expanded="false">جزئیات</button></td></tr><tr data-id="8"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="8" aria-label="انتخاب الهام صادقی"></label></td><td class="nm">الهام صادقی</td><td class="num">۰۹۳۰…۵۵</td><td class="num">۱۴۰۵/۰۸/۰۹</td><td><span class="dm-pill p-sent">پیام ارسال شد</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="8" aria-expanded="false">جزئیات</button></td></tr><tr data-id="7"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="7" aria-label="انتخاب رضا کاظمی"></label></td><td class="nm">رضا کاظمی</td><td class="num">۰۹۱۳…۵۶</td><td class="num">۱۴۰۵/۰۸/۰۹</td><td><span class="dm-pill p-wait">در انتظار</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="7" aria-expanded="false">جزئیات</button></td></tr><tr data-id="10"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="10" aria-label="انتخاب زهرا شریفی"></label></td><td class="nm">زهرا شریفی</td><td class="num">۰۹۱۶…۹۹</td><td class="num">۱۴۰۵/۰۸/۰۸</td><td><span class="dm-pill p-cancel">لغوشده</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="10" aria-expanded="false">جزئیات</button></td></tr><tr data-id="9"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="9" aria-label="انتخاب مهدی نوری"></label></td><td class="nm">مهدی نوری</td><td class="num">۰۹۱۵…۲۲</td><td class="num">۱۴۰۵/۰۸/۰۸</td><td><span class="dm-pill p-block">متوقف‌شده</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="9" aria-expanded="false">جزئیات</button></td></tr><tr data-id="12"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="12" aria-label="انتخاب ۰۹۳۸۸۸۹۹۰۰"></label></td><td class="nm"><span class="anon">بدون نام</span></td><td class="num">۰۹۳۸…۰۰</td><td class="num">۱۴۰۵/۰۸/۰۷</td><td><span class="dm-pill p-closed">بسته</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="12" aria-expanded="false">جزئیات</button></td></tr><tr data-id="11"><td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="11" aria-label="انتخاب امیر تهرانی"></label></td><td class="nm">امیر تهرانی</td><td class="num">۰۹۱۱…۴۴</td><td class="num">۱۴۰۵/۰۸/۰۷</td><td><span class="dm-pill p-wait">در انتظار</span></td><td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="11" aria-expanded="false">جزئیات</button></td></tr></tbody>
+                </table>
+              </div>
+
+              <p class="dm-note">خروجی <span lang="en" dir="ltr" class="ltr">CSV</span> با <span class="ltr" dir="ltr">UTF-8 BOM</span> ساخته می‌شود؛ همان چیزی که اکسل فارسی بدون کدگذاری درست باز می‌کند.</p>
+            </div>
+
+            <div class="dm-side">
+              <div class="dm-card">
+                <h3>صف <span class="dm-count" id="queue-total"></span></h3>
+                <div id="queue"><div class="dm-qrow"><span>آمادهٔ ارسال</span><b>۱</b></div><div class="dm-qrow"><span>زمان‌بندی‌شده</span><b>۱</b></div><div class="dm-qrow"><span>در حال ارسال</span><b>۰</b></div><div class="dm-qrow"><span>ناموفق</span><b>۰</b></div><div class="dm-qrow"><span>متوقف‌شده</span><b>۱</b></div></div>
+                <div class="dm-abandoned" id="abandoned" hidden>
+                  <span id="abandoned-text">۱ ردیف رهاشده</span>
+                  <button class="dm-btn dm-btn--sm" type="button" id="release">آزادسازی</button>
+                </div>
+              </div>
+
+              <div class="dm-card">
+                <h3>گزارش رویدادها <span class="dm-count" id="log-count"></span></h3>
+                <div class="dm-log" id="log"><div class="dm-ev dm-ev--info"><div class="dm-ev-t"><b>پایش موجودی اجرا شد.</b><span class="dm-ev-time">۱۴:۰۵</span></div><p>موجودی «کوله‌پشتی سفری ۳۰ لیتری» صفر است؛ لیست انتظار بسته می‌ماند.</p></div><div class="dm-ev dm-ev--info"><div class="dm-ev-t"><b>پنل باز شد.</b><span class="dm-ev-time">۱۴:۰۶</span></div><p>داده‌های این صفحه ساختگی‌اند و در حافظهٔ همین تب می‌مانند.</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="dm-pane-foot">
+          <span>پنل تقلیدی است؛ هیچ نوشتنی در دیتابیس رخ نمی‌دهد.</span>
+          <span>هیچ پیامکی فرستاده نمی‌شود.</span>
+        </p>
+      </section>
+
+      <p class="dm-take" id="takeaway">
+        <b>برداشت:</b>
+        <span id="takeaway-text">سناریوها را از ستون کنار انتخاب کنید؛ هر کدام یک اتفاق واقعی در همین صفحه می‌سازد.</span>
+      </p>
+      <p class="sr" id="live" aria-live="polite"></p>
+    </div>
+
+    <noscript>
+      <p class="dm-note">این دمو به <span class="ltr" dir="ltr">JavaScript</span> نیاز دارد: جدول، صف و سناریوها با آن ساخته می‌شوند. عددهای اندازه‌گیری‌شدهٔ افزونه در <a href="../index.html#perf">صفحهٔ اصلی</a> آمده است.</p>
+    </noscript>
+
+    <p class="dm-note">این صفحه نه نصب می‌خواهد، نه ثبت‌نام، نه اتصال به درگاه. هر چه می‌بینید در حافظهٔ همین تب است و با بارگذاری دوباره پاک می‌شود. اگر نشانی را با <span class="ltr" dir="ltr">?reset</span> باز کنید، از حالت اول شروع می‌شود.</p>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- helpers ---------- */
+  var FA = "۰۱۲۳۴۵۶۷۸۹";
+  function toFa(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "٬").replace(/\d/g, function (d) { return FA[+d]; });
+  }
+  function dFa(n) {
+    return String(n).replace(/\d/g, function (d) { return FA[+d]; });
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function mask(phone) { return phone.slice(0, 4) + "…" + phone.slice(-2); }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function clock() {
+    var m = S.clock; S.clock = m + 1;
+    return toFa(String(Math.floor(m / 60)) + ":" + String(m % 60).padStart(2, "0")); 
+  }
+
+  var ST = {
+    waiting: { fa: "در انتظار", cls: "p-wait" },
+    queued: { fa: "در صف", cls: "p-queue" },
+    sent: { fa: "پیام ارسال شد", cls: "p-sent" },
+    failed: { fa: "ناموفق", cls: "p-fail" },
+    blocked: { fa: "متوقف‌شده", cls: "p-block" },
+    cancelled: { fa: "لغوشده", cls: "p-cancel" },
+    closed: { fa: "بسته", cls: "p-closed" }
+  };
+  var ORDER = { failed: 0, blocked: 0, queued: 1, waiting: 2, sent: 3, closed: 4, cancelled: 5 };
+
+  /* ---------- seed ---------- */
+  function row(id, name, phone, d, status, extra) {
+    var r = {
+      id: id, name: name, phone: phone, d: d, k: d.replace(/[۰-۹]/g, function (c) { return FA.indexOf(c); }),
+      status: status, attempts: 0, next: null, err: null, abandoned: false, calls: []
+    };
+    return Object.assign(r, extra || {});
+  }
+
+  function seed() {
+    return {
+      stock: 0,
+      waitlistTotal: 10000,
+      notified: 0,
+      clock: 14 * 60 + 6,
+      seq: 13,
+      sort: { by: "date", dir: "desc" },
+      filter: "all",
+      selected: [],
+      open: null,
+      rows: [
+        row(1, "سارا محمدی", "۰۹۱۲۳۴۵۶۴۷", "۱۴۰۵/۰۸/۱۲", "waiting"),
+        row(2, "علی رضایی", "۰۹۳۵۲۲۳۴۵۶", "۱۴۰۵/۰۸/۱۲", "queued"),
+        row(3, "مریم احمدی", "۰۹۱۹۴۴۵۶۶۷", "۱۴۰۵/۰۸/۱۱", "waiting"),
+        row(4, "حسین کریمی", "۰۹۰۱۵۶۷۸۹۰", "۱۴۰۵/۰۸/۱۱", "sent"),
+        row(5, "نگار موسوی", "۰۹۳۷۶۶۷۸۹۱", "۱۴۰۵/۰۸/۱۰", "waiting"),
+        row(6, "", "۰۹۱۲۹۹۰۱۲۳", "۱۴۰۵/۰۸/۱۰", "failed", {
+          attempts: 2, next: "۱۴:۳۵",
+          err: {
+            fa: "درگاه پاسخ خطا داد. ارسال با عقب‌نشینی دوباره زمان‌بندی شد؛ نیازی به کار شما نیست.",
+            raw: 'HTTP 401  {"status":"error","message":"Invalid token"}'
+          }
+        }),
+        row(7, "رضا کاظمی", "۰۹۱۳۱۲۳۴۵۶", "۱۴۰۵/۰۸/۰۹", "waiting"),
+        row(8, "الهام صادقی", "۰۹۳۰۸۸۷۷۵۵", "۱۴۰۵/۰۸/۰۹", "sent"),
+        row(9, "مهدی نوری", "۰۹۱۵۴۴۳۳۲۲", "۱۴۰۵/۰۸/۰۸", "blocked", {
+          err: {
+            fa: "الگوی پیامک از سقف بلندتر است: مقدار {2} ۵۳ کاراکتر، سقف ۲۵. الگو را در درگاه کوتاه کنید؛ تا آن موقع هیچ ارسالی تلاش نمی‌شود.",
+            raw: "SMS_BLOCKED  reason=body_len(2)=53 > limit=25  attempt=0"
+          }
+        }),
+        row(10, "زهرا شریفی", "۰۹۱۶۷۷۸۸۹۹", "۱۴۰۵/۰۸/۰۸", "cancelled"),
+        row(11, "امیر تهرانی", "۰۹۱۱۲۲۳۳۴۴", "۱۴۰۵/۰۸/۰۷", "waiting"),
+        row(12, "", "۰۹۳۸۸۸۹۹۰۰", "۱۴۰۵/۰۸/۰۷", "closed")
+      ],
+      log: [
+        { kind: "info", time: "۱۴:۰۵", title: "پایش موجودی اجرا شد.", detail: "موجودی «کوله‌پشتی سفری ۳۰ لیتری» صفر است؛ لیست انتظار بسته می‌ماند." },
+        { kind: "info", time: "۱۴:۰۶", title: "پنل باز شد.", detail: "داده‌های این صفحه ساختگی‌اند و در حافظهٔ همین تب می‌مانند." }
+      ]
+    };
+  }
+
+  /* ---------- the reducer: every number on screen comes from here ---------- */
+  function derive(s) {
+    var c = { waiting: 0, queued: 0, sent: 0, failed: 0, blocked: 0, cancelled: 0, closed: 0 };
+    var q = { ready: 0, scheduled: 0, processing: 0, failed: 0, blocked: 0 };
+    s.rows.forEach(function (r) {
+      c[r.status] += 1;
+      if (r.abandoned) { q.processing += 1; return; }
+      if (r.status === "queued") { q.ready += 1; return; }
+      if (r.status === "failed") { if (r.next) { q.scheduled += 1; } else { q.failed += 1; } return; }
+      if (r.status === "blocked") { q.blocked += 1; }
+    });
+    return {
+      counts: c,
+      queue: q,
+      queueTotal: q.ready + q.scheduled + q.processing + q.failed + q.blocked,
+      abandoned: q.processing,
+      notified: s.notified,
+      remaining: Math.max(0, s.waitlistTotal - s.notified),
+      total: s.rows.length
+    };
+  }
+
+  function visible(s) {
+    var rows = s.rows.filter(function (r) { return s.filter === "all" || r.status === s.filter; });
+    var dir = s.sort.dir === "asc" ? 1 : -1;
+    rows.sort(function (a, b) {
+      var v;
+      if (s.sort.by === "status") {
+        v = (ORDER[a.status] - ORDER[b.status]) || (a.k - b.k);
+      } else {
+        v = a.k < b.k ? -1 : a.k > b.k ? 1 : a.id - b.id;
+      }
+      return v * dir;
+    });
+    return rows;
+  }
+
+  /* ---------- state ---------- */
+  var S = seed();
+  if (/[?&]reset\b/.test(location.search)) S = seed();
+
+  var $ = function (sel) { return document.querySelector(sel); };
+  var frame = $("#frame");
+  var live = $("#live");
+  var take = $("#takeaway-text");
+  var busy = false;
+
+  function say(text) { take.textContent = text; }
+  function announce(text) { live.textContent = ""; setTimeout(function () { live.textContent = text; }, 30); }
+
+  /* ---------- renderers ---------- */
+  function renderTiles() {
+    var d = derive(S), c = d.counts;
+    $("#tiles").innerHTML = [
+      tile(c.waiting, "در انتظار", true),
+      tile(c.queued, "در صف"),
+      tile(c.sent, "ارسال‌شده"),
+      tile(c.failed, "ناموفق"),
+      tile(c.blocked, "متوقف‌شده")
+    ].join("");
+    function tile(n, label, accent) {
+      return '<div class="dm-tile' + (accent ? " dm-tile--accent" : "") + '"><b>' + toFa(n) + "</b><span>" + label + "</span></div>";
+    }
+  }
+
+  function rowHtml(r) {
+    var checked = S.selected.indexOf(r.id) > -1 ? " checked" : "";
+    var name = r.name ? esc(r.name) : '<span class="anon">بدون نام</span>';
+    var out = '<tr data-id="' + r.id + '">' +
+      '<td><label class="dm-checkwrap" title="انتخاب ردیف"><input class="dm-check" type="checkbox" data-sel="' + r.id + '"' + checked +
+      ' aria-label="انتخاب ' + esc(r.name || r.phone) + '"></label></td>' +
+      '<td class="nm">' + name + "</td>" +
+      '<td class="num">' + mask(r.phone) + "</td>" +
+      '<td class="num">' + r.d + "</td>" +
+      '<td><span class="dm-pill ' + ST[r.status].cls + '">' + ST[r.status].fa + "</span></td>" +
+      '<td><button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-open="' + r.id +
+      '" aria-expanded="' + (S.open === r.id) + '">جزئیات</button></td></tr>';
+    if (S.open === r.id) out += detailHtml(r);
+    return out;
+  }
+
+  function detailHtml(r) {
+    var h = '<tr class="dm-detail"><td colspan="6"><div class="dm-detail-in">';
+    h += '<div class="dm-kv">' +
+      "<span>نام: <b>" + (r.name ? esc(r.name) : "ثبت نشده") + "</b></span>" +
+      '<span>موبایل: <b dir="ltr">' + r.phone + "</b></span>" +
+      "<span>تاریخ ثبت: <b>" + r.d + "</b></span>" +
+      "<span>تعداد تلاش: <b>" + toFa(r.attempts) + "</b></span>" +
+      "<span>اجرای بعدی: <b>" + (r.next ? r.next : "—") + "</b></span>" +
+      "</div>";
+    if (r.err) {
+      h += '<p class="dm-explain"><strong>چه شد:</strong> ' + esc(r.err.fa) + "</p>" +
+        '<pre class="dm-pre" dir="ltr">' + esc(r.err.raw) + "</pre>" +
+        '<div class="dm-kv"><span>attempt=<b>' + toFa(r.attempts) + "</b></span>" +
+        "<span>next_run_at=<b>" + (r.next ? r.next : "null") + "</b></span>" +
+        (r.status === "blocked" ? "<span>تلاش مصرف‌شده: <b>۰</b> — خطای تنظیمات پیش از درگاه رد می‌شود</span>" : "") +
+        "</div>";
+    }
+    if (r.calls.length) {
+      h += '<div class="dm-call-log">' + r.calls.map(function (c) { return "<b>" + c.t + "</b> — " + c.r; }).join(" · ") + "</div>";
+    }
+    if (r.status !== "closed" && r.status !== "cancelled") {
+      h += '<div class="dm-call">' +
+        '<button type="button" class="dm-btn dm-btn--ghost dm-btn--sm" data-call="noanswer" data-id="' + r.id + '">تماس گرفتم — پاسخ نداد</button>' +
+        '<button type="button" class="dm-btn dm-btn--sm" data-call="order" data-id="' + r.id + '">تماس گرفتم — سفارش داد</button>' +
+        "</div>";
+    }
+    return h + "</div></td></tr>";
+  }
+
+  function renderTable() {
+    var rows = visible(S), d = derive(S);
+    var body = $("#wl-body");
+    body.innerHTML = rows.length
+      ? rows.map(rowHtml).join("")
+      : '<tr><td colspan="6" class="dm-empty">در این فیلتر ردیفی نیست.</td></tr>';
+    $("#shown-count").textContent = toFa(rows.length) + " ردیف";
+    $("#total-caption").textContent = "نمایش " + toFa(rows.length) + " ردیف از " + toFa(S.waitlistTotal) + " ثبت‌شده";
+    $("#bulk-count").textContent = toFa(S.selected.length) + " ردیف انتخاب شده";
+    $("#bulk").classList.toggle("on", S.selected.length > 0);
+    var all = $("#check-all");
+    all.checked = rows.length > 0 && rows.every(function (r) { return S.selected.indexOf(r.id) > -1; });
+  }
+
+  function renderQueue() {
+    var q = derive(S).queue;
+    $("#queue").innerHTML = [
+      ["آمادهٔ ارسال", q.ready], ["زمان‌بندی‌شده", q.scheduled], ["در حال ارسال", q.processing],
+      ["ناموفق", q.failed], ["متوقف‌شده", q.blocked]
+    ].map(function (p) {
+      return '<div class="dm-qrow"><span>' + p[0] + "</span><b>" + toFa(p[1]) + "</b></div>";
+    }).join("");
+    $("#queue-total").textContent = toFa(derive(S).queueTotal) + " در صف";
+    var ab = derive(S).abandoned;
+    $("#abandoned").hidden = ab === 0;
+    $("#abandoned-text").textContent = toFa(ab) + " ردیف رهاشده";
+  }
+
+  function renderLog() {
+    var el = $("#log");
+    if (!S.log.length) { el.innerHTML = '<p class="dm-empty">رویدادی ثبت نشده.</p>'; return; }
+    el.innerHTML = S.log.slice(0, 12).map(function (e) {
+      return '<div class="dm-ev dm-ev--' + e.kind + '">' +
+        '<div class="dm-ev-t"><b>' + esc(e.title) + '</b><span class="dm-ev-time">' + e.time + "</span></div>" +
+        (e.detail ? "<p>" + esc(e.detail) + "</p>" : "") +
+        (e.raw ? '<pre class="dm-pre" dir="ltr">' + esc(e.raw) + "</pre>" : "") +
+        (e.fields ? '<div class="dm-kv">' + e.fields + "</div>" : "") +
+        "</div>";
+    }).join("");
+    $("#log-count").textContent = toFa(S.log.length) + " رویداد";
+  }
+
+  function renderShop() {
+    var stock = S.stock;
+    var badge = $("#shop-stock");
+    badge.textContent = stock > 0 ? "موجود (" + toFa(stock) + ")" : "ناموجود";
+    badge.className = "dm-stock " + (stock > 0 ? "in" : "out");
+    $("#shop-form").hidden = stock > 0 || !$("#shop-success").hidden;
+    if (stock > 0) {
+      $("#shop-success").hidden = false;
+      $("#shop-success-text").textContent = "این کالا موجود شد.";
+      $("#shop-success-meta").textContent = "فرم «خبرم کن» از صفحه برداشته می‌شود؛ همان کاری که افزونه می‌کند.";
+    }
+  }
+
+  function render() {
+    renderTiles(); renderTable(); renderQueue(); renderLog(); renderShop();
+    var d = derive(S);
+    $("#frame-state").textContent = "موجودی " + toFa(S.stock) + " · " + toFa(d.total) + " ردیف از " +
+      toFa(S.waitlistTotal) + " · " + toFa(d.counts.waiting) + " در انتظار · " +
+      toFa(d.remaining) + " نفر هنوز خبر نگرفته‌اند";
+  }
+
+  /* ---------- events ---------- */
+  function logEvent(kind, title, detail, extra) {
+    S.log.unshift(Object.assign({ kind: kind, time: clock(), title: title, detail: detail || "" }, extra || {}));
+  }
+
+  function addRow(name, phone) {
+    var r = row(S.seq++, name, phone, "۱۴۰۵/۰۸/۱۲", "waiting");
+    S.rows.unshift(r);
+    return r;
+  }
+
+  /* shop form */
+  $("#shop-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    submitShop($("#shop-name").value, $("#shop-tel").value, true);
+  });
+
+  function submitShop(name, tel, fromUser) {
+    var hint = $("#shop-hint");
+    var nameEl = $("#shop-name"), telEl = $("#shop-tel");
+    var clean = String(tel || "").replace(/[۰-۹]/g, function (c) { return FA.indexOf(c); }).replace(/\D/g, "");
+    nameEl.setAttribute("aria-invalid", "false");
+    telEl.setAttribute("aria-invalid", "false");
+    if (clean.length < 10) {
+      telEl.setAttribute("aria-invalid", "true");
+      hint.className = "dm-hint err";
+      hint.textContent = "شمارهٔ موبایل باید ۱۰ رقم باشد؛ چیزی ثبت نشد.";
+      if (fromUser) announce("شمارهٔ موبایل ناقص است.");
+      return false;
+    }
+    var full = dFa(clean);
+    var dup = S.rows.filter(function (r) { return r.phone === full; })[0];
+    if (dup) {
+      hint.className = "dm-hint err";
+      hint.textContent = "همین شماره قبلاً برای این کالا ثبت شده؛ ردیف تازه ساخته نمی‌شود.";
+      if (fromUser) announce("این شماره قبلاً ثبت شده است.");
+      return false;
+    }
+    var r = addRow(String(name || "").trim(), full);
+    hint.className = "dm-hint";
+    hint.textContent = "فقط شماره لازم است. اگر نام خالی بماند، پیامک بدون نام ارسال می‌شود.";
+    $("#shop-form").hidden = true;
+    var ok = $("#shop-success");
+    ok.hidden = false;
+    $("#shop-success-text").textContent = "ثبت شد — به‌محض موجود شدن پیامک می‌کنیم";
+    $("#shop-success-meta").textContent = (r.name ? r.name : "بدون نام") + " · " + mask(full) + " · ردیف در «پنل» دیده می‌شود.";
+    logEvent("ok", "درخواست ثبت شد.", "ردیف «" + (r.name || mask(full)) + "» در بالای جدول انتظار نشست؛ هنوز پیامکی در صف نیست.");
+    render();
+    announce("درخواست ثبت شد. ردیف در پنل اضافه شد.");
+    return true;
+  }
+  function maskPhone(digits) { return toFa(digits); }
+
+  /* tabs */
+  var tabs = [$("#tab-shop"), $("#tab-panel")];
+  var panes = { shop: $("#pane-shop"), panel: $("#pane-panel") };
+  function switchTab(name, focus) {
+    tabs.forEach(function (t, i) {
+      var on = (name === "shop" ? 0 : 1) === i;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    panes.shop.hidden = name !== "shop";
+    panes.panel.hidden = name !== "panel";
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { switchTab(i === 0 ? "shop" : "panel"); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        var n = i === 0 ? 1 : 0;
+        switchTab(n === 0 ? "shop" : "panel", true);
+      }
+    });
+  });
+
+  /* sorting + filtering */
+  function setSort(by) {
+    if (S.sort.by === by) { S.sort.dir = S.sort.dir === "desc" ? "asc" : "desc"; }
+    else { S.sort.by = by; S.sort.dir = "desc"; }
+    var d = $("#sort-date"), s = $("#sort-status");
+    d.setAttribute("aria-sort", S.sort.by === "date" ? (S.sort.dir === "desc" ? "descending" : "ascending") : "none");
+    s.setAttribute("aria-sort", S.sort.by === "status" ? (S.sort.dir === "desc" ? "descending" : "ascending") : "none");
+    renderTable();
+  }
+  $("#sort-date").addEventListener("click", function () { setSort("date"); });
+  $("#sort-status").addEventListener("click", function () { setSort("status"); });
+  $("#filter").addEventListener("change", function (e) { S.filter = e.target.value; S.selected = []; renderTable(); });
+
+  /* selection + bulk */
+  $("#wl-body").addEventListener("change", function (e) {
+    var cb = e.target.closest("[data-sel]");
+    if (!cb) return;
+    var id = +cb.getAttribute("data-sel");
+    var at = S.selected.indexOf(id);
+    if (cb.checked && at < 0) S.selected.push(id);
+    if (!cb.checked && at > -1) S.selected.splice(at, 1);
+    renderTable();
+  });
+
+  $("#check-all").addEventListener("change", function (e) {
+    var rows = visible(S);
+    S.selected = e.target.checked ? rows.map(function (r) { return r.id; }) : [];
+    renderTable();
+  });
+
+  $("#bulk-retry").addEventListener("click", function () {
+    var n = 0;
+    S.rows.forEach(function (r) {
+      if (S.selected.indexOf(r.id) < 0) return;
+      if (r.status !== "failed" && r.status !== "blocked") return;
+      r.status = "queued"; r.next = null; r.err = null; r.abandoned = false; n += 1;
+    });
+    logEvent(n ? "ok" : "info", n ? "تلاش دوباره برای " + toFa(n) + " ردیف." : "ردیفی برای تلاش دوباره نبود.",
+      n ? "ردیف‌های انتخاب‌شده به صف برگشتند؛ اجرای بعدی صف آن‌ها را می‌فرستد." : "فقط ردیف‌های ناموفق و متوقف‌شده دوباره در صف می‌نشینند.");
+    S.selected = [];
+    render();
+    say("تلاش دوباره فقط روی ردیف‌های ناموفق و متوقف‌شده اثر دارد؛ " + toFa(n) + " ردیف به صف برگشت.");
+    announce(toFa(n) + " ردیف به صف برگشت.");
+  });
+
+  /* row detail + call actions */
+  $("#wl-body").addEventListener("click", function (e) {
+    var openBtn = e.target.closest("[data-open]");
+    if (openBtn) {
+      var id = +openBtn.getAttribute("data-open");
+      S.open = S.open === id ? null : id;
+      renderTable();
+      return;
+    }
+    var callBtn = e.target.closest("[data-call]");
+    if (callBtn) {
+      var rid = +callBtn.getAttribute("data-id");
+      var kind = callBtn.getAttribute("data-call");
+      recordCall(rid, kind);
+    }
+  });
+
+  function recordCall(id, kind) {
+    var r = S.rows.filter(function (x) { return x.id === id; })[0];
+    if (!r) return;
+    var label = "تماس " + toFa(r.calls.length + 1);
+    r.calls.push({ t: label, r: kind === "order" ? "سفارش داد" : "پاسخ نداد" });
+    if (kind === "order") {
+      r.status = "closed";
+      logEvent("ok", label + " — سفارش داد.", "ردیف «" + (r.name || mask(r.phone)) + "» خودکار بسته شد.");
+    } else {
+      logEvent("info", label + " — پاسخ نداد.", "ردیف در انتظار می‌ماند؛ تماس بعدی را می‌توانید همین‌جا ثبت کنید.");
+    }
+    render();
+    say(kind === "order"
+      ? "تماس دوم با نتیجهٔ «سفارش داد» ردیف را می‌بندد؛ کسی لازم نیست جدول را دستی تمیز کند."
+      : "تماس اول ثبت شد: پاسخ نداد. ردیف باز می‌ماند.");
+    announce(label + " ثبت شد.");
+  }
+
+  /* release queue */
+  $("#release").addEventListener("click", function () {
+    var r = S.rows.filter(function (x) { return x.abandoned; })[0];
+    if (!r) return;
+    r.abandoned = false; r.status = "sent"; r.next = null; r.err = null;
+    logEvent("ok", "ردیف رهاشده آزاد شد.", "ارسال در همین اجرا انجام شد؛ اجرای بعدی صف هم خودش همین کار را می‌کند.");
+    render();
+    say("ردیف رهاشده آزاد شد و در همین اجرا ارسال شد.");
+    announce("ردیف رهاشده آزاد شد.");
+  });
+
+  /* CSV with BOM */
+  $("#csv").addEventListener("click", function () {
+    var rows = visible(S);
+    function cell(v) { return '"' + String(v == null ? "" : v).replace(/"/g, '""') + '"'; }
+    var lines = [["نام", "موبایل", "تاریخ", "وضعیت", "تعداد تلاش", "اجرای بعدی"].map(cell).join(",")];
+    rows.forEach(function (r) {
+      lines.push([r.name || "", r.phone, r.d, ST[r.status].fa, toFa(r.attempts), r.next || ""].map(cell).join(","));
+    });
+    try {
+      var blob = new Blob(["\uFEFF" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = "mojoodyar-waitlist.csv";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    } catch (err) {
+      announce("مرورگر اجازهٔ ساخت فایل نداد؛ CSV ساخته نشد.");
+      return;
+    }
+    logEvent("info", "خروجی CSV ساخته شد.", toFa(rows.length) + " ردیف از نمای فعلی، با BOM؛ همان چیزی که اکسل فارسی بدون کدگذاری درست باز می‌کند.");
+    render();
+    announce("فایل CSV ساخته شد.");
+  });
+
+  /* ---------- scenarios ---------- */
+  function pick(fn) { return S.rows.filter(fn)[0] || null; }
+  function pickAny(prefs) {
+    for (var i = 0; i < prefs.length; i++) {
+      var r = S.rows.filter(function (x) { return x.status === prefs[i] && !x.abandoned; })[0];
+      if (r) return r;
+    }
+    return null;
+  }
+  function oldestWaiting(n) {
+    return S.rows.filter(function (r) { return r.status === "waiting"; })
+      .sort(function (a, b) { return a.k < b.k ? -1 : a.k > b.k ? 1 : a.id - b.id; }).slice(0, n);
+  }
+
+  var SC = {
+    1: async function () {
+      if (S.stock > 0) {
+        switchTab("shop");
+        say("این کالا الآن موجود است؛ فرم «خبرم کن» فقط روی صفحهٔ کالای ناموجود دیده می‌شود. بارگذاری دوباره صفحه موجودی را به صفر برمی‌گرداند.");
+        return;
+      }
+      switchTab("shop");
+      say("فرم در حال پر شدن است…");
+      await wait(320);
+      $("#shop-name").value = "نیلوفر رستمی";
+      $("#shop-tel").value = "۰۹۳۷۸۸۱۲۹۰";
+      await wait(420);
+      var ok = submitShop("نیلوفر رستمی", "۰۹۳۷۸۸۱۲۹۰", false);
+      await wait(360);
+      switchTab("panel");
+      say(ok
+        ? "درخواست در «فروشگاه» ثبت شد و همان ردیف در «پنل» بالا آمد؛ هنوز هیچ پیامکی در صف نیست."
+        : "این شماره از قبل در جدول بود؛ ردیف تازه‌ای ساخته نشد. همان رفتار واقعی افزونه.");
+    },
+
+    2: async function () {
+      switchTab("panel");
+      var five = oldestWaiting(5);
+      say("موجودی از ۰ به ۵ می‌رسد…");
+      await wait(340);
+      S.stock = 5;
+      render();
+      await wait(420);
+      five.forEach(function (r) { r.status = "sent"; r.next = null; r.err = null; });
+      S.notified += five.length;
+      render();
+      var d = derive(S);
+      logEvent("ok", "۵ واحد برگشت.", toFa(five.length) + " نفر قدیمی‌تر خبردار شدند؛ " + toFa(d.remaining) + " نفر در صف ماندند.");
+      render();
+      say(five.length === 5
+        ? "۵ واحد برگشت؛ ۵ نفر قدیمی‌تر خبردار شدند؛ " + toFa(d.remaining) + " نفر در صف ماندند."
+        : "فقط " + toFa(five.length) + " منتظر باقی مانده بود؛ همان تعداد خبردار شد و " + toFa(d.remaining) + " نفر در صف ماندند.");
+      announce("پنج پیام برای پنج منتظر قدیمی‌تر آماده شد.");
+    },
+
+    3: async function () {
+      switchTab("panel");
+      var r = pickAny(["waiting", "queued", "failed"]);
+      if (!r) { say("ردیفی برای این سناریو نمانده؛ صفحه را دوباره بارگذاری کنید تا دادهٔ اولیه برگردد."); return; }
+      say("ارسال ردیف «" + (r.name || mask(r.phone)) + "» بررسی می‌شود…");
+      await wait(360);
+      r.status = "blocked";
+      r.err = {
+        fa: "الگوی پیامک از سقف بلندتر است: مقدار {2} ۵۳ کاراکتر، سقف ۲۵. ارسال پیش از تماس با درگاه متوقف شد؛ شمارندهٔ تلاش مصرف نشد.",
+        raw: "SMS_BLOCKED  reason=body_len(2)=53 > limit=25  attempt=0"
+      };
+      r.next = null;
+      S.open = r.id;
+      logEvent("warn", "ارسال پیش از درگاه متوقف شد.", "الگوی بلند؛ هیچ درخواستی به درگاه نرفت.",
+        { raw: r.err.raw, fields: "<span>attempt=<b>۰</b></span><span>next_run_at=<b>null</b></span><span>تلاش مصرف‌شده: <b>۰</b></span>" });
+      render();
+      say("قالب بلند پیش از تماس با درگاه رد شد؛ شمارندهٔ تلاش مصرف نشد — یعنی سهمیهٔ تلاش برای خطای واقعی سالم ماند.");
+      announce("ارسال متوقف شد و تلاش مصرف نشد.");
+    },
+
+    4: async function () {
+      switchTab("panel");
+      var r = pickAny(["queued", "waiting", "failed"]);
+      if (!r) { say("ردیفی برای ارسال نمانده؛ صفحه را دوباره بارگذاری کنید."); return; }
+      r.status = "queued"; r.abandoned = false;
+      say("صف ردیف «" + (r.name || mask(r.phone)) + "» را می‌فرستد…");
+      await wait(340);
+      r.status = "failed"; r.attempts = 1; r.next = "۱۴:۴۰";
+      r.err = { fa: "درگاه پاسخ ۴۰۱ داد: توکن نامعتبر است. ارسال با عقب‌نشینی ۱۵ دقیقه دوباره زمان‌بندی شد؛ کلید درگاه را بررسی کنید.", raw: 'HTTP 401  {"status":"error","message":"Invalid token"}' };
+      logEvent("warn", "تلاش اول ناموفق بود.", "درگاه پاسخ خطا داد؛ ردیف زمان‌بندی شد.",
+        { raw: r.err.raw, fields: "<span>attempt=<b>۱</b></span><span>next_run_at=<b>۱۴:۴۰</b></span>" });
+      S.open = r.id;
+      render();
+      await wait(520);
+      r.attempts = 2; r.next = "۱۵:۲۰";
+      r.err.fa = "درگاه هنوز ۴۰۱ می‌دهد. تلاش دوم هم ناموفق بود؛ تلاش بعدی ۶۰ دقیقهٔ دیگر.";
+      logEvent("warn", "تلاش دوم ناموفق بود.", "عقب‌نشینی به ۶۰ دقیقه رسید؛ شمارندهٔ تلاش ۲ شد.",
+        { raw: 'HTTP 401  {"status":"error","message":"Invalid token"}', fields: "<span>attempt=<b>۲</b></span><span>next_run_at=<b>۱۵:۲۰</b></span>" });
+      render();
+      say("درگاه خطا داد؛ تلاش اول با فاصلهٔ ۱۵ دقیقه و تلاش دوم با ۶۰ دقیقه دوباره زمان‌بندی شد. هیچ ارسالی دور انداخته نشد.");
+      announce("خطای درگاه؛ تلاش دوم زمان‌بندی شد.");
+    },
+
+    5: async function () {
+      switchTab("panel");
+      var r = pickAny(["waiting", "queued", "failed"]);
+      if (!r) { say("ردیفی برای این سناریو نمانده؛ صفحه را دوباره بارگذاری کنید."); return; }
+      r.status = "queued"; r.abandoned = true; r.next = null;
+      S.open = null;
+      logEvent("warn", "ردیفی در «در حال ارسال» جا ماند.", "صف آن را رهاشده می‌شمارد؛ با «آزادسازی» برمی‌گردد.");
+      render();
+      say("یک ردیف در «در حال ارسال» رها شد. دکمهٔ «آزادسازی» در پنل صف است؛ اجرای بعدی صف هم خودکار همین کار را می‌کند.");
+      announce("یک ردیف رهاشده در صف.");
+    },
+
+    6: async function () {
+      switchTab("panel");
+      var r = pickAny(["waiting", "queued", "failed"]);
+      if (!r) { say("ردیفی برای پیگیری نمانده؛ صفحه را دوباره بارگذاری کنید."); return; }
+      S.open = r.id;
+      renderTable();
+      say("تماس اول با «" + (r.name || mask(r.phone)) + "»…");
+      await wait(380);
+      recordCall(r.id, "noanswer");
+      await wait(520);
+      recordCall(r.id, "order");
+      render();
+      say("تماس اول بی‌پاسخ، تماس دوم «سفارش داد»؛ ردیف خودکار بسته شد و از صف بیرون رفت.");
+      announce("پیگیری تلفنی ردیف را بست.");
+    }
+  };
+
+  var railBtns = [].slice.call(document.querySelectorAll(".dm-rail-btn"));
+  function busyState(on) {
+    busy = on;
+    frame.setAttribute("aria-busy", on ? "true" : "false");
+    railBtns.forEach(function (b) { b.disabled = on; });
+    document.querySelectorAll(".dm-rail-btn.is-running").forEach(function (b) { b.classList.remove("is-running"); });
+  }
+
+  railBtns.forEach(function (b) {
+    b.addEventListener("click", async function () {
+      if (busy) return;
+      busyState(true);
+      b.classList.add("is-running");
+      try { await SC[+b.getAttribute("data-sc")](); }
+      finally { busyState(false); }
+    });
+  });
+
+  /* header shadow */
+  var top = $("#top");
+  function onScroll() { top.classList.toggle("is-stuck", window.scrollY > 6); }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* first paint */
+  render();
+})();
+
+</script>
+</body>
+</html>
