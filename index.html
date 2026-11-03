@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>موجودیار — فرم «خبرم کن» برای کالاهای ناموجود ووکامرس</title>
+<meta name="description" content="موجودیار فرم «خبرم کن» را فقط روی صفحهٔ همان محصول ناموجود می‌گذارد. روی بقیهٔ سایت، صفر بایت. وقتی کالا برگشت، به تعداد واحدهای برگشته پیامک می‌رود؛ قدیمی‌ترین منتظر، اول.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#EEF4F2">
+<link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Vazirmatn-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body id="top">
+
+<a class="mjy-skip" href="#main">رفتن به متن اصلی</a>
+
+<!-- ============ 0. HEADER ============ -->
+<header class="mjy-header" id="site-header">
+  <div class="mjy-wrap mjy-header-in">
+    <a class="mjy-brand" href="#top">
+      <span class="mjy-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12a8 8 0 0 1 13.3-6"></path>
+          <path d="M20 12a8 8 0 0 1-13.3 6"></path>
+          <path d="M17 3.5v4h-4"></path>
+          <path d="M7 20.5v-4h4"></path>
+        </svg>
+      </span>
+      <span>موجودیار</span>
+      <span class="mjy-ver" title="نسخهٔ افزونه">۱.۰.۰</span>
+    </a>
+
+    <nav class="mjy-nav" aria-label="فهرست بخش‌های صفحه">
+      <a href="#how">چطور کار می‌کند</a>
+      <a href="#features">امکانات</a>
+      <a href="#perf">عملکرد</a>
+      <a href="#faq">سؤال‌ها</a>
+      <a href="#pricing">قیمت</a>
+    </nav>
+
+    <a class="mjy-btn mjy-btn--primary mjy-btn--sm" href="#pricing">خرید افزونه</a>
+  </div>
+
+</header>
+
+<div class="mjy-wrap mjy-mobile-nav-wrap">
+  <nav class="mjy-mobile-nav" aria-label="فهرست کوتاه بخش‌ها">
+    <a href="#how">چطور کار می‌کند</a>
+    <a href="#perf">عملکرد</a>
+    <a href="#pricing">قیمت</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="mjy-wrap mjy-hero" aria-labelledby="hero-title">
+    <div class="mjy-hero-copy">
+      <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۱</span> افزونهٔ ووکامرس</p>
+      <h1 id="hero-title">مشتریِ ناموجود را برنمی‌گرداند — مگر کسی خبرش کند</h1>
+      <p class="mjy-hero-sub">موجودیار فرم «خبرم کن» را فقط روی صفحهٔ همان محصول ناموجود می‌گذارد. روی بقیهٔ سایت، صفر بایت. و وقتی کالا برگشت، به همان تعداد که موجود شد نفر خبردار می‌شوند — قدیمی‌ترین منتظر، اول.</p>
+
+      <div class="mjy-hero-actions">
+        <a class="mjy-btn mjy-btn--primary" href="#pricing">خرید افزونه</a>
+        <a class="mjy-btn mjy-btn--ghost" href="#demo">دیدن دمو</a>
+      </div>
+
+      <ul class="mjy-spec">
+        <li>۰ بایت روی بقیهٔ سایت</li>
+        <li><span lang="en" dir="ltr" class="ltr">PHP 7.4</span> تا <span lang="en" dir="ltr" class="ltr">8.3</span></li>
+        <li>بدون <span lang="en" dir="ltr" class="ltr">Composer</span>، بدون <span lang="en" dir="ltr" class="ltr">build</span></li>
+      </ul>
+
+      <p class="mjy-note mjy-hero-foot">عددهای عملکردی این صفحه فقط از دو فایل <span lang="en" dir="ltr" class="ltr">tests/queries.php</span> و <span lang="en" dir="ltr" class="ltr">docs/PERFORMANCE.md</span> آمده‌اند. عددهای داخل ماکت‌ها — قیمت و دادهٔ مشتری — ساختگی‌اند.</p>
+    </div>
+
+    <div class="mjy-hero-mock">
+      <p class="mjy-mock-label">فرم روی صفحهٔ محصول — امتحان کنید</p>
+      <div class="mjy-mock-shell mjy-glass">
+        <div class="mjy-product">
+          <div class="mjy-product-top">
+            <span class="mjy-thumb" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6V5.2A2.2 2.2 0 0 1 11.2 3h1.6A2.2 2.2 0 0 1 15 5.2V6"></path><path d="M6.4 6h11.2A1.6 1.6 0 0 1 19.2 7.6v11.8a1.6 1.6 0 0 1-1.6 1.6H6.4a1.6 1.6 0 0 1-1.6-1.6V7.6A1.6 1.6 0 0 1 6.4 6Z"></path><path d="M8.2 13.2h7.6v4H8.2z"></path><path d="M4.8 10.4v4.6M19.2 10.4v4.6"></path></svg></span>
+            <div>
+              <p class="mjy-product-name">کوله‌پشتی سفری ۳۰ لیتری</p>
+              <p class="mjy-product-meta">۱٬۲۸۰٬۰۰۰ تومان</p>
+            </div>
+            <span class="mjy-oos">ناموجود</span>
+          </div>
+
+          <div class="mjy-product-rule" aria-hidden="true"></div>
+
+          <form class="mjy-form" id="hero-form" novalidate>
+            <div class="mjy-form-row">
+              <div class="mjy-field">
+                <label for="hero-name">نام</label>
+                <input class="mjy-input" id="hero-name" name="name" type="text" autocomplete="name" value="سارا محمدی">
+              </div>
+              <div class="mjy-field">
+                <label for="hero-tel">شمارهٔ موبایل</label>
+                <input class="mjy-input" id="hero-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" value="۰۹۱۲…۴۷">
+              </div>
+            </div>
+            <button class="mjy-btn mjy-btn--primary mjy-btn--block" type="button" id="hero-cta">خبرم کن</button>
+          </form>
+
+          <div class="mjy-success" id="hero-success" role="status" aria-live="polite" hidden>
+            <span class="mjy-success-mark" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+            </span>
+            <div>
+              <p>ثبت شد — به‌محض موجود شدن پیامک می‌کنیم</p>
+              <small>سارا محمدی · ۰۹۱۲…۴۷ · کوله‌پشتی سفری ۳۰ لیتری</small>
+            </div>
+          </div>
+
+          <p class="mjy-note" id="hero-fallback">این فرم نمایشی است؛ چیزی ارسال نمی‌شود.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. HOW IT WORKS ============ -->
+  <section class="mjy-section" id="how" aria-labelledby="how-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۲</span> مسیر</p>
+        <h2 id="how-title">چطور کار می‌کند</h2>
+      </div>
+
+      <div class="mjy-steps" data-reveal>
+        <div class="mjy-step">
+          <span class="mjy-step-index" aria-hidden="true">۱</span>
+          <div class="mjy-step-body">
+            <p><strong>فرم، فقط جایی که لازم است</strong> — صفحهٔ محصول ناموجود، و برای هر تنوع جداگانه. روی هیچ صفحهٔ دیگری نه فایلی، نه اسکریپتی.</p>
+          </div>
+        </div>
+        <div class="mjy-step">
+          <span class="mjy-step-index" aria-hidden="true">۲</span>
+          <div class="mjy-step-body">
+            <p><strong>مشتری، با نام خودش</strong> — نام و شمارهٔ موبایل؛ همان نام در پیامک می‌آید، نه «همراه گرامی».</p>
+          </div>
+        </div>
+        <div class="mjy-step">
+          <span class="mjy-step-index" aria-hidden="true">۳</span>
+          <div class="mjy-step-body">
+            <p><strong>موجودی که برمی‌گردد، دیده می‌شود</strong> — هوک‌های ووکامرس به‌علاوهٔ پایش تطبیقی هر ۱۵ دقیقه؛ موجودی‌ای که با اکسل یا <span lang="en" dir="ltr" class="ltr">ERP</span> عوض شده هم از دست نمی‌رود.</p>
+          </div>
+        </div>
+        <div class="mjy-step">
+          <span class="mjy-step-index" aria-hidden="true">۴</span>
+          <div class="mjy-step-body">
+            <p><strong>به تعداد موجودی، نه به تعداد لیست</strong> — ۵ واحد برگشت؟ ۵ نفر اول خبر می‌شوند. ۳ واحد دیگر؟ ۳ نفر بعدی.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. MECHANISM ============ -->
+  <section class="mjy-section mjy-section--air" id="mechanism" aria-labelledby="mech-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۳</span> مکانیزم</p>
+        <h2 id="mech-title">مسیر یک پیامک، از فرم تا گوشی مشتری</h2>
+      </div>
+
+      <div class="mjy-mech">
+        <p class="mjy-mech-lead">کالا که تمام می‌شود، آدرسی از مشتری نمی‌ماند — نه شماره‌ای، نه ایمیلی، نه ردیفی که بتوان بعداً صدایش کرد. این مسیر همان آدرس را می‌سازد.</p>
+        <div class="mjy-flow" data-reveal>
+          <div class="mjy-node">
+            <b>فرم</b>
+            <span>۱٬۹۸۴ بایت</span>
+          </div>
+          <svg class="mjy-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"></path></svg>
+          <div class="mjy-node">
+            <b>جدول انتظار</b>
+            <span><span lang="en" dir="ltr" class="ltr">InnoDB</span></span>
+          </div>
+          <svg class="mjy-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"></path></svg>
+          <div class="mjy-node">
+            <b>هوک و پایش</b>
+            <span>هر ۱۵ دقیقه</span>
+          </div>
+          <svg class="mjy-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"></path></svg>
+          <div class="mjy-node">
+            <b>صف</b>
+            <span>هر ۵ دقیقه</span>
+          </div>
+          <svg class="mjy-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"></path></svg>
+          <div class="mjy-node">
+            <b>درگاه پیامک</b>
+            <span>۴ درگاه</span>
+          </div>
+          <svg class="mjy-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l-6 6 6 6"></path></svg>
+          <div class="mjy-node mjy-node--accent">
+            <b>مشتری</b>
+            <span>پیامک</span>
+          </div>
+        </div>
+        <p class="mjy-mech-note">هیچ سروری از ما وسط نیست.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FEATURES ============ -->
+  <section class="mjy-section" id="features" aria-labelledby="feat-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۴</span> امکانات</p>
+        <h2 id="feat-title">داخل افزونه</h2>
+      </div>
+
+      <div class="mjy-features" data-reveal>
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h6"></path><path d="M17 14v6M20 17h-6"></path></svg>
+          <b>صف با محدودیت نرخ —</b>
+          <p>ارسال‌ها در پس‌زمینه و پله‌پله؛ هیچ صفحه‌ای وسط کار قفل نمی‌کند و درگاه بلاک نمی‌شود.</p>
+        </article>
+
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2"></rect><path d="M11 18.5h2"></path></svg>
+          <b>چهار درگاه پیامک —</b>
+          <p>ملی‌پیامک (ساده و الگو/<span lang="en" dir="ltr" class="ltr">bodyId</span>)، کاوه‌نگار، آی‌پی‌پنل، و یک درگاه عمومی <span lang="en" dir="ltr" class="ltr">REST</span> برای بقیه.</p>
+        </article>
+
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 3 12 2.5-6H21"></path></svg>
+          <b>تشخیص دولایهٔ موجودی —</b>
+          <p>هوک ووکامرس برای تغییرهای عادی، پایش هر ۱۵ دقیقه برای تغییرهایی که از اکسل، <span lang="en" dir="ltr" class="ltr">ERP</span> یا <span lang="en" dir="ltr" class="ltr">SQL</span> مستقیم آمده‌اند.</p>
+        </article>
+
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h11M8 12h8M8 18h5"></path><circle cx="4" cy="6" r="1.2"></circle><circle cx="4" cy="12" r="1.2"></circle><circle cx="4" cy="18" r="1.2"></circle></svg>
+          <b>ارسال منصفانه —</b>
+          <p>به تعداد واحدهای برگشته اعلان می‌رود، از قدیمی‌ترین منتظر. لیست هزارنفره با ۲ واحد موجود، هزار پیامک نمی‌فرستد.</p>
+        </article>
+
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M9 9v11"></path></svg>
+          <b>پنل فارسی با تاریخ شمسی —</b>
+          <p>داشبورد، لیست انتظار، آمار، پیگیری تلفنی مرحله‌ای، ابزارها و گزارش رویدادها.</p>
+        </article>
+
+        <article class="mjy-feature">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"></path><path d="M8 9h8M8 13h5"></path></svg>
+          <b>گزارش رویدادها —</b>
+          <p>هر ردیف یک توضیح فارسی «چه شد و چه کار کنم»، و متن خام پاسخ درگاه زیرش.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. PERFORMANCE ============ -->
+  <section class="mjy-section" id="perf" aria-labelledby="perf-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۵</span> عملکرد</p>
+        <h2 id="perf-title">عددهایی که می‌شود بازتولید کرد</h2>
+        <p class="mjy-note">اندازه‌گیری: <span lang="en" dir="ltr" class="ltr">tests/queries.php</span> و <span lang="en" dir="ltr" class="ltr">docs/PERFORMANCE.md</span>. عددهای همین دو فایل، نه بیشتر.</p>
+      </div>
+
+      <div class="mjy-perf" data-reveal>
+        <div>
+          <div class="mjy-table-scroll">
+            <table class="mjy-table">
+              <caption>بار افزونه بر صفحه‌ها — هر ردیف یک اندازه‌گیری جداگانه</caption>
+              <thead>
+                <tr>
+                  <th scope="col">صفحه</th>
+                  <th scope="col">فایل افزونه</th>
+                  <th scope="col">کوئری افزونه</th>
+                  <th scope="col">حجم فرم</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">صفحهٔ اصلی</th>
+                  <td class="num zero">۰</td>
+                  <td class="num zero">۰</td>
+                  <td class="na">—</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">آرشیو و دسته</th>
+                  <td class="num zero">۰</td>
+                  <td class="num zero">۰</td>
+                  <td class="na">—</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">جست‌وجو</th>
+                  <td class="num zero">۰</td>
+                  <td class="num zero">۰</td>
+                  <td class="na">—</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">سبد خرید</th>
+                  <td class="num zero">۰</td>
+                  <td class="num zero">۰</td>
+                  <td class="na">—</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">تسویه</th>
+                  <td class="num zero">۰</td>
+                  <td class="num zero">۰</td>
+                  <td class="na">—</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">محصول ناموجود</th>
+                  <td class="num">۲ فایل</td>
+                  <td class="na">داده در دسترس نیست</td>
+                  <td class="num">۱٬۹۸۴ بایت</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">محصول متغیر ناموجود</th>
+                  <td class="num">۲ فایل</td>
+                  <td class="na">داده در دسترس نیست</td>
+                  <td class="num">۲٬۲۳۶ بایت</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mjy-footnotes">
+            <p><b>۱.</b> فایل‌های صفحهٔ محصول: ۱ <span lang="en" dir="ltr" class="ltr">CSS</span> و ۱ <span lang="en" dir="ltr" class="ltr">JS</span>.</p>
+            <p><b>۲.</b> آرشیو انتشار: ۸۱ فایل، ۳۰۱٬۵۹۹ بایت.</p>
+            <p><b>۳.</b> کوئری صفحهٔ محصول در این اندازه‌گیری ثبت نشده؛ به‌جای عدد، «داده در دسترس نیست» می‌نویسیم.</p>
+          </div>
+          <div class="mjy-copy-row">
+            <button class="mjy-btn mjy-btn--ghost mjy-btn--sm" type="button" data-copy hidden>رونوشت عددها برای گزارش</button>
+            <p class="mjy-note mjy-note--xs" data-copy-msg hidden></p>
+          </div>
+        </div>
+
+        <div class="mjy-perf-side">
+          <div class="mjy-card mjy-gauge">
+            <p class="mjy-gauge-title"><span lang="en" dir="ltr" class="ltr">CSS</span> و <span lang="en" dir="ltr" class="ltr">JS</span> سمت کاربر</p>
+            <div class="mjy-gauge-track" role="img" aria-label="۴٬۴۹۵ بایت فشرده از سقف ۱۲٬۲۸۸ بایت">
+              <div class="mjy-gauge-fill"></div>
+            </div>
+            <div class="mjy-gauge-legend">
+              <span>۴٬۴۹۵ بایت فشرده</span>
+              <span>سقف ۱۲٬۲۸۸</span>
+            </div>
+            <p class="mjy-note mjy-note--xs">خام: ۱۳٬۵۷۷ بایت.</p>
+          </div>
+
+          <div class="mjy-card mjy-gauge">
+            <div class="mjy-stats">
+              <div class="mjy-stat"><span>آزمون واحد</span><b>۴۱۱</b></div>
+              <div class="mjy-stat"><span>آزمون یکپارچگی</span><b>۴۴۴</b></div>
+              <div class="mjy-stat"><span>رندر پنل</span><b>۱۷۳</b></div>
+              <div class="mjy-stat"><span>خطا</span><b>۰</b></div>
+              <div class="mjy-stat"><span>بررسی در دروازهٔ انتشار</span><b>۲۸</b></div>
+            </div>
+            <p class="mjy-note mjy-note--xs">اجرا روی <span lang="en" dir="ltr" class="ltr">PHP 7.4.33</span> و <span lang="en" dir="ltr" class="ltr">PHP 8.3.33</span>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. COMPATIBILITY ============ -->
+  <section class="mjy-section mjy-section--dense" id="compat" aria-labelledby="compat-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۶</span> سازگاری</p>
+        <h2 id="compat-title" class="mjy-h2-sm">سازگاری</h2>
+        <p class="mjy-note">سلولی که تست نشده، «داده در دسترس نیست» می‌ماند. تیک سبز جای تست نمی‌گذاریم.</p>
+      </div>
+
+      <div class="mjy-compat-head">
+        <div class="mjy-legend" aria-label="راهنمای وضعیت‌ها">
+          <span class="mjy-state mjy-state--tested">تست‌شده</span>
+          <span class="mjy-state mjy-state--declared">اعلام‌شده، آزمون‌نشده</span>
+          <span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span>
+        </div>
+      </div>
+
+      <div class="mjy-table-scroll">
+        <table class="mjy-table">
+          <caption>وضعیت آزمون هر مورد</caption>
+          <thead>
+            <tr>
+              <th scope="col">مورد</th>
+              <th scope="col">نسخه</th>
+              <th scope="col">وضعیت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="mjy-rowhead"><span lang="en" dir="ltr" class="ltr">PHP</span></th>
+              <td class="num"><span lang="en" dir="ltr" class="ltr">7.4.33</span></td>
+              <td><span class="mjy-state mjy-state--tested">تست‌شده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead"><span lang="en" dir="ltr" class="ltr">PHP</span></th>
+              <td class="num"><span lang="en" dir="ltr" class="ltr">8.3.33</span></td>
+              <td><span class="mjy-state mjy-state--tested">تست‌شده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead"><span lang="en" dir="ltr" class="ltr">PHP</span></th>
+              <td class="num"><span lang="en" dir="ltr" class="ltr">8.4</span></td>
+              <td><span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">وردپرس</th>
+              <td class="num"><span lang="en" dir="ltr" class="ltr">5.x</span></td>
+              <td><span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">وردپرس</th>
+              <td class="num">۶.۴ و بالاتر</td>
+              <td><span class="mjy-state mjy-state--declared">اعلام‌شده، آزمون‌نشده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">ووکامرس</th>
+              <td class="num">۹.۰ و بالاتر</td>
+              <td><span class="mjy-state mjy-state--declared">اعلام‌شده، آزمون‌نشده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">ووکامرس</th>
+              <td class="num">تا <span lang="en" dir="ltr" class="ltr">10.4</span></td>
+              <td><span class="mjy-state mjy-state--declared">اعلام‌شده، آزمون‌نشده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead"><span lang="en" dir="ltr" class="ltr">HPOS</span> روی نصب واقعی</th>
+              <td class="num">—</td>
+              <td><span class="mjy-state mjy-state--declared">اعلام‌شده، آزمون‌نشده</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead"><span lang="en" dir="ltr" class="ltr">WPML</span> و سایت چندزبانه</th>
+              <td class="num">—</td>
+              <td><span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">زمان کوئری <span lang="en" dir="ltr" class="ltr">MySQL</span>/<span lang="en" dir="ltr" class="ltr">MariaDB</span></th>
+              <td class="num">—</td>
+              <td><span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span></td>
+            </tr>
+            <tr>
+              <th scope="row" class="mjy-rowhead">اختلاف <span lang="en" dir="ltr" class="ltr">TTFB</span></th>
+              <td class="num">—</td>
+              <td><span class="mjy-state mjy-state--unknown">داده در دسترس نیست</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. NEGATIVES ============ -->
+  <section class="mjy-section mjy-section--air" id="negatives" aria-labelledby="neg-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۷</span> دامنه</p>
+        <h2 id="neg-title" class="mjy-h2-lg">چیزهایی که موجودیار ندارد</h2>
+      </div>
+
+      <div class="mjy-negs" data-reveal>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>پیامک وضعیت سفارش نمی‌فرستد —</b>
+            <p>کار آن افزونه‌های حمل‌ونقل است، نه این.</p>
+          </div>
+        </div>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>واتس‌اپ و تلگرام ندارد —</b>
+            <p>نیازمند سرور بیرونی است و ما سرور بیرونی نداریم.</p>
+          </div>
+        </div>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>نوبت‌دهی/وقت (آرایشگاه، کلاس) ندارد —</b>
+            <p>دامنهٔ متفاوتی است.</p>
+          </div>
+        </div>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>باشگاه مشتریان و امتیاز ندارد —</b>
+            <p>به این افزونه تعلق ندارد.</p>
+          </div>
+        </div>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>بیش از سه درگاه + یک درگاه عمومی ندارد —</b>
+            <p>هر درگاه تازه، سطح پشتیبانی تازه است.</p>
+          </div>
+        </div>
+        <div class="mjy-neg">
+          <span class="mjy-neg-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12h7"></path></svg>
+          </span>
+          <div>
+            <b>دموی سازندهٔ صفحه و اپ موبایل ندارد —</b>
+            <p>ساخت آن‌ها یک محصول دیگر است.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. DEMO ============ -->
+  <section class="mjy-section mjy-section--air mjy-demo-sec" id="demo" aria-labelledby="demo-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۸</span> دمو</p>
+        <h2 id="demo-title">دمو — بدون نصب، بدون ثبت‌نام</h2>
+        <p class="mjy-note mjy-demo-note-line">این دمو ساختگی است و هیچ پیامکی نمی‌فرستد. نسخهٔ کامل با جدول انتظار، صف و شش سناریو: <a class="mjy-link" href="demo/index.html">دموی کامل</a>.</p>
+      </div>
+
+      <div class="mjy-demo" id="demo-frame" data-reveal>
+        <span class="mjy-demo-badge">دمو</span>
+
+        <div class="mjy-demo-tabs" role="tablist" aria-label="سناریوهای دمو">
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-1" aria-controls="demo-panel" aria-selected="true" data-sc="1">۱ · ثبت درخواست</button>
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-2" aria-controls="demo-panel" aria-selected="false" data-sc="2" tabindex="-1">۲ · برگشت ۵ عدد از ۱۰٬۰۰۰ منتظر</button>
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-3" aria-controls="demo-panel" aria-selected="false" data-sc="3" tabindex="-1">۳ · الگوی پیامک بلندتر از سقف</button>
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-4" aria-controls="demo-panel" aria-selected="false" data-sc="4" tabindex="-1">۴ · خطای درگاه</button>
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-5" aria-controls="demo-panel" aria-selected="false" data-sc="5" tabindex="-1">۵ · صف گیرکرده</button>
+          <button class="mjy-demo-tab" role="tab" type="button" id="sc-tab-6" aria-controls="demo-panel" aria-selected="false" data-sc="6" tabindex="-1">۶ · پیگیری تلفنی</button>
+        </div>
+
+        <div class="mjy-demo-panel" id="demo-panel" role="tabpanel" aria-labelledby="sc-tab-1" tabindex="0">
+          <!-- static first state; replaced by app.js -->
+          <div class="mjy-demo-ctx">
+            <span class="mjy-ctx-item">محصول: <b>کوله‌پشتی سفری ۳۰ لیتری</b></span>
+            <span class="mjy-ctx-stock mjy-ctx-item">موجودی: <b>۰</b></span>
+            <span class="mjy-ctx-stock mjy-ctx-item">در صف: <b>۰</b></span>
+          </div>
+          <div class="mjy-demo-grid">
+            <div class="mjy-demo-left">
+              <div class="mjy-wl-wrap">
+                <table class="mjy-wl">
+                  <caption class="mjy-sr">جدول انتظار</caption>
+                  <thead>
+                    <tr><th scope="col">نام</th><th scope="col">موبایل</th><th scope="col">تاریخ</th><th scope="col">وضعیت</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="wl-name">مینا رضایی</td><td class="num">۰۹۳۵…۱۰</td><td class="num">۱۴۰۵/۰۸/۰۹</td><td><span class="mjy-pill mjy-pill--wait">در انتظار</span></td></tr>
+                    <tr><td class="wl-name">رضا کاظمی</td><td class="num">۰۹۱۳…۲۱</td><td class="num">۱۴۰۵/۰۸/۱۰</td><td><span class="mjy-pill mjy-pill--wait">در انتظار</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="mjy-demo-right">
+              <p class="mjy-log-title">گزارش رویدادها</p>
+              <p class="mjy-log-empty">هنوز رویدادی ثبت نشده.</p>
+            </div>
+          </div>
+          <p class="mjy-demo-take"><b>برداشت:</b> ثبت درخواست هیچ پیامکی نمی‌فرستد؛ فقط یک ردیف در جدول انتظار می‌سازد.</p>
+        </div>
+        <p class="mjy-sr" id="demo-live" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10. PRICING ============ -->
+  <section class="mjy-section" id="pricing" aria-labelledby="price-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۰۹</span> لایسنس</p>
+        <h2 id="price-title">قیمت</h2>
+      </div>
+
+      <div class="mjy-licence" data-reveal>
+        <div class="mjy-licence-main">
+          <h3 class="mjy-licence-title">یک بسته، بدون سطح پنهان</h3>
+          <p class="mjy-licence-lead">نسخهٔ ۱.۰.۰ همان چیزی است که روی این صفحه دیده‌اید؛ نسخهٔ کم‌امکانات‌تر یا «حرفه‌ای‌تر» وجود ندارد که بعداً معلوم شود.</p>
+          <ul class="mjy-licence-list">
+            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> هر چهار درگاه پیامک + درگاه عمومی <span lang="en" dir="ltr" class="ltr">REST</span></li>
+            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> پنل فارسی، تاریخ شمسی، خروجی <span lang="en" dir="ltr" class="ltr">CSV</span> با <span lang="en" dir="ltr" class="ltr">BOM</span></li>
+            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> کد کامل، بدون <span lang="en" dir="ltr" class="ltr">IonCube</span>، بدون سرور سازنده</li>
+            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> پروانه <span lang="en" dir="ltr" class="ltr">GPLv2</span> یا بالاتر</li>
+          </ul>
+        </div>
+        <div class="mjy-licence-side">
+          <p class="mjy-price">قیمت پیش از پرداخت</p>
+          <a class="mjy-btn mjy-btn--block" href="#buy" data-checkout>خرید افزونه</a>
+          <p class="mjy-note mjy-note--xs">عدد قیمت روی این صفحه تکرار نمی‌شود تا کهنه نشود؛ روی صفحهٔ خرید نمایش داده می‌شود.</p>
+        </div>
+      </div>
+
+      <p class="mjy-note mjy-pricing-line">پاسخ اولیه حداکثر ۲۴ ساعت کاری؛ هدف ۴ ساعت.</p>
+      <p class="mjy-note">عدد قیمت روی این صفحه تکرار نمی‌شود تا کهنه نشود؛ پیش از پرداخت، روی صفحهٔ خرید نمایش داده می‌شود.</p>
+    </div>
+  </section>
+
+  <!-- ============ 11. FAQ ============ -->
+  <section class="mjy-section mjy-section--dense" id="faq" aria-labelledby="faq-title">
+    <div class="mjy-wrap">
+      <div class="mjy-sec-head">
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۱۰</span> سؤال‌ها</p>
+        <h2 id="faq-title">سؤال‌ها</h2>
+      </div>
+
+      <div class="mjy-faq" data-reveal>
+        <details id="faq-install" open>
+          <summary>نصبش سخت است؟</summary>
+          <p class="mjy-answer">یک <span lang="en" dir="ltr" class="ltr">zip</span> در پیشخوان، دو دقیقه. اگر پیامک وصل نشد، «گزارش رویدادها» می‌گوید چرا.</p>
+        </details>
+        <details>
+          <summary>با قالب من کار می‌کند؟</summary>
+          <p class="mjy-answer">فرم روی قلاب استاندارد ووکامرس می‌نشیند؛ اگر قالب شما آن را حذف کرده، در مستندات راه جایگزین هست.</p>
+        </details>
+        <details>
+          <summary>فرم را هر جای دیگری می‌شود گذاشت؟</summary>
+          <p class="mjy-answer">فعلاً فقط صفحهٔ محصول؛ شورت‌کد آزاد در نسخهٔ بعد.</p>
+        </details>
+        <details>
+          <summary>مشتری باید تأیید کند؟</summary>
+          <p class="mjy-answer">نه؛ تأیید دومرحله‌ای هست ولی پیش‌فرض خاموش است.</p>
+        </details>
+        <details>
+          <summary>با هاست اشتراکی و <span lang="en" dir="ltr" class="ltr">PHP 7.4</span> کار می‌کند؟</summary>
+          <p class="mjy-answer">روی ۷.۴.۳۳ و ۸.۳.۳۳ تست شده؛ <span lang="en" dir="ltr" class="ltr">PHP 8.4</span> آزمون نشده.</p>
+        </details>
+        <details>
+          <summary>داده‌ها کجا ذخیره می‌شوند؟</summary>
+          <p class="mjy-answer">در جدول‌های خود دیتابیس شما، فقط <span lang="en" dir="ltr" class="ltr">InnoDB</span>. حذف افزونه داده‌ها را پاک نمی‌کند مگر خودتان روشن کنید.</p>
+        </details>
+        <details>
+          <summary>پیامک از سرور شما می‌رود؟</summary>
+          <p class="mjy-answer">نه. از فروشگاه شما مستقیم به درگاه خودتان.</p>
+        </details>
+        <details>
+          <summary>اگر صف گیر کند چه؟</summary>
+          <p class="mjy-answer">ابزار «آزادسازی صف» ردیف رهاشده را برمی‌گرداند؛ اجرای بعدی صف هم خودکار این کار را می‌کند.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12. FINAL CTA + FOOTER ============ -->
+  <footer class="mjy-footer" id="buy">
+    <div class="mjy-wrap">
+      <div class="mjy-cta">
+        <p>فرم را روی صفحهٔ همان محصول بگذارید؛ بقیهٔ کار با پایش موجودی است.</p>
+        <a class="mjy-btn mjy-btn--primary" href="#pricing">خرید افزونه</a>
+      </div>
+
+      <div class="mjy-footer-grid">
+        <div>
+          <div class="mjy-brand mjy-brand--footer">
+            <span class="mjy-mark" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.3-6"></path><path d="M20 12a8 8 0 0 1-13.3 6"></path><path d="M17 3.5v4h-4"></path><path d="M7 20.5v-4h4"></path></svg>
+            </span>
+            <span>موجودیار</span>
+          </div>
+          <p class="mjy-footer-note">هیچ داده‌ای از سایت شما به سرور ما نمی‌رود؛ افزونه هیچ تماسی با سرور سازنده ندارد. پروانه <span lang="en" dir="ltr" class="ltr">GPLv2</span> یا بالاتر. نسخه ۱.۰.۰.</p>
+        </div>
+
+        <div>
+          <h3>راهنما</h3>
+          <ul>
+            <li><a class="mjy-link" href="#faq-install">راهنمای نصب</a></li>
+            <li>
+              <details class="mjy-changelog">
+                <summary>تغییرات نسخه</summary>
+                <p>۱.۰.۰ — انتشار نخست.</p>
+              </details>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>پشتیبانی</h3>
+          <ul>
+            <li>پاسخ اولیه: حداکثر ۲۴ ساعت کاری</li>
+            <li>ساعت پاسخ: شنبه تا چهارشنبه</li>
+            <li>بدون تحلیلگر، بدون کوکی</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mjy-colophon">
+        <span>موجودیار ۱.۰.۰</span>
+        <span><span lang="en" dir="ltr" class="ltr">GPLv2</span> یا بالاتر</span>
+        <span>بدون درخواست بیرونی</span>
+        <span>بدون <span lang="en" dir="ltr" class="ltr">Composer</span>، بدون <span lang="en" dir="ltr" class="ltr">build</span></span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
