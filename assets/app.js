@@ -97,6 +97,18 @@
   var cur = 1;
   var st = null;
 
+  var FA = "۰۱۲۳۴۵۶۷۸۹";
+  function fmt(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "٬").replace(/\d/g, function (c) { return FA[+c]; });
+  }
+  /* one source of truth: the counters are read off the rows, never set by hand */
+  function queueCount(s) {
+    return s.rows.filter(function (r) { return r.s === "sched" || r.s === "sending"; }).length;
+  }
+  function abandonedCount(s) {
+    return s.rows.filter(function (r) { return r.abandoned; }).length;
+  }
+
   var PILL = {
     wait: ["wait", "در انتظار"],
     sent: ["sent", "پیام ارسال شد"],
@@ -114,7 +126,6 @@
     if (sc === 1) {
       return {
         stock: "۰",
-        queue: "۰",
         form: true,
         cap: "",
         rows: [
@@ -129,8 +140,7 @@
     if (sc === 2) {
       return {
         stock: "۰",
-        queue: "۰",
-        waiters: "۱۰٬۰۰۰",
+        waiters: 10000,
         cap: "۵ ردیف نخست از ۱۰٬۰۰۰ منتظر",
         rows: [
           row("سارا محمدی", "۰۹۱۲…۴۷", "۱۴۰۵/۰۷/۲۸", "wait"),
@@ -147,7 +157,6 @@
     if (sc === 3) {
       var blocked = {
         stock: "۵",
-        queue: "۱",
         cap: "",
         rows: [
           row("سارا محمدی", "۰۹۱۲…۴۷", "۱۴۰۵/۰۷/۲۸", "blocked",
@@ -168,7 +177,6 @@
     if (sc === 4) {
       return {
         stock: "۵",
-        queue: "۱",
         cap: "",
         rows: [row("سارا محمدی", "۰۹۱۲…۴۷", "۱۴۰۵/۰۷/۲۸", "sending")],
         log: [],
@@ -179,9 +187,8 @@
     if (sc === 5) {
       return {
         stock: "۵",
-        queue: "۱ ردیف رهاشده",
         cap: "",
-        rows: [row("سارا محمدی", "۰۹۱۲…۴۷", "۱۴۰۵/۰۷/۲۸", "sending", "از ۱۲ دقیقه پیش")],
+        rows: [{ n: "سارا محمدی", p: "۰۹۱۲…۴۷", dt: "۱۴۰۵/۰۷/۲۸", s: "sending", note: "از ۱۲ دقیقه پیش", abandoned: true }],
         log: [{ k: "warn", t: "ردیفی در «در حال ارسال» مانده؛ صف آن را رهاشده می‌بیند." }],
         actions: [{ id: "release", label: "آزادسازی", k: "primary" }],
         take: "ردیف رهاشده با یک کلیک برمی‌گردد؛ اجرای بعدی صف هم خودکار همین کار را می‌کند."
@@ -189,7 +196,6 @@
     }
     return {
       stock: "۰",
-      queue: "۱",
       cap: "",
       rows: [row("سارا محمدی", "۰۹۱۲…۴۷", "۱۴۰۵/۰۷/۲۸", "wait", "بدون تماس")],
       log: [],
@@ -216,13 +222,20 @@
     2: {
       restock: function (s) {
         s.stock = "۵";
-        s.queue = "۵";
-        s.rows.forEach(function (r) { r.s = "sent"; });
-        s.log = [{ k: "ok", t: "۵ واحد برگشت؛ ۵ پیام برای ۵ نفر قدیمی‌تر در صف نشست." },
-                 { t: "۹٬۹۹۵ نفر در صف ماندند." }];
         s.actions = [];
-        s.take = "۵ واحد برگشت، ۵ پیام رفت؛ ۹٬۹۹۵ نفر در صف ماندند — نه یک پیام بیشتر.";
-        s.say = "پنج پیام ارسال شد. نه هزار و نهصد و نود و پنج نفر در صف ماندند.";
+        s.rows.forEach(function (r) { if (r.s === "wait") r.s = "sending"; });
+        s.log = [{ t: "۵ واحد برگشت؛ ۵ پیام در صف نشست." }];
+        s.say = "پنج پیام در صف است.";
+        window.setTimeout(function () {
+          s.rows.forEach(function (r) { if (r.s === "sending") r.s = "sent"; });
+          s.notified = (s.notified || 0) + s.rows.filter(function (r) { return r.s === "sent"; }).length;
+          var left = s.waiters - s.notified;
+          s.log = [{ k: "ok", t: "۵ پیام ارسال شد؛ " + fmt(left) + " نفر در صف ماندند." }].concat(s.log);
+          s.take = "۵ واحد برگشت، ۵ پیام رفت؛ " + fmt(left) + " نفر در صف ماندند — نه یک پیام بیشتر.";
+          s.say = "پنج پیام ارسال شد. " + fmt(left) + " نفر در صف ماندند.";
+          render();
+          live.textContent = s.say;
+        }, 420);
       }
     },
     3: {
@@ -257,8 +270,8 @@
       release: function (s) {
         var r = s.rows[0];
         r.s = "sent";
+        r.abandoned = false;
         r.note = "";
-        s.queue = "۰";
         s.log = [{ k: "ok", t: "ردیف رهاشده آزاد شد و در همین اجرا ارسال شد." }].concat(s.log);
         s.actions = [];
         s.say = "ردیف رهاشده آزاد شد و ارسال شد.";
@@ -292,9 +305,12 @@
     var out = '<div class="mjy-demo-ctx">' +
       '<span class="mjy-ctx-item">محصول: <b>کوله‌پشتی سفری ۳۰ لیتری</b></span>' +
       '<span class="mjy-ctx-stock mjy-ctx-item">موجودی: <b>' + st.stock + "</b></span>" +
-      '<span class="mjy-ctx-stock mjy-ctx-item">در صف: <b>' + st.queue + "</b></span>";
+      '<span class="mjy-ctx-stock mjy-ctx-item">در صف: <b>' + fmt(queueCount(st)) + "</b></span>";
+    if (abandonedCount(st) > 0) {
+      out += '<span class="mjy-ctx-stock mjy-ctx-item">رهاشده: <b>' + fmt(abandonedCount(st)) + "</b></span>";
+    }
     if (st.waiters) {
-      out += '<span class="mjy-ctx-stock mjy-ctx-item">منتظر: <b>' + st.waiters + "</b></span>";
+      out += '<span class="mjy-ctx-stock mjy-ctx-item">منتظر: <b>' + fmt(st.waiters) + "</b></span>";
     }
     if (st.actions.length) {
       out += '<div class="mjy-demo-actions">' + st.actions.map(function (a) {

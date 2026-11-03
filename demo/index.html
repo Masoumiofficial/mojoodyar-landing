@@ -92,7 +92,8 @@ button{background:none;border:0;padding:0;cursor:pointer}
 /* ===== shop ===== */
 .dm-shop{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:start;padding-block:6px}
 .dm-media{display:grid;place-items:center;aspect-ratio:4/3;background:linear-gradient(160deg,var(--tint2),var(--tint));
-  border:1px solid var(--mjy-line);border-radius:var(--radius-md);color:var(--mjy-primary);font-size:44px;font-weight:700;line-height:1}
+  border:1px solid var(--mjy-line);border-radius:var(--radius-md);color:var(--mjy-primary)}
+.dm-media svg{inline-size:46%;block-size:auto;max-inline-size:120px;opacity:.85}
 .dm-crumb{font-size:12px;color:var(--mjy-muted);margin-block-end:6px}
 .dm-prod-name{font-size:clamp(20px,2.4vw,27px);font-weight:700;line-height:1.4}
 .dm-prod-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-block:8px 14px}
@@ -306,7 +307,14 @@ button{background:none;border:0;padding:0;cursor:pointer}
       <section id="pane-shop" role="tabpanel" aria-labelledby="tab-shop">
         <div class="dm-pane-body">
           <div class="dm-shop">
-            <div class="dm-media" aria-hidden="true">ک</div>
+            <div class="dm-media" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 6V5.2A2.2 2.2 0 0 1 11.2 3h1.6A2.2 2.2 0 0 1 15 5.2V6"></path>
+                <path d="M6.4 6h11.2A1.6 1.6 0 0 1 19.2 7.6v11.8a1.6 1.6 0 0 1-1.6 1.6H6.4a1.6 1.6 0 0 1-1.6-1.6V7.6A1.6 1.6 0 0 1 6.4 6Z"></path>
+                <path d="M8.2 13.2h7.6v4H8.2z"></path>
+                <path d="M4.8 10.4v4.6M19.2 10.4v4.6"></path>
+              </svg>
+            </div>
             <div>
               <p class="dm-crumb">فروشگاه › کوله و کیف › کوله‌های سفری</p>
               <h1 class="dm-prod-name">کوله‌پشتی سفری ۳۰ لیتری</h1>

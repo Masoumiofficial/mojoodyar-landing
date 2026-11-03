@@ -46,12 +46,19 @@ those three states, and the accent colour is not used for any of them.
 ## What is a placeholder (wire these before launch)
 
 1. **Checkout.** Every purchase CTA carries `data-checkout` and points at an in-page anchor.
-   Replace the `href` of the three tier buttons with your store URL — nothing else changes.
-2. **Prices.** The ledger contains no price, so the page refuses to print one: each tier shows
-   «قیمت پیش از پرداخت» and the section explains why. When a price is confirmed, put it in
-   `.mjy-price` and delete the explanatory line.
-3. **Tier scope.** «یک فروشگاه / چند فروشگاه / سایت مشتریان» describes the licence tiers
-   qualitatively; confirm the exact domain counts with sales before publishing.
+   Replace the `href` of the buttons in the licence block with your store URL — nothing else changes.
+2. **Price.** The ledger contains no price, so the page refuses to print one: the block shows
+   «قیمت پیش از پرداخت» and explains why. When a price is confirmed, put it in `.mjy-price`
+   and delete the explanatory line.
+
+## Audit outcome (CALL 4)
+
+The three invented licence tiers were removed: they carried commercial terms («نصب روی یک
+فروشگاه»، «اولویت در پاسخ») that exist in no ledger, and they contradicted CALL 1 §11
+(«one price, no hidden Pro tier»). What remains is one package described only with facts the
+ledger carries. The «مشکل» section was deleted and one sentence of it moved into the mechanism
+section. The hero footnote no longer claims that *every* number is measured — it names the two
+measurement files and says plainly that the mock's price and customer data are fabricated.
 
 ## Notes on two directives
 
