@@ -2,7 +2,7 @@
 
 Single-page, Persian (RTL) landing page for «موجودیار», a WooCommerce back-in-stock
 waitlist plugin. Built to route **B — Product tour** from the CALL 1 specification
-(`docs/apex-call-1-spec.md`), with the 13-section order fixed by CALL 2.
+(`docs/apex-call-1-spec.md`), with the section order fixed by CALL 2.
 
 ## Preview
 
@@ -16,9 +16,11 @@ python3 -m http.server 8080      # then open http://localhost:8080
 index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
 assets/app.js         header state, in-view reveal, hero mock, demo state machine, copy-facts
+assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
 fonts/                Vazirmatn 400/500/700 woff2 (self-hosted, OFL licence included)
 demo/                 standalone interactive demo (single file + its own README)
 docs/                 CALL 1 spec
+INSTALL.md            install + hosting guide (Persian)
 ```
 
 ## What is measured (and therefore stated as a number)
@@ -45,8 +47,9 @@ those three states, and the accent colour is not used for any of them.
 
 ## What is a placeholder (wire these before launch)
 
-1. **Checkout.** Every purchase CTA carries `data-checkout` and points at an in-page anchor.
-   Replace the `href` of the buttons in the licence block with your store URL — nothing else changes.
+1. **Checkout.** Two triggers carry `data-checkout` — the button in the licence block and the
+   final CTA in the footer — and both point at `#buy`, the licence block itself. Replace both
+   `href`s with your store URL; nothing else changes.
 2. **Price.** The ledger contains no price, so the page refuses to print one: the block shows
    «قیمت پیش از پرداخت» and explains why. When a price is confirmed, put it in `.mjy-price`
    and delete the explanatory line.
@@ -75,7 +78,27 @@ measurement files and says plainly that the mock's price and customer data are f
 
 | Item | Raw | Gzipped |
 |---|---|---|
-| index.html | 44.9 KB | 8.2 KB |
-| assets/style.css | 33.5 KB | 6.7 KB |
-| assets/app.js | 16.6 KB | 5.0 KB |
-| **page total, fonts excluded** | **95 KB** | **~20 KB** |
+| index.html | 43.2 KB | 8.2 KB |
+| assets/style.css | 33.6 KB | 6.9 KB |
+| assets/app.js | 18.4 KB | 5.6 KB |
+| **page total, fonts excluded** | **95.2 KB** | **20.7 KB** |
+
+## Review pass (after CALL 4)
+
+Checked the whole page again end to end; seven things changed, all of them defects rather
+than taste:
+
+- the price card's buy button pointed at the footer, whose own buy button pointed back at the
+  price card — a two-click loop. `#buy` now sits on the licence block and both triggers land there.
+- `<footer>` was inside `<main>`; the closing tag moved. Footer headings went `h3` → `h2` so
+  they stop reading as sub-sections of «سؤال‌ها».
+- the hero receipt printed the hard-coded «سارا محمدی · ۰۹۱۲…۴۷» whatever was typed. It now
+  echoes the typed name and number. The button became `type="submit"`, so Enter works too.
+- demo scenario ۲ kept showing «منتظر: ۱۰٬۰۰۰» after five people were notified while its own
+  takeaway said ۹٬۹۹۵. Both now come from `remainingOf(s)`.
+- horizontal table regions are `role="region"` + `tabindex="0"` + labelled, so they can be
+  scrolled with a keyboard (WCAG 2.1.1); the demo table got the same treatment.
+- amber had drifted onto the demo badge and the mechanism's last node; both are teal tints
+  again. Amber is back to the success moments and the primary focus ring.
+- added a favicon, Open Graph/Twitter title + description, and dropped a duplicated price
+  sentence that said the same thing twice in a row.

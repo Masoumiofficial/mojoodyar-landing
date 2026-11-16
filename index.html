@@ -7,6 +7,13 @@
 <meta name="description" content="موجودیار فرم «خبرم کن» را فقط روی صفحهٔ همان محصول ناموجود می‌گذارد. روی بقیهٔ سایت، صفر بایت. وقتی کالا برگشت، به تعداد واحدهای برگشته پیامک می‌رود؛ قدیمی‌ترین منتظر، اول.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#EEF4F2">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:site_name" content="موجودیار">
+<meta property="og:title" content="موجودیار — فرم «خبرم کن» برای کالاهای ناموجود ووکامرس">
+<meta property="og:description" content="فرم «خبرم کن» فقط روی صفحهٔ همان محصول ناموجود. وقتی کالا برگشت، به تعداد واحدهای برگشته پیامک می‌رود؛ قدیمی‌ترین منتظر، اول.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Vazirmatn-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
@@ -102,7 +109,7 @@
                 <input class="mjy-input" id="hero-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" value="۰۹۱۲…۴۷">
               </div>
             </div>
-            <button class="mjy-btn mjy-btn--primary mjy-btn--block" type="button" id="hero-cta">خبرم کن</button>
+            <button class="mjy-btn mjy-btn--primary mjy-btn--block" type="submit" id="hero-cta">خبرم کن</button>
           </form>
 
           <div class="mjy-success" id="hero-success" role="status" aria-live="polite" hidden>
@@ -111,7 +118,7 @@
             </span>
             <div>
               <p>ثبت شد — به‌محض موجود شدن پیامک می‌کنیم</p>
-              <small>سارا محمدی · ۰۹۱۲…۴۷ · کوله‌پشتی سفری ۳۰ لیتری</small>
+              <small id="hero-ok-line">سارا محمدی · ۰۹۱۲…۴۷ · کوله‌پشتی سفری ۳۰ لیتری</small>
             </div>
           </div>
 
@@ -263,7 +270,7 @@
 
       <div class="mjy-perf" data-reveal>
         <div>
-          <div class="mjy-table-scroll">
+          <div class="mjy-table-scroll" role="region" aria-label="جدول بار افزونه بر صفحه‌ها" tabindex="0">
             <table class="mjy-table">
               <caption>بار افزونه بر صفحه‌ها — هر ردیف یک اندازه‌گیری جداگانه</caption>
               <thead>
@@ -377,7 +384,7 @@
         </div>
       </div>
 
-      <div class="mjy-table-scroll">
+      <div class="mjy-table-scroll" role="region" aria-label="جدول سازگاری" tabindex="0">
         <table class="mjy-table">
           <caption>وضعیت آزمون هر مورد</caption>
           <thead>
@@ -546,7 +553,7 @@
           </div>
           <div class="mjy-demo-grid">
             <div class="mjy-demo-left">
-              <div class="mjy-wl-wrap">
+              <div class="mjy-wl-wrap" role="region" aria-label="جدول انتظار دمو" tabindex="0">
                 <table class="mjy-wl">
                   <caption class="mjy-sr">جدول انتظار</caption>
                   <thead>
@@ -579,7 +586,7 @@
         <h2 id="price-title">قیمت</h2>
       </div>
 
-      <div class="mjy-licence" data-reveal>
+      <div class="mjy-licence" id="buy" data-reveal>
         <div class="mjy-licence-main">
           <h3 class="mjy-licence-title">یک بسته، بدون سطح پنهان</h3>
           <p class="mjy-licence-lead">نسخهٔ ۱.۰.۰ همان چیزی است که روی این صفحه دیده‌اید؛ نسخهٔ کم‌امکانات‌تر یا «حرفه‌ای‌تر» وجود ندارد که بعداً معلوم شود.</p>
@@ -598,7 +605,6 @@
       </div>
 
       <p class="mjy-note mjy-pricing-line">پاسخ اولیه حداکثر ۲۴ ساعت کاری؛ هدف ۴ ساعت.</p>
-      <p class="mjy-note">عدد قیمت روی این صفحه تکرار نمی‌شود تا کهنه نشود؛ پیش از پرداخت، روی صفحهٔ خرید نمایش داده می‌شود.</p>
     </div>
   </section>
 
@@ -647,12 +653,14 @@
     </div>
   </section>
 
-  <!-- ============ 12. FINAL CTA + FOOTER ============ -->
-  <footer class="mjy-footer" id="buy">
+</main>
+
+<!-- ============ 12. FINAL CTA + FOOTER ============ -->
+<footer class="mjy-footer">
     <div class="mjy-wrap">
       <div class="mjy-cta">
         <p>فرم را روی صفحهٔ همان محصول بگذارید؛ بقیهٔ کار با پایش موجودی است.</p>
-        <a class="mjy-btn mjy-btn--primary" href="#pricing">خرید افزونه</a>
+        <a class="mjy-btn mjy-btn--primary" href="#buy" data-checkout>خرید افزونه</a>
       </div>
 
       <div class="mjy-footer-grid">
@@ -667,7 +675,7 @@
         </div>
 
         <div>
-          <h3>راهنما</h3>
+          <h2>راهنما</h2>
           <ul>
             <li><a class="mjy-link" href="#faq-install">راهنمای نصب</a></li>
             <li>
@@ -680,7 +688,7 @@
         </div>
 
         <div>
-          <h3>پشتیبانی</h3>
+          <h2>پشتیبانی</h2>
           <ul>
             <li>پاسخ اولیه: حداکثر ۲۴ ساعت کاری</li>
             <li>ساعت پاسخ: شنبه تا چهارشنبه</li>
@@ -697,7 +705,5 @@
       </div>
     </div>
   </footer>
-
-</main>
 </body>
 </html>
