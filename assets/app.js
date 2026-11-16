@@ -37,7 +37,6 @@
   /* ---------- hero mock ---------- */
   var heroForm = d.getElementById("hero-form");
   var heroOk = d.getElementById("hero-success");
-  var heroCta = d.getElementById("hero-cta");
   function heroDone() {
     var n = heroForm.querySelector("#hero-name");
     var t = heroForm.querySelector("#hero-tel");
@@ -49,9 +48,11 @@
     heroOk.hidden = false;
     var fb = d.getElementById("hero-fallback");
     if (fb) fb.hidden = true;
+    /* the receipt repeats what was typed, never the demo placeholder */
+    var line = d.getElementById("hero-ok-line");
+    if (line) line.textContent = n.value.trim() + " · " + t.value.trim() + " · کوله‌پشتی سفری ۳۰ لیتری";
   }
-  if (heroForm && heroOk && heroCta) {
-    heroCta.addEventListener("click", heroDone);
+  if (heroForm && heroOk) {
     heroForm.addEventListener("submit", function (e) {
       e.preventDefault();
       heroDone();
@@ -107,6 +108,9 @@
   }
   function abandonedCount(s) {
     return s.rows.filter(function (r) { return r.abandoned; }).length;
+  }
+  function remainingOf(s) {
+    return Math.max(0, (s.waiters || 0) - (s.notified || 0));
   }
 
   var PILL = {
@@ -229,7 +233,7 @@
         window.setTimeout(function () {
           s.rows.forEach(function (r) { if (r.s === "sending") r.s = "sent"; });
           s.notified = (s.notified || 0) + s.rows.filter(function (r) { return r.s === "sent"; }).length;
-          var left = s.waiters - s.notified;
+          var left = remainingOf(s);
           s.log = [{ k: "ok", t: "۵ پیام ارسال شد؛ " + fmt(left) + " نفر در صف ماندند." }].concat(s.log);
           s.take = "۵ واحد برگشت، ۵ پیام رفت؛ " + fmt(left) + " نفر در صف ماندند — نه یک پیام بیشتر.";
           s.say = "پنج پیام ارسال شد. " + fmt(left) + " نفر در صف ماندند.";
@@ -310,7 +314,7 @@
       out += '<span class="mjy-ctx-stock mjy-ctx-item">رهاشده: <b>' + fmt(abandonedCount(st)) + "</b></span>";
     }
     if (st.waiters) {
-      out += '<span class="mjy-ctx-stock mjy-ctx-item">منتظر: <b>' + fmt(st.waiters) + "</b></span>";
+      out += '<span class="mjy-ctx-stock mjy-ctx-item">منتظر: <b>' + fmt(remainingOf(st)) + "</b></span>";
     }
     if (st.actions.length) {
       out += '<div class="mjy-demo-actions">' + st.actions.map(function (a) {
@@ -344,7 +348,7 @@
         "</td></tr>";
     }).join("");
     return (st.cap ? '<p class="mjy-qbar">' + st.cap + "</p>" : "") +
-      '<div class="mjy-wl-wrap"><table class="mjy-wl">' +
+      '<div class="mjy-wl-wrap" role="region" aria-label="جدول انتظار دمو" tabindex="0"><table class="mjy-wl">' +
       '<caption class="mjy-sr">جدول انتظار دمو</caption>' +
       '<thead><tr><th scope="col">نام</th><th scope="col">موبایل</th>' +
       '<th scope="col">تاریخ</th><th scope="col">وضعیت</th></tr></thead>' +
@@ -410,6 +414,9 @@
       handler(st, panel);
       render();
       live.textContent = st.say || "";
+      var next = panel.querySelector("[data-act]");
+      if (next) next.focus();
+      else panel.focus({ preventScroll: true });
     }
   });
 
@@ -421,6 +428,9 @@
       h(st, e.target);
       render();
       live.textContent = st.say || "";
+      var field = panel.querySelector("#d-name");
+      if (field) field.focus();
+      else panel.focus({ preventScroll: true });
     }
   });
 
