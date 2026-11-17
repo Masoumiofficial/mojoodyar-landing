@@ -105,6 +105,7 @@ button{background:none;border:0;padding:0;cursor:pointer}
 .dm-desc{font-size:13.5px;color:var(--mjy-muted);max-inline-size:34em}
 .dm-form{margin-block-start:16px;padding:14px;background:var(--mjy-bg);border:1px solid var(--mjy-line);border-radius:var(--radius-md);display:grid;gap:10px}
 .dm-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dm-form-intro{font-size:12.5px;color:var(--mjy-muted);line-height:1.95;margin:0}
 .dm-field{display:grid;gap:4px}
 .dm-field label{font-size:12px;color:var(--mjy-muted)}
 .dm-field label .opt{color:var(--mjy-muted);font-size:11.5px}
@@ -114,6 +115,11 @@ button{background:none;border:0;padding:0;cursor:pointer}
 .dm-input[aria-invalid="true"]{border-color:var(--mjy-danger)}
 .dm-hint{font-size:11.5px;color:var(--mjy-muted)}
 .dm-hint.err{color:var(--mjy-danger)}
+.dm-price-box{margin-block-start:14px;padding:12px 14px;border:1px dashed rgba(14,92,85,.32);border-radius:var(--radius-md);display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;justify-content:space-between}
+.dm-price-box-label{font-size:12px;color:var(--mjy-muted)}
+.dm-price-box-line{display:inline-flex;align-items:baseline;gap:10px;font-variant-numeric:tabular-nums}
+.dm-price-box-line s{font-size:13px;color:var(--mjy-muted)}
+.dm-price-box-line b{font-size:18px;color:var(--mjy-primary);font-weight:700}
 .dm-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-block-size:var(--tap);
   padding:8px 18px;background:var(--mjy-primary);color:#fff;border:1px solid transparent;border-radius:var(--radius-md);
   font-size:14px;font-weight:500;line-height:1.6;transition:background-color .16s ease-out,transform .16s ease-out}
@@ -320,23 +326,23 @@ button{background:none;border:0;padding:0;cursor:pointer}
               <p class="dm-crumb">فروشگاه › کوله و کیف › کوله‌های سفری</p>
               <h1 class="dm-prod-name">کوله‌پشتی سفری ۳۰ لیتری</h1>
               <div class="dm-prod-meta">
-                <span class="dm-price">۱٬۲۸۰٬۰۰۰ تومان</span>
                 <span class="dm-stock out" id="shop-stock">ناموجود</span>
               </div>
               <p class="dm-desc">برزنتی ضدآب، دو جیب جانبی، بند قابل تنظیم. صفحهٔ محصول در حالت ناموجود؛ فرم زیر فقط در همین حالت دیده می‌شود.</p>
 
               <form class="dm-form" id="shop-form" novalidate>
+                <p class="dm-form-intro">این کالا فعلا موجود نیست. شماره خود را بگذارید تا به‌محض بازگشت موجودی خبرتان کنیم.</p>
                 <div class="dm-form-row">
                   <div class="dm-field">
-                    <label for="shop-name">نام <span class="opt">(اختیاری)</span></label>
-                    <input class="dm-input" id="shop-name" name="name" type="text" autocomplete="off" placeholder="سارا محمدی">
+                    <label for="shop-name">نام و نام خانوادگی</label>
+                    <input class="dm-input" id="shop-name" name="name" type="text" autocomplete="off" placeholder="مثلاً مریم احمدی">
                   </div>
                   <div class="dm-field">
                     <label for="shop-tel">شمارهٔ موبایل</label>
-                    <input class="dm-input" id="shop-tel" name="tel" type="tel" inputmode="tel" autocomplete="off" placeholder="۰۹۱۲۳۴۵۶۴۷" aria-describedby="shop-hint">
+                    <input class="dm-input" id="shop-tel" name="tel" type="tel" inputmode="tel" autocomplete="off" placeholder="۰۹۱۲۳۴۵۶۷۸۹" aria-describedby="shop-hint">
                   </div>
                 </div>
-                <p class="dm-hint" id="shop-hint">فقط شماره لازم است. اگر نام خالی بماند، پیامک با «همراه گرامی» نمی‌آید — بدون نام ارسال می‌شود.</p>
+                <p class="dm-hint" id="shop-hint">نام و شمارهٔ موبایل لازم است؛ پیامک با همان نام می‌رود.</p>
                 <button class="dm-btn dm-btn--block" type="submit" id="shop-submit">خبرم کن</button>
               </form>
 
@@ -345,9 +351,14 @@ button{background:none;border:0;padding:0;cursor:pointer}
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
                 </span>
                 <div>
-                  <p id="shop-success-text">ثبت شد — به‌محض موجود شدن پیامک می‌کنیم</p>
+                  <p id="shop-success-text">ثبت شد. به‌محض بازگشت موجودی خبرتان می‌کنیم.</p>
                   <small id="shop-success-meta">ردیف در «پنل» هم دیده می‌شود.</small>
                 </div>
+              </div>
+
+              <div class="dm-price-box">
+                <p class="dm-price-box-label">قیمت محصول:</p>
+                <p class="dm-price-box-line"><s>۱٬۲۸۰٬۰۰۰ تومان</s> <b>۱٬۰۹۰٬۰۰۰ تومان</b></p>
               </div>
             </div>
           </div>
@@ -582,6 +593,7 @@ button{background:none;border:0;padding:0;cursor:pointer}
 
   /* ---------- state ---------- */
   var S = seed();
+  var shopDone = false;
   if (/[?&]reset\b/.test(location.search)) S = seed();
 
   var $ = function (sel) { return document.querySelector(sel); };
@@ -700,11 +712,14 @@ button{background:none;border:0;padding:0;cursor:pointer}
     var badge = $("#shop-stock");
     badge.textContent = stock > 0 ? "موجود (" + toFa(stock) + ")" : "ناموجود";
     badge.className = "dm-stock " + (stock > 0 ? "in" : "out");
-    $("#shop-form").hidden = stock > 0 || !$("#shop-success").hidden;
+    $("#shop-form").hidden = stock > 0;
+    var ok = $("#shop-success");
     if (stock > 0) {
-      $("#shop-success").hidden = false;
+      ok.hidden = false;
       $("#shop-success-text").textContent = "این کالا موجود شد.";
       $("#shop-success-meta").textContent = "فرم «خبرم کن» از صفحه برداشته می‌شود؛ همان کاری که افزونه می‌کند.";
+    } else if (!shopDone) {
+      ok.hidden = true;
     }
   }
 
@@ -739,6 +754,14 @@ button{background:none;border:0;padding:0;cursor:pointer}
     var clean = String(tel || "").replace(/[۰-۹]/g, function (c) { return FA.indexOf(c); }).replace(/\D/g, "");
     nameEl.setAttribute("aria-invalid", "false");
     telEl.setAttribute("aria-invalid", "false");
+    if (!String(name || "").trim()) {
+      nameEl.setAttribute("aria-invalid", "true");
+      hint.className = "dm-hint err";
+      hint.textContent = "نام و نام خانوادگی لازم است؛ پیامک با همین نام می‌رود.";
+      if (fromUser) announce("نام لازم است.");
+      nameEl.focus();
+      return false;
+    }
     if (clean.length < 10) {
       telEl.setAttribute("aria-invalid", "true");
       hint.className = "dm-hint err";
@@ -755,13 +778,15 @@ button{background:none;border:0;padding:0;cursor:pointer}
       return false;
     }
     var r = addRow(String(name || "").trim(), full);
+    shopDone = true;
     hint.className = "dm-hint";
-    hint.textContent = "فقط شماره لازم است. اگر نام خالی بماند، پیامک بدون نام ارسال می‌شود.";
-    $("#shop-form").hidden = true;
+    hint.textContent = "نام و شمارهٔ موبایل لازم است؛ پیامک با همان نام می‌رود.";
+    nameEl.value = "";
+    telEl.value = "";
     var ok = $("#shop-success");
     ok.hidden = false;
-    $("#shop-success-text").textContent = "ثبت شد — به‌محض موجود شدن پیامک می‌کنیم";
-    $("#shop-success-meta").textContent = (r.name ? r.name : "بدون نام") + " · " + mask(full) + " · ردیف در «پنل» دیده می‌شود.";
+    $("#shop-success-text").textContent = "ثبت شد. به‌محض بازگشت موجودی خبرتان می‌کنیم.";
+    $("#shop-success-meta").textContent = r.name + " · " + mask(full) + " · ردیف در «پنل» دیده می‌شود.";
     logEvent("ok", "درخواست ثبت شد.", "ردیف «" + (r.name || mask(full)) + "» در بالای جدول انتظار نشست؛ هنوز پیامکی در صف نیست.");
     render();
     announce("درخواست ثبت شد. ردیف در پنل اضافه شد.");
