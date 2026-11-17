@@ -949,6 +949,9 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 }
 .mjy-shot-link:hover .mjy-shot-zoom,
 .mjy-shot-link:focus-visible .mjy-shot-zoom { opacity: 1; }
+.mjy-shot--wide { grid-column: 1 / -1; }
+.mjy-shot--wide .mjy-shot-link { block-size: auto; }
+.mjy-shot--wide img { block-size: auto; }
 .mjy-shot figcaption {
   font-size: 12.5px;
   line-height: 1.8;
