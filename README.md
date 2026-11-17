@@ -88,6 +88,24 @@ measurement files and says plainly that the mock's price and customer data are f
 | `assets/shots/` thumbnails (10 files, `loading="lazy"`) | 125 KB | — |
 | `assets/shots/full/` (only fetched on click) | 690 KB | — |
 
+## Sales pass (CALL 7)
+
+Section ۰۷ used to be «چیزهایی که موجودیار ندارد» — five lines of what the plugin does *not*
+do. It was honest but it sold against the product. It is gone. In its place, «سه چیزی که این را
+متفاوت میکند»: three claims the page can already back (0 bytes elsewhere, units-in units-out,
+two-layer stock detection), each with a small CSS miniature built out of the page's own tokens,
+and each with its source named underneath.
+
+The rest of the page got depth, all in CSS — no library, no canvas, no pointer tracking:
+
+- the hero card floats above a tilted gradient plane (`::before`, still `z-index`-safe);
+- feature entries became cards that lift on hover, with the icon on a raised tile;
+- mechanism nodes lift; gallery cards lean half a degree;
+- spotlight miniatures are three stacked, slightly rotated sheets behind the real content.
+
+Hover motion is decoration only: nothing is hidden behind a hover, the reduced-motion rule
+collapses every transition, and the print block strips transforms and the decorative planes.
+
 ## Real screenshots (CALL 6, part 2)
 
 Section ۹ «همان چیزی که نصب میشود» shows ten captures of the plugin as installed. Thumbnails
