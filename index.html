@@ -91,7 +91,6 @@
             <span class="mjy-thumb" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6V5.2A2.2 2.2 0 0 1 11.2 3h1.6A2.2 2.2 0 0 1 15 5.2V6"></path><path d="M6.4 6h11.2A1.6 1.6 0 0 1 19.2 7.6v11.8a1.6 1.6 0 0 1-1.6 1.6H6.4a1.6 1.6 0 0 1-1.6-1.6V7.6A1.6 1.6 0 0 1 6.4 6Z"></path><path d="M8.2 13.2h7.6v4H8.2z"></path><path d="M4.8 10.4v4.6M19.2 10.4v4.6"></path></svg></span>
             <div>
               <p class="mjy-product-name">کوله‌پشتی سفری ۳۰ لیتری</p>
-              <p class="mjy-product-meta">۱٬۲۸۰٬۰۰۰ تومان</p>
             </div>
             <span class="mjy-oos">ناموجود</span>
           </div>
@@ -99,16 +98,18 @@
           <div class="mjy-product-rule" aria-hidden="true"></div>
 
           <form class="mjy-form" id="hero-form" novalidate>
+            <p class="mjy-form-intro">این کالا فعلا موجود نیست. شماره خود را بگذارید تا به‌محض بازگشت موجودی خبرتان کنیم.</p>
             <div class="mjy-form-row">
               <div class="mjy-field">
-                <label for="hero-name">نام</label>
-                <input class="mjy-input" id="hero-name" name="name" type="text" autocomplete="name" value="سارا محمدی">
+                <label for="hero-name">نام و نام خانوادگی</label>
+                <input class="mjy-input" id="hero-name" name="name" type="text" autocomplete="name" placeholder="مثلاً مریم احمدی">
               </div>
               <div class="mjy-field">
                 <label for="hero-tel">شمارهٔ موبایل</label>
-                <input class="mjy-input" id="hero-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" value="۰۹۱۲…۴۷">
+                <input class="mjy-input" id="hero-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹">
               </div>
             </div>
+            <p class="mjy-form-hint" id="hero-hint" hidden>نام و شمارهٔ موبایل را پر کنید.</p>
             <button class="mjy-btn mjy-btn--primary mjy-btn--block" type="submit" id="hero-cta">خبرم کن</button>
           </form>
 
@@ -117,13 +118,18 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
             </span>
             <div>
-              <p>ثبت شد — به‌محض موجود شدن پیامک می‌کنیم</p>
-              <small id="hero-ok-line">سارا محمدی · ۰۹۱۲…۴۷ · کوله‌پشتی سفری ۳۰ لیتری</small>
+              <p>ثبت شد. به‌محض بازگشت موجودی خبرتان می‌کنیم.</p>
+              <small id="hero-ok-line"></small>
             </div>
           </div>
 
           <p class="mjy-note" id="hero-fallback">این فرم نمایشی است؛ چیزی ارسال نمی‌شود.</p>
         </div>
+      </div>
+
+      <div class="mjy-price-box">
+        <p class="mjy-price-box-label">قیمت محصول:</p>
+        <p class="mjy-price-box-line"><s>۱٬۲۸۰٬۰۰۰ تومان</s> <b>۱٬۰۹۰٬۰۰۰ تومان</b></p>
       </div>
     </div>
   </section>

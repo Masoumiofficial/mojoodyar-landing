@@ -39,8 +39,10 @@ those three states, and the accent colour is not used for any of them.
 
 ## What is mocked
 
-- **The hero form.** Product «کوله‌پشتی سفری ۳۰ لیتری», price ۱٬۲۸۰٬۰۰۰ تومان, stock 0,
-  customer «سارا محمدی» · ۰۹۱۲…۴۷. Submitting shows the real success state; nothing is sent.
+- **The hero form.** Product «کوله‌پشتی سفری ۳۰ لیتری», stock 0, price box ۱٬۲۸۰٬۰۰۰ →
+  ۱٬۰۹۰٬۰۰۰ تومان. The wording, labels and placeholders are copied from the plugin's own
+  form; the fields start empty. Submitting keeps the form on the page, clears the fields and
+  prints the plugin's confirmation line — nothing is sent.
 - **The demo (§9).** Entirely in-memory, deterministic, no fetch, no storage, no SMS.
   Six scenarios; each ends with a one-line takeaway phrased as a fact.
 - **Dates** in the demo are plausible Jalali dates, not data from a real installation.
@@ -82,6 +84,27 @@ measurement files and says plainly that the mock's price and customer data are f
 | assets/style.css | 33.6 KB | 6.9 KB |
 | assets/app.js | 18.4 KB | 5.6 KB |
 | **page total, fonts excluded** | **95.2 KB** | **20.7 KB** |
+
+## Fidelity pass (CALL 6 — against plugin screenshots)
+
+Ten screenshots of the real plugin were compared with this page. The form is now the
+plugin's, not an approximation:
+
+- labels «نام و نام خانوادگی» / «شمارهٔ موبایل» (the plugin's own label has a typo, «شمارة»;
+  the page uses the correct Persian spelling);
+- the intro sentence «این کالا فعلا موجود نیست. شماره خود را بگذارید تا به‌محض بازگشت موجودی
+  خبرتان کنیم.» and the confirmation line «ثبت شد. به‌محض بازگشت موجودی خبرتان می‌کنیم.»;
+- placeholders «مثلاً مریم احمدی» and «۰۹۱۲۳۴۵۶۷۸۹» — the plugin mixes a Persian zero with a
+  Latin 9 («۰9xxxxxxxxx»), which is a bug there, not a look to copy;
+- the dashed price box under the form, and the behaviour after submit: the form stays, the
+  fields clear, one line appears. The demo used to claim the form "is removed, like the
+  plugin does" — that claim was wrong and is gone;
+- the demo now requires the name, as the plugin's label implies.
+
+Still different on purpose: the plugin tints the top edge of the form card amber, which this
+page reserves for the success moment; and the plugin's green price is rendered in the brand
+teal. Not done yet: the plugin also has an **email** channel, which the page never mentions,
+and the real screenshots are not embedded anywhere.
 
 ## Review pass (after CALL 4)
 

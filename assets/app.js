@@ -37,20 +37,23 @@
   /* ---------- hero mock ---------- */
   var heroForm = d.getElementById("hero-form");
   var heroOk = d.getElementById("hero-success");
+  var heroHint = d.getElementById("hero-hint");
   function heroDone() {
     var n = heroForm.querySelector("#hero-name");
     var t = heroForm.querySelector("#hero-tel");
     if (!n.value.trim() || !t.value.trim()) {
+      if (heroHint) heroHint.hidden = false;
       (n.value.trim() ? t : n).focus();
       return;
     }
-    heroForm.hidden = true;
-    heroOk.hidden = false;
-    var fb = d.getElementById("hero-fallback");
-    if (fb) fb.hidden = true;
-    /* the receipt repeats what was typed, never the demo placeholder */
+    if (heroHint) heroHint.hidden = true;
+    /* what the plugin does: the form stays on the page, one confirmation line appears,
+       the fields are cleared and the receipt keeps what was typed */
     var line = d.getElementById("hero-ok-line");
     if (line) line.textContent = n.value.trim() + " · " + t.value.trim() + " · کوله‌پشتی سفری ۳۰ لیتری";
+    heroOk.hidden = false;
+    n.value = "";
+    t.value = "";
   }
   if (heroForm && heroOk) {
     heroForm.addEventListener("submit", function (e) {
