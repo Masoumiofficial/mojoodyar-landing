@@ -905,6 +905,56 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 .mjy-form-inline { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; }
 .mjy-form-inline .mjy-field label { font-size: 11.5px; }
 
+/* 4.18b real screenshots — lazy thumbnails, full file on click */
+.mjy-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+.mjy-shot { display: grid; gap: 8px; margin: 0; }
+.mjy-shot-link {
+  position: relative;
+  display: block;
+  block-size: 210px;
+  overflow: hidden;
+  background: var(--mjy-surface);
+  border: var(--mjy-hair);
+  border-radius: var(--radius-md);
+  box-shadow: var(--mjy-shadow);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+}
+.mjy-shot-link:hover { transform: translateY(-2px); box-shadow: var(--mjy-shadow-lift); }
+.mjy-shot-link:focus-visible { outline: 2px solid var(--mjy-primary-ink); outline-offset: 3px; }
+.mjy-shot img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.mjy-shot-zoom {
+  position: absolute;
+  inset-block-end: 8px;
+  inset-inline-start: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--mjy-ink);
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding-block: 2px;
+  padding-inline: 9px;
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+}
+.mjy-shot-link:hover .mjy-shot-zoom,
+.mjy-shot-link:focus-visible .mjy-shot-zoom { opacity: 1; }
+.mjy-shot figcaption {
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--mjy-muted);
+}
+
 /* 4.19 licence (one package — no invented tiers) */
 .mjy-licence {
   display: grid;
@@ -1321,7 +1371,8 @@ html.mjy-js .mjy-demo-tabs { display: flex; }
 
 /* ---------- 8. PRINT ---------- */
 @media print {
-  .mjy-header, .mjy-skip, .mjy-demo-tabs, .mjy-demo-actions, .mjy-cta .mjy-btn, .mjy-copy-row { display: none; }
+  .mjy-header, .mjy-skip, .mjy-demo-tabs, .mjy-demo-actions, .mjy-cta .mjy-btn, .mjy-copy-row,
+  .mjy-shots { display: none; }
   .mjy-glass, .mjy-header, .mjy-header.is-stuck, .mjy-mock-shell {
     background: #fff;
     -webkit-backdrop-filter: none;

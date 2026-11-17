@@ -17,6 +17,7 @@ index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
 assets/app.js         header state, in-view reveal, hero mock, demo state machine, copy-facts
 assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
+assets/shots/         ten real plugin screenshots: 600px webp thumbnails + full/ for click-through
 fonts/                Vazirmatn 400/500/700 woff2 (self-hosted, OFL licence included)
 demo/                 standalone interactive demo (single file + its own README)
 docs/                 CALL 1 spec
@@ -84,6 +85,20 @@ measurement files and says plainly that the mock's price and customer data are f
 | assets/style.css | 33.6 KB | 6.9 KB |
 | assets/app.js | 18.4 KB | 5.6 KB |
 | **page total, fonts excluded** | **95.2 KB** | **20.7 KB** |
+| `assets/shots/` thumbnails (10 files, `loading="lazy"`) | 126 KB | — |
+| `assets/shots/full/` (only fetched on click) | 738 KB | — |
+
+## Real screenshots (CALL 6, part 2)
+
+Section ۹ «همان چیزی که نصب میشود» shows ten captures of the plugin as installed. Thumbnails
+are 600 px wide webp (126 KB for all ten, `loading="lazy"`, `decoding="async"`); clicking one
+opens the 1400 px version from `assets/shots/full/`, which is the only thing that costs the
+remaining 738 KB, and only on demand.
+
+**The images contain live data** — real customer names from one shop, phone numbers already
+masked by the plugin. That is the point of the section (the note above it says so), but it
+means the pictures are public as soon as the page is. If they should not be, the section has
+to be dropped or the names blurred; nothing else in the page depends on it.
 
 ## Fidelity pass (CALL 6 — against plugin screenshots)
 
