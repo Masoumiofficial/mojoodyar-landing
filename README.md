@@ -40,10 +40,11 @@ those three states, and the accent colour is not used for any of them.
 
 ## What is mocked
 
-- **The hero form.** Product «کوله‌پشتی سفری ۳۰ لیتری», stock 0, price box ۱٬۲۸۰٬۰۰۰ →
-  ۱٬۰۹۰٬۰۰۰ تومان. The wording, labels and placeholders are copied from the plugin's own
-  form; the fields start empty. Submitting keeps the form on the page, clears the fields and
-  prints the plugin's confirmation line — nothing is sent.
+- **The hero form.** Product «ژل شستشوی صورت کامان», stock 0, price box ۹۹۸٬۵۰۰ →
+  ۷۴۸٬۸۷۰ تومان — the product, the prices and the wording all come from a real product page
+  (see `assets/shots/form-desktop.webp`). The fields start empty with the plugin's own
+  placeholders. Submitting keeps the form on the page, clears the fields and prints the
+  plugin's confirmation line — nothing is sent.
 - **The demo (§9).** Entirely in-memory, deterministic, no fetch, no storage, no SMS.
   Six scenarios; each ends with a one-line takeaway phrased as a fact.
 - **Dates** in the demo are plausible Jalali dates, not data from a real installation.
@@ -87,6 +88,22 @@ measurement files and says plainly that the mock's price and customer data are f
 | **page total, fonts excluded** | **95.2 KB** | **20.7 KB** |
 | `assets/shots/` thumbnails (10 files, `loading="lazy"`) | 125 KB | — |
 | `assets/shots/full/` (only fetched on click) | 690 KB | — |
+
+## No invented data (CALL 8)
+
+Every number and every product on the page now has a source. What changed:
+
+- the mock product was a fictional backpack with an invented «was/now» price. It is now the
+  product from the real screenshot, at the real prices (۹۹۸٬۵۰۰ → ۷۴۸٬۸۷۰ تومان);
+- the product icon became a pump bottle to match it;
+- demo §۹'s counter said «۹٬۹۹۵ در انتظار» — a number that existed only inside scenario ۲.
+  It now says «بقیه در انتظار»;
+- the FAQ claimed installing takes «two minutes». Nobody measured that; it now states what is
+  true — one zip, no Composer, no build.
+
+What is still synthetic, and says so where it appears: the demo's customer rows (the frame
+carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
+are untouched captures of a real installation.
 
 ## Sales pass (CALL 7)
 

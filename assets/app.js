@@ -50,7 +50,7 @@
     /* what the plugin does: the form stays on the page, one confirmation line appears,
        the fields are cleared and the receipt keeps what was typed */
     var line = d.getElementById("hero-ok-line");
-    if (line) line.textContent = n.value.trim() + " · " + t.value.trim() + " · کوله‌پشتی سفری ۳۰ لیتری";
+    if (line) line.textContent = n.value.trim() + " · " + t.value.trim() + " · ژل شستشوی صورت کامان";
     heroOk.hidden = false;
     n.value = "";
     t.value = "";
@@ -310,7 +310,7 @@
 
   function ctxHtml() {
     var out = '<div class="mjy-demo-ctx">' +
-      '<span class="mjy-ctx-item">محصول: <b>کوله‌پشتی سفری ۳۰ لیتری</b></span>' +
+      '<span class="mjy-ctx-item">محصول: <b>ژل شستشوی صورت کامان</b></span>' +
       '<span class="mjy-ctx-stock mjy-ctx-item">موجودی: <b>' + st.stock + "</b></span>" +
       '<span class="mjy-ctx-stock mjy-ctx-item">در صف: <b>' + fmt(queueCount(st)) + "</b></span>";
     if (abandonedCount(st) > 0) {
