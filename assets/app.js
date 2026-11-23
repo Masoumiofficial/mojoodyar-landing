@@ -205,4 +205,80 @@
       });
     });
   }
+
+  /* scroll progress: one composited transform, no layout reads per frame */
+  var bar = document.getElementById("progress");
+  if (bar) {
+    var ticking = false;
+    var paint = function () {
+      ticking = false;
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - window.innerHeight;
+      var p = max > 0 ? Math.min(1, Math.max(0, (window.scrollY || doc.scrollTop || 0) / max)) : 0;
+      bar.style.setProperty("--p", p.toFixed(4));
+    };
+    var ask = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(paint);
+    };
+    window.addEventListener("scroll", ask, { passive: true });
+    window.addEventListener("resize", ask);
+    paint();
+  }
+
+  /* band figures count up once, in Persian digits */
+  var FA_DIGITS = "۰۱۲۳۴۵۶۷۸۹";
+  var toFa = function (n) {
+    return String(n)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, "\u066C")
+      .split("")
+      .map(function (d) {
+        return /[0-9]/.test(d) ? FA_DIGITS.charAt(+d) : d;
+      })
+      .join("");
+  };
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length) {
+    var run = function (el) {
+      var target = +el.getAttribute("data-count");
+      if (!isFinite(target)) return;
+      if (reduce) { el.textContent = toFa(target); return; }
+      var t0 = 0;
+      var step = function (now) {
+        if (!t0) t0 = now;
+        var k = Math.min(1, (now - t0) / 1100);
+        var eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = toFa(Math.round(target * eased));
+        if (k < 1) window.requestAnimationFrame(step);
+      };
+      window.requestAnimationFrame(step);
+    };
+    if ("IntersectionObserver" in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          run(en.target);
+          cio.unobserve(en.target);
+        });
+      }, { threshold: 0.6 });
+      Array.prototype.forEach.call(counters, function (el) { cio.observe(el); });
+    } else {
+      Array.prototype.forEach.call(counters, run);
+    }
+  }
+
+  /* pointer spotlight on the hero card */
+  var deck = document.querySelector("[data-stage]");
+  if (deck && !reduce && window.matchMedia && window.matchMedia("(hover: hover)").matches) {
+    deck.addEventListener("pointermove", function (e) {
+      var card = deck.querySelector(".mjy-deck-card");
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      card.style.setProperty("--px", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
+      card.style.setProperty("--py", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
+    }, { passive: true });
+  }
+
 })();

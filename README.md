@@ -15,9 +15,9 @@ python3 -m http.server 8080      # then open http://localhost:8080
 ```
 index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
-assets/app.js         header state, hero form, 3D stage parallax, reveal, screenshot tour
+assets/app.js         header state, hero form, 3D parallax, reveal, tour, scroll progress, counters
 assets/theme.js       light/dark bootstrap — runs before paint, remembers the choice
-assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
+assets/brand/         the mojoodyar logo (32/64/180/512 + webp) and the ژاکت wordmark
 assets/shots/         ten real plugin screenshots: 600px webp thumbnails + full/ for click-through
 fonts/                Vazirmatn 400/500/700 + JetBrains Mono 400/600 woff2 (OFL)
 demo/                 standalone interactive demo (single file + its own README)
@@ -61,6 +61,12 @@ To put selling back: add a `<section id="buy">` with your price and one link to 
 then point the header, hero and footer CTAs at it. The CSS is gone with the section, so build
 it from `.mjy-card` + `.mjy-btn` rather than resurrecting `.mjy-licence`.
 
+Two links are honest but generic, and both are one-line swaps when the real targets exist:
+
+- the ژاکت badges point at `https://www.zhaket.com` — replace with the plugin's own page;
+- `og:image` is a relative path. Crawlers want an absolute URL, so make it
+  `https://<domain>/assets/brand/mojoodyar-512.webp` (or a 1200×630 social card) at launch.
+
 ## Audit outcome (CALL 4)
 
 The three invented licence tiers were removed: they carried commercial terms («نصب روی یک
@@ -86,10 +92,11 @@ says that instead.)
 
 | Item | Raw | Gzipped |
 |---|---|---|
-| index.html | 43.2 KB | 8.2 KB |
-| assets/style.css | 33.6 KB | 6.9 KB |
-| assets/app.js | 18.4 KB | 5.6 KB |
-| **page total, fonts excluded** | **95.2 KB** | **20.7 KB** |
+| index.html | 34.5 KB | 7.7 KB |
+| assets/style.css | 37.7 KB | 8.2 KB |
+| assets/app.js | 11.1 KB | 3.5 KB |
+| **page total, fonts excluded** | **83.3 KB** | **19.4 KB** |
+| `assets/brand/` (5 files; 22 KB of it is on first paint) | 98.6 KB | — |
 | `assets/shots/` thumbnails (10 files, `loading="lazy"`) | 125 KB | — |
 | `assets/shots/full/` (only fetched on click) | 690 KB | — |
 
@@ -109,7 +116,7 @@ What is still synthetic, and says so where it appears: the demo's customer rows 
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
 
-## Figures and the floating chips (CALL 13)
+## Figures and the floating chips (CALL 14)
 
 Two things were wrong and both came from the same mistake — treating coded text as if it were
 Latin text.
@@ -127,7 +134,7 @@ the page's own surfaces, `--line-2` borders, ink text, the body typeface at 12px
 before the label. In light theme they invert to white cards. One label was reworded to match
 the page's formal tone («سرور خودِ فروشگاه» instead of «خودت»).
 
-## More depth in the hero (CALL 13)
+## More depth in the hero (CALL 14)
 
 Added on top of the existing stage: a slow conic halo behind the deck, a second plate rotated
 `3.2°` at `translateZ(−70px)` behind the card, a contact shadow under it, a diagonal sheen
@@ -136,6 +143,38 @@ it disappears under `prefers-reduced-motion` and in print.
 
 The mock's browser bar now reads `etehadwp.com/product/…`. The path segment is a placeholder
 until the real product slug is supplied.
+
+## The mark, the store badge, and a violet accent (CALL 15)
+
+The page now uses the product's own artwork. `assets/brand/mojoodyar-32/64/180/512` are cut from
+the supplied 1254 px logo and serve as the tab icon (32, 64), the iOS home-screen icon (180) and
+`og:image` (512, webp — 26 KB instead of the 1.7 MB original). The header and footer wordmark
+carry that mark instead of the drawn tick; the old `favicon.svg` is gone, so the mark is one
+9.9 KB request that the browser caches for the visit.
+
+ژاکت appears twice: a badge under the install steps and a smaller one in the footer — the real
+wordmark on a white plate, so its charcoal and orange survive both themes. Both link to
+`zhaket.com`. The exact product page was never supplied, so the badge names the store and does
+not pretend to be a listing URL; swap the `href` when the page exists.
+
+**Palette.** The interactive layer moved from mint to the logo's violet. `--brand` (dark
+`#7C3AED`, light `#6D28D9`) paints the primary button, the ghost button's hover border, the
+kicker dot, the eyebrow numbers, the first stop of the h1 gradient, the active tour tab and the
+corner glow. Mint keeps its meaning — restocked, in stock, sent — so green still means a happy
+state. White on `--brand` is 5.7:1 in dark and 7.1:1 in light. Amber is untouched: success and
+the focus ring only.
+
+**Four more effects**, each a transform or an opacity change:
+
+- a 2 px scroll-progress line along the top edge, violet into mint;
+- a pointer spotlight that follows the cursor across the hero card — `hover: hover` only;
+- the numbers band counts up once when it scrolls into view, in Persian digits with `٬`. The
+  markup ships the final figure, so with JS off or reduced motion the real number is just there;
+- a single light sweep across the primary button on hover.
+
+All of them are disabled under `prefers-reduced-motion`, and the progress line is hidden in
+print. The new inline custom properties (`--p`, `--px`, `--py`) are written by script, like the
+tilt's `--mx/--my`: they are measured values, not styling in the markup.
 
 ## Light and dark (CALL 12)
 

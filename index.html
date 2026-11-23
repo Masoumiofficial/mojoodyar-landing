@@ -13,22 +13,30 @@
 <meta property="og:title" content="موجودیار — فرم «خبرم کن» برای کالاهای ناموجود">
 <meta property="og:description" content="فرم فقط روی صفحهٔ محصول ناموجود. صفر بایت روی بقیهٔ سایت. پیامک به تعداد واحدهای برگشته.">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/mojoodyar-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/brand/mojoodyar-64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/mojoodyar-180.png">
+<meta property="og:image" content="assets/brand/mojoodyar-512.webp">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:image:alt" content="لوگوی موجودیار">
+<meta name="twitter:image" content="assets/brand/mojoodyar-512.webp">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6FAFB">
 <script src="assets/theme.js"></script>
 <link rel="stylesheet" href="assets/style.css">
 <script defer src="assets/app.js"></script>
 </head>
 <body id="top">
 <a class="mjy-skip" href="#main">رفتن به متن اصلی</a>
+<div class="mjy-progress" id="progress" aria-hidden="true"></div>
 
 <header class="mjy-hdr" id="site-header">
   <div class="mjy-wrap mjy-hdr-in">
     <a class="mjy-brand" href="#top" aria-label="موجودیار، خانه">
-      <span class="mjy-brand-mark" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-      </span>
+      <img class="mjy-brand-img" src="assets/brand/mojoodyar-64.png" alt="" width="36" height="36" decoding="async">
       <span>موجودیار</span>
-      <span class="mjy-brand-ver">۱.۰.۰</span>
+      <span class="mjy-brand-ver">۱.۴.۰</span>
     </a>
 
     <nav class="mjy-nav" aria-label="بخش‌های صفحه">
@@ -136,10 +144,10 @@
   <!-- ==================== NUMBERS ==================== -->
   <section class="mjy-band" aria-label="عددهای قابل بازتولید">
     <div class="mjy-wrap mjy-band-grid">
-      <div class="mjy-band-item"><b>۱٬۹۸۴</b><span>بایت، فرم روی صفحهٔ محصول</span></div>
-      <div class="mjy-band-item"><b>۴٬۴۹۵</b><span>بایت فشرده، CSS و JS سمت کاربر</span></div>
-      <div class="mjy-band-item"><b>۴۱۱</b><span>آزمون واحد، صفر خطا</span></div>
-      <div class="mjy-band-item"><b>۲۸</b><span>اجرای دروازهٔ انتشار</span></div>
+      <div class="mjy-band-item"><b data-count="1984">۱٬۹۸۴</b><span>بایت، فرم روی صفحهٔ محصول</span></div>
+      <div class="mjy-band-item"><b data-count="4495">۴٬۴۹۵</b><span>بایت فشرده، CSS و JS سمت کاربر</span></div>
+      <div class="mjy-band-item"><b data-count="411">۴۱۱</b><span>آزمون واحد، صفر خطا</span></div>
+      <div class="mjy-band-item"><b data-count="28">۲۸</b><span>اجرای دروازهٔ انتشار</span></div>
     </div>
     <p class="mjy-wrap mjy-band-note">همهٔ این عددها از <span class="ltr">tests/queries.php</span> و <span class="ltr">docs/PERFORMANCE.md</span> می‌آیند، در محیط آزمون گرفته شده‌اند و خودتان می‌توانید بازتولیدشان کنید.</p>
   </section>
@@ -431,6 +439,13 @@
           <p>یکی از چهار درگاه را انتخاب و کلیدش را وارد کنید؛ نتیجهٔ هر ارسال در «گزارش رویدادها» دیده می‌شود.</p>
         </li>
       </ol>
+
+      <div class="mjy-partner" data-reveal>
+        <span class="mjy-partner-label">موجودیار در</span>
+        <a href="https://www.zhaket.com" target="_blank" rel="noopener" aria-label="ژاکت، فروشگاه افزونه‌های وردپرس">
+          <img src="assets/brand/zhaket.png" alt="ژاکت" width="231" height="168" loading="lazy" decoding="async">
+        </a>
+      </div>
     </div>
   </section>
 
@@ -479,9 +494,7 @@
     <div class="mjy-ftr-grid">
       <div>
         <div class="mjy-brand mjy-brand--ftr">
-          <span class="mjy-brand-mark" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-          </span>
+          <img class="mjy-brand-img" src="assets/brand/mojoodyar-64.png" alt="" width="36" height="36" decoding="async">
           <span>موجودیار</span>
         </div>
         <p class="mjy-ftr-note">فرم «خبرم کن» برای کالاهای ناموجود ووکامرس. این صفحه هیچ تحلیلگر، کوکی یا درخواست بیرونی ندارد.</p>
@@ -509,8 +522,15 @@
       </div>
     </div>
 
+    <div class="mjy-partner mjy-partner--sm">
+      <span class="mjy-partner-label">موجودیار در</span>
+      <a href="https://www.zhaket.com" target="_blank" rel="noopener">
+        <img src="assets/brand/zhaket.png" alt="ژاکت" width="231" height="168" loading="lazy" decoding="async">
+      </a>
+    </div>
+
     <div class="mjy-ftr-base">
-      <span>نسخهٔ ۱.۰.۰ · پروانه <span class="ltr">GPLv2</span> یا بالاتر</span>
+      <span>نسخهٔ ۱.۴.۰ · پروانه <span class="ltr">GPLv2</span> یا بالاتر</span>
       <span>ساخته برای ووکامرس</span>
     </div>
   </div>
