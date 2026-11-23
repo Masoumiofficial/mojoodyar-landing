@@ -437,6 +437,85 @@
     }
   });
 
+  /* ---------- screenshot tour (in place of a video we do not have) ---------- */
+  var tourEl = d.querySelector("[data-tour]");
+  if (tourEl) {
+    var TOUR = [
+      { src: "assets/shots/form-desktop.webp", alt: "کارت «خبرم کن» روی صفحهٔ محصول در دسکتاپ: فیلد نام و شماره، دکمهٔ سبز و خط تأیید زیر فرم", title: "فرم روی صفحهٔ محصول", note: "فیلد نام و شماره، دکمهٔ سبز، خط تأیید زیر فرم." },
+      { src: "assets/shots/form-mobile.webp", alt: "همان فرم در نمایش موبایل، با صندوق قیمت محصول زیر آن", title: "همان فرم در موبایل", note: "همان فرم در موبایل، با صندوق قیمت محصول." },
+      { src: "assets/shots/dashboard.webp", alt: "داشبورد پنل: پنج کارت وضعیت، آخرین رویدادها و زمان اجرای پایش", title: "داشبورد پنل", note: "پنج کارت وضعیت، آخرین رویدادها، زمان پایش." },
+      { src: "assets/shots/waitlist.webp", alt: "لیست انتظارها با فیلترها، خروجی CSV و ستون‌های وضعیت و تماس", title: "لیست انتظارها", note: "فیلترها، خروجی CSV، ستون وضعیت و تماس." },
+      { src: "assets/shots/stats.webp", alt: "صفحهٔ آمار با نمودار ثبت روزانه، نرخ تبدیل و وضعیت ردیف‌ها", title: "آمار", note: "نمودار ثبت روزانه، نرخ تبدیل، وضعیت ردیف‌ها." },
+      { src: "assets/shots/tools.webp", alt: "ابزارها: اجرای فوری پایش، پردازش صف، آزادکردن صف گیرکرده و آزمون درگاه", title: "ابزارها", note: "اجرای فوری پایش، پردازش صف، آزادسازی صف گیرکرده." },
+      { src: "assets/shots/guide.webp", alt: "راهنمای سه‌قدمی نصب و پاسخ به پنج پرسش رایج پیامک", title: "راهنما", note: "نصب سه‌قدمی و پاسخ پنج پرسش رایج پیامک." },
+      { src: "assets/shots/settings.webp", alt: "تنظیمات افزونه: عمومی، فرم، پیامک، صف و زمان‌بندی، پیگیری تلفنی و حریم خصوصی", title: "تنظیمات", note: "عمومی، فرم، پیامک، صف و زمان‌بندی." },
+      { src: "assets/shots/call-followup.webp", alt: "مودال پیگیری تلفنی با نتیجه‌های تماس، یادداشت و دکمهٔ خاتمهٔ پیگیری", title: "پیگیری تلفنی", note: "نتیجهٔ تماس، یادداشت، دکمهٔ ثبت." },
+      { src: "assets/shots/sms.webp", alt: "پیامک واقعی رسیده به مشتری: «دوباره موجود شد» با لینک مشاهده و کد لغو", title: "پیامک رسیده به مشتری", note: "پیامک واقعی مشتری: «دوباره موجود شد» با لینک محصول." }
+    ];
+    var tImg = tourEl.querySelector("[data-tour-img]");
+    var tLink = tourEl.querySelector("[data-tour-link]");
+    var tTitle = tourEl.querySelector("[data-tour-title]");
+    var tNote = tourEl.querySelector("[data-tour-note]");
+    var tCount = tourEl.querySelector("[data-tour-count]");
+    var tDots = [].slice.call(tourEl.querySelectorAll("[data-tour-go]"));
+    var tPlay = tourEl.querySelector("[data-tour-play]");
+    var tIdx = 0;
+    var tTimer = null;
+
+    function tFa(n) {
+      return String(n).replace(/[0-9]/g, function (c) { return "۰۱۲۳۴۵۶۷۸۹"[+c]; });
+    }
+    function tPause() {
+      if (tTimer) { clearInterval(tTimer); tTimer = null; }
+      if (tPlay) {
+        tPlay.setAttribute("aria-pressed", "false");
+        tPlay.textContent = "پخش خودکار";
+      }
+    }
+    function tShow(i) {
+      tIdx = (i + TOUR.length) % TOUR.length;
+      var s = TOUR[tIdx];
+      tImg.src = s.src;
+      tImg.alt = s.alt;
+      tLink.href = s.src.replace("assets/shots/", "assets/shots/full/");
+      tTitle.textContent = s.title;
+      tNote.textContent = s.note;
+      tCount.textContent = tFa(tIdx + 1) + " از " + tFa(TOUR.length);
+      for (var k = 0; k < tDots.length; k++) {
+        tDots[k].setAttribute("aria-current", k === tIdx ? "true" : "false");
+      }
+    }
+    function tStart() {
+      if (tTimer) return;
+      if (tIdx === TOUR.length - 1) tShow(0);
+      tPlay.setAttribute("aria-pressed", "true");
+      tPlay.textContent = "توقف";
+      tTimer = setInterval(function () {
+        if (tIdx === TOUR.length - 1) { tPause(); return; }
+        tShow(tIdx + 1);
+      }, 4200);
+    }
+    tShow(0);
+    if (tPlay) {
+      tPlay.addEventListener("click", function () {
+        if (tTimer) { tPause(); return; }
+        if (reduce) { tShow(tIdx + 1); return; }
+        tStart();
+      });
+    }
+    tourEl.addEventListener("mouseenter", function () { if (tTimer) tPause(); });
+    tourEl.addEventListener("focusin", function () { if (tTimer) tPause(); });
+    tourEl.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { tPause(); tShow(tIdx + 1); }
+      if (e.key === "ArrowRight") { tPause(); tShow(tIdx - 1); }
+    });
+    tourEl.querySelector("[data-tour-prev]").addEventListener("click", function () { tPause(); tShow(tIdx - 1); });
+    tourEl.querySelector("[data-tour-next]").addEventListener("click", function () { tPause(); tShow(tIdx + 1); });
+    tDots.forEach(function (b) {
+      b.addEventListener("click", function () { tPause(); tShow(+b.getAttribute("data-tour-go")); });
+    });
+  }
+
   st = init(1);
   st.say = "";
   render();

@@ -45,18 +45,20 @@ those three states, and the accent colour is not used for any of them.
   (see `assets/shots/form-desktop.webp`). The fields start empty with the plugin's own
   placeholders. Submitting keeps the form on the page, clears the fields and prints the
   plugin's confirmation line — nothing is sent.
-- **The demo (§9).** Entirely in-memory, deterministic, no fetch, no storage, no SMS.
+- **The demo (§8).** Entirely in-memory, deterministic, no fetch, no storage, no SMS.
   Six scenarios; each ends with a one-line takeaway phrased as a fact.
 - **Dates** in the demo are plausible Jalali dates, not data from a real installation.
 
 ## What is a placeholder (wire these before launch)
 
-1. **Checkout.** Two triggers carry `data-checkout` — the button in the licence block and the
-   final CTA in the footer — and both point at `#buy`, the licence block itself. Replace both
-   `href`s with your store URL; nothing else changes.
-2. **Price.** The ledger contains no price, so the page refuses to print one: the block shows
-   «قیمت پیش از پرداخت» and explains why. When a price is confirmed, put it in `.mjy-price`
-   and delete the explanatory line.
+**Nothing is left pointing at a missing target.** The pricing/licence section was removed on
+request, and with it the last placeholder: there is no price on the page and no buy button,
+because neither a confirmed price nor a store URL exists. Every CTA now lands somewhere real —
+«دیدن دمو» → `#demo`, «تصویرهای واقعی» → `#shots`.
+
+To put selling back: add a `<section id="buy">` with your price and one link to your store,
+then point the header, hero and footer CTAs at it. The CSS is gone with the section, so build
+it from `.mjy-card` + `.mjy-btn` rather than resurrecting `.mjy-licence`.
 
 ## Audit outcome (CALL 4)
 
@@ -65,7 +67,8 @@ The three invented licence tiers were removed: they carried commercial terms («
 («one price, no hidden Pro tier»). What remains is one package described only with facts the
 ledger carries. The «مشکل» section was deleted and one sentence of it moved into the mechanism
 section. The hero footnote no longer claims that *every* number is measured — it names the two
-measurement files and says plainly that the mock's price and customer data are fabricated.
+measurement files. (Since CALL 8 the mock's product and price are real too, so the footnote
+says that instead.)
 
 ## Notes on two directives
 
@@ -104,6 +107,31 @@ Every number and every product on the page now has a source. What changed:
 What is still synthetic, and says so where it appears: the demo's customer rows (the frame
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
+
+## Audit pass (CALL 9): tour, comparison table, no price
+
+Four findings from the landing audit, and what happened to each.
+
+- **«ویدیو یا تیزر منتشر نشده» (§12).** There is no video, and inventing a player over a
+  still would be a lie. Instead the screenshot section gained a **tour**: the ten real
+  screenshots, one at a time, with a counter, previous/next, ten dots, a play button and
+  arrow keys. It only advances by itself after you press play, stops at the last frame, and
+  pauses on hover or focus. Every frame is a real capture, and the stage links to the
+  full-size file. No fetch, no storage, no fake video chrome.
+- **«جدول مقایسه وجود ندارد» (§13).** Added under the features: «موجودیار در برابر پیگیری
+  دستی», seven rows, every cell traceable to a claim already made on the page. It compares
+  against the manual spreadsheet-and-phone method — not against rival plugins, because we
+  have measured nothing about rivals and will not invent a comparison.
+- **«هیروسکشن جذاب و منظم» (§14).** Tidied, not rewritten: the three spec rules became pills,
+  the footnote is one line, the mock label lost its second clause.
+- **«این بخش را حذف کنید» (§15).** The licence/pricing section is gone, with all of its CSS.
+  The page now prints no price and carries no buy button, because neither a confirmed price
+  nor a store URL exists yet — that is honest, and it means no CTA lands on a dead anchor.
+  The support promise that lived in that block («پاسخ اولیه حداکثر ۲۴ ساعت کاری؛ هدف ۴
+  ساعت») moved to the end of the FAQ. The FAQ was renumbered to ۱۰.
+
+Test suite after the change: **30 checks, 0 failures** (`/home/user/.tmpdom/t13.js`, jsdom —
+DOM behaviour only, not a browser-quality claim).
 
 ## Sales pass (CALL 7)
 

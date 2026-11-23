@@ -44,10 +44,9 @@
       <a href="#features">امکانات</a>
       <a href="#perf">عملکرد</a>
       <a href="#faq">سؤال‌ها</a>
-      <a href="#pricing">قیمت</a>
     </nav>
 
-    <a class="mjy-btn mjy-btn--primary mjy-btn--sm" href="#pricing">خرید افزونه</a>
+    <a class="mjy-btn mjy-btn--primary mjy-btn--sm" href="#demo">دیدن دمو</a>
   </div>
 
 </header>
@@ -56,7 +55,6 @@
   <nav class="mjy-mobile-nav" aria-label="فهرست کوتاه بخش‌ها">
     <a href="#how">چطور کار می‌کند</a>
     <a href="#perf">عملکرد</a>
-    <a href="#pricing">قیمت</a>
   </nav>
 </div>
 
@@ -70,8 +68,8 @@
       <p class="mjy-hero-sub">موجودیار فرم «خبرم کن» را فقط روی صفحهٔ همان محصول ناموجود می‌گذارد. روی بقیهٔ سایت، صفر بایت. و وقتی کالا برگشت، به همان تعداد که موجود شد نفر خبردار می‌شوند — قدیمی‌ترین منتظر، اول.</p>
 
       <div class="mjy-hero-actions">
-        <a class="mjy-btn mjy-btn--primary" href="#pricing">خرید افزونه</a>
-        <a class="mjy-btn mjy-btn--ghost" href="#demo">دیدن دمو</a>
+        <a class="mjy-btn mjy-btn--primary" href="#demo">دیدن دمو</a>
+        <a class="mjy-btn mjy-btn--ghost" href="#shots">تصویرهای واقعی</a>
       </div>
 
       <ul class="mjy-spec">
@@ -80,11 +78,11 @@
         <li>بدون <span lang="en" dir="ltr" class="ltr">Composer</span>، بدون <span lang="en" dir="ltr" class="ltr">build</span></li>
       </ul>
 
-      <p class="mjy-note mjy-hero-foot">عددهای عملکردی این صفحه فقط از دو فایل <span lang="en" dir="ltr" class="ltr">tests/queries.php</span> و <span lang="en" dir="ltr" class="ltr">docs/PERFORMANCE.md</span> آمده‌اند. نام و قیمت محصول در ماکت، از صفحهٔ محصول یک فروشگاه واقعی گرفته شده؛ داده‌های دمو (نام و شمارهٔ مشتری) ساختگی است.</p>
+      <p class="mjy-note mjy-hero-foot">نام و قیمت محصول از صفحهٔ محصول یک فروشگاه واقعی است؛ عددهای عملکردی از <span lang="en" dir="ltr" class="ltr">tests/queries.php</span> و <span lang="en" dir="ltr" class="ltr">docs/PERFORMANCE.md</span>.</p>
     </div>
 
     <div class="mjy-hero-mock">
-      <p class="mjy-mock-label">فرم روی صفحهٔ محصول — نمونهٔ واقعی، امتحان کنید</p>
+      <p class="mjy-mock-label">فرم روی صفحهٔ محصول — نمونهٔ واقعی</p>
       <div class="mjy-mock-shell mjy-glass">
         <div class="mjy-product">
           <div class="mjy-product-top">
@@ -261,6 +259,59 @@
           <b>گزارش رویدادها —</b>
           <p>هر ردیف یک توضیح فارسی «چه شد و چه کار کنم»، و متن خام پاسخ درگاه زیرش.</p>
         </article>
+      </div>
+
+      <div class="mjy-compare">
+        <h3 class="mjy-compare-title">موجودیار در برابر پیگیری دستی</h3>
+        <div class="mjy-table-scroll" role="region" aria-label="جدول مقایسهٔ موجودیار با پیگیری دستی" tabindex="0">
+          <table class="mjy-table mjy-table--compare">
+            <caption>همان کار، دو روش — هر ردیف به چیزی اشاره می‌کند که در همین صفحه نشان داده یا اندازه‌گیری شده است.</caption>
+            <thead>
+              <tr>
+                <th scope="col">کار</th>
+                <th scope="col">پیگیری دستی</th>
+                <th scope="col">موجودیار</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">ثبت درخواست مشتری</th>
+                  <td>مشتری پیام می‌دهد؛ یک نفر دستی وارد می‌کند</td>
+                  <td>فرم روی صفحهٔ همان محصول، خودکار ثبت می‌شود</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">بار روی صفحات دیگر</th>
+                  <td>—</td>
+                  <td>۰ فایل، ۰ کوئری</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">چه کسی خبردار می‌شود</th>
+                  <td>هر کسی که اول جواب داده</td>
+                  <td>قدیمی‌ترین منتظر، به تعداد واحدهای برگشته</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">تغییر موجودی از اکسل یا <span lang="en" dir="ltr" class="ltr">ERP</span></th>
+                  <td>تا کسی دستی چک نکند، دیده نمی‌شود</td>
+                  <td>هوک ووکامرس + پایش هر ۱۵ دقیقه</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">ارسال ناموفق</th>
+                  <td>معمولاً معلوم نمی‌شود</td>
+                  <td>گزارش رویدادها با متن خام درگاه</td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">سابقه و خروجی</th>
+                  <td>بستگی به دفتر یا اکسل شما دارد</td>
+                  <td>جدول انتظار با تاریخ شمسی و خروجی <span lang="en" dir="ltr" class="ltr">CSV</span></td>
+                </tr>
+                <tr>
+                  <th scope="row" class="mjy-rowhead">مسیر پیامک</th>
+                  <td>—</td>
+                  <td>از فروشگاه شما مستقیم به درگاه خودتان</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -581,6 +632,43 @@
         <p class="mjy-note">این تصویرها از یک نصب واقعی گرفته شده‌اند و داده‌هایشان واقعی است — برخلاف ماکت‌های بالای صفحه. روی هرکدام بزنید تا در اندازهٔ کامل باز شود.</p>
       </div>
 
+      <div class="mjy-tour" data-tour>
+        <div class="mjy-tour-bar">
+          <p class="mjy-tour-title">تور تصویری <span class="mjy-tour-count" data-tour-count>۱ از ۱۰</span></p>
+          <div class="mjy-tour-ctrl">
+            <button type="button" class="mjy-tour-btn mjy-tour-btn--play" data-tour-play aria-pressed="false">پخش خودکار</button>
+            <button type="button" class="mjy-tour-btn" data-tour-prev aria-label="تصویر قبلی">&#8249;</button>
+            <button type="button" class="mjy-tour-btn" data-tour-next aria-label="تصویر بعدی">&#8250;</button>
+          </div>
+        </div>
+
+        <figure class="mjy-tour-stage">
+          <a class="mjy-tour-link" data-tour-link href="assets/shots/full/form-desktop.webp" target="_blank" rel="noopener">
+            <img data-tour-img src="assets/shots/form-desktop.webp" alt="کارت «خبرم کن» روی صفحهٔ محصول در دسکتاپ: فیلد نام و شماره، دکمهٔ سبز و خط تأیید زیر فرم" width="600" height="371" decoding="async">
+            <span class="mjy-shot-zoom" aria-hidden="true">نمای کامل</span>
+          </a>
+          <figcaption class="mjy-tour-cap" aria-live="polite">
+            <b data-tour-title>فرم روی صفحهٔ محصول</b>
+            <span data-tour-note>فیلد نام و شماره، دکمهٔ سبز، خط تأیید زیر فرم.</span>
+          </figcaption>
+        </figure>
+
+        <div class="mjy-tour-dots" role="group" aria-label="رفتن به تصویر">
+            <button type="button" class="mjy-tour-dot" data-tour-go="0" aria-label="تصویر 1: فرم روی صفحهٔ محصول"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="1" aria-label="تصویر 2: همان فرم در موبایل"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="2" aria-label="تصویر 3: داشبورد پنل"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="3" aria-label="تصویر 4: لیست انتظارها"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="4" aria-label="تصویر 5: آمار"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="5" aria-label="تصویر 6: ابزارها"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="6" aria-label="تصویر 7: راهنما"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="7" aria-label="تصویر 8: تنظیمات"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="8" aria-label="تصویر 9: پیگیری تلفنی"></button>
+            <button type="button" class="mjy-tour-dot" data-tour-go="9" aria-label="تصویر 10: پیامک رسیده به مشتری"></button>
+        </div>
+      </div>
+
+      <h3 class="mjy-grid-title">همهٔ تصویرها</h3>
+
       <div class="mjy-shots">
         <figure class="mjy-shot">
           <a class="mjy-shot-link" href="assets/shots/full/form-desktop.webp" target="_blank" rel="noopener">
@@ -656,41 +744,11 @@
     </div>
   </section>
 
-  <!-- ============ 10. PRICING ============ -->
-  <section class="mjy-section" id="pricing" aria-labelledby="price-title">
-    <div class="mjy-wrap">
-      <div class="mjy-sec-head">
-        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۱۰</span> لایسنس</p>
-        <h2 id="price-title">قیمت</h2>
-      </div>
-
-      <div class="mjy-licence" id="buy" data-reveal>
-        <div class="mjy-licence-main">
-          <h3 class="mjy-licence-title">یک بسته، بدون سطح پنهان</h3>
-          <p class="mjy-licence-lead">نسخهٔ ۱.۰.۰ همان چیزی است که روی این صفحه دیده‌اید؛ نسخهٔ کم‌امکانات‌تر یا «حرفه‌ای‌تر» وجود ندارد که بعداً معلوم شود.</p>
-          <ul class="mjy-licence-list">
-            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> هر چهار درگاه پیامک + درگاه عمومی <span lang="en" dir="ltr" class="ltr">REST</span></li>
-            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> پنل فارسی، تاریخ شمسی، خروجی <span lang="en" dir="ltr" class="ltr">CSV</span> با <span lang="en" dir="ltr" class="ltr">BOM</span></li>
-            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> کد کامل، بدون <span lang="en" dir="ltr" class="ltr">IonCube</span>، بدون سرور سازنده</li>
-            <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg> پروانه <span lang="en" dir="ltr" class="ltr">GPLv2</span> یا بالاتر</li>
-          </ul>
-        </div>
-        <div class="mjy-licence-side">
-          <p class="mjy-price">قیمت پیش از پرداخت</p>
-          <a class="mjy-btn mjy-btn--block" href="#buy" data-checkout>خرید افزونه</a>
-          <p class="mjy-note mjy-note--xs">عدد قیمت روی این صفحه تکرار نمی‌شود تا کهنه نشود؛ روی صفحهٔ خرید نمایش داده می‌شود.</p>
-        </div>
-      </div>
-
-      <p class="mjy-note mjy-pricing-line">پاسخ اولیه حداکثر ۲۴ ساعت کاری؛ هدف ۴ ساعت.</p>
-    </div>
-  </section>
-
-  <!-- ============ 11. FAQ ============ -->
+  <!-- ============ 10. FAQ ============ -->
   <section class="mjy-section mjy-section--dense" id="faq" aria-labelledby="faq-title">
     <div class="mjy-wrap">
       <div class="mjy-sec-head">
-        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۱۱</span> سؤال‌ها</p>
+        <p class="mjy-eyebrow"><span class="mjy-eyebrow-num">۱۰</span> سؤال‌ها</p>
         <h2 id="faq-title">سؤال‌ها</h2>
       </div>
 
@@ -728,17 +786,19 @@
           <p class="mjy-answer">ابزار «آزادسازی صف» ردیف رهاشده را برمی‌گرداند؛ اجرای بعدی صف هم خودکار این کار را می‌کند.</p>
         </details>
       </div>
+
+      <p class="mjy-note">پاسخ اولیهٔ پشتیبانی حداکثر ۲۴ ساعت کاری؛ هدف ۴ ساعت.</p>
     </div>
   </section>
 
 </main>
 
-<!-- ============ 12. FINAL CTA + FOOTER ============ -->
+<!-- ============ 11. FINAL CTA + FOOTER ============ -->
 <footer class="mjy-footer">
     <div class="mjy-wrap">
       <div class="mjy-cta">
         <p>فرم را روی صفحهٔ همان محصول بگذارید؛ بقیهٔ کار با پایش موجودی است.</p>
-        <a class="mjy-btn mjy-btn--primary" href="#buy" data-checkout>خرید افزونه</a>
+        <a class="mjy-btn mjy-btn--primary" href="#demo">دیدن دمو</a>
       </div>
 
       <div class="mjy-footer-grid">
