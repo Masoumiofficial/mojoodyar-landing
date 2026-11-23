@@ -30,6 +30,7 @@ assets/app.js
 assets/favicon.svg
 assets/shots/            ← تصویرهای واقعی؛ برای حذف گالری هم این پوشه و بخش «تصویرها» لازم است
 fonts/Vazirmatn-{Regular,Medium,Bold}.woff2
+fonts/JetBrainsMono-{Regular,SemiBold}.woff2
 demo/index.html          ← اختیاری، ولی توصیه می‌شود
 ```
 
@@ -73,5 +74,5 @@ Branch: `main` / root. آدرس `https://<user>.github.io/<repo>/` می‌شود
 
 ---
 
-پروانهٔ فونت: `fonts/OFL.txt`. بقیهٔ بسته آزاد است؛ استفاده و تغییرش بدون اجازه
+پروانهٔ فونت: `fonts/OFL.txt` و `fonts/OFL-JetBrainsMono.txt`. بقیهٔ بسته آزاد است؛ استفاده و تغییرش بدون اجازه
 لازم نیست.

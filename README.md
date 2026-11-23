@@ -18,7 +18,7 @@ assets/style.css      tokens → reset → layout → components → sections �
 assets/app.js         header state, in-view reveal, hero mock, demo state machine, copy-facts
 assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
 assets/shots/         ten real plugin screenshots: 600px webp thumbnails + full/ for click-through
-fonts/                Vazirmatn 400/500/700 woff2 (self-hosted, OFL licence included)
+fonts/                Vazirmatn 400/500/700 + JetBrains Mono 400/600 woff2 (OFL)
 demo/                 standalone interactive demo (single file + its own README)
 docs/                 CALL 1 spec
 INSTALL.md            install + hosting guide (Persian)
@@ -77,9 +77,9 @@ says that instead.)
   scenario is a hand-built HTML replica, so it must be re-checked whenever the admin UI
   changes. Six scenarios, one file, ~5 KB gzipped — the cost is review time, not code.
 - **Focus ring.** The amber accent is used for the restocked/success moment and for the
-  primary CTA's focus ring, inset (`outline-offset: -6px`) so it sits on the teal button
-  rather than on the pale page — amber on white is 2.0:1 and would fail the 3:1 indicator
-  rule; on teal it is 3.9:1.
+  primary CTA's focus ring. On the dark theme the ring sits *outside* the mint button
+  (`outline-offset: 3px`): amber on mint is 1.07:1 and would fail the 3:1 indicator rule,
+  amber on the page background is 9.43:1.
 
 ## Budget (measured on this build)
 
@@ -107,6 +107,36 @@ Every number and every product on the page now has a source. What changed:
 What is still synthetic, and says so where it appears: the demo's customer rows (the frame
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
+
+## Dark theme (CALL 10)
+
+The landing was rebuilt on the visual system of the Gapineh landing: dark navy surfaces,
+one bright accent, a second softer accent for gradients, monospace for numbers and Latin,
+glows instead of borders-as-decoration.
+
+**Palette** — `#0B1120` page, `#111A2E` surface, `#17223B` raised surface, `#070C18` footer,
+`#263552` hairlines; text `#E9F1F7` and `#A3B1C6`; accent mint `#2DD4BF` (text `#5EEAD4`,
+ink on mint `#04252D`) and violet `#A78BFA` for the highlight gradient. Amber `#F2A93B` keeps
+its old job — the success moment and the primary focus ring — and nothing else.
+
+**Type** — Vazirmatn for Persian, JetBrains Mono (`fonts/JetBrainsMono-*.woff2`, OFL, 43 KB
+for both weights) for numbers, Latin runs and the eyebrow counter. Both self-hosted; the page
+still makes no external request.
+
+**Shape** — hero gets a masked 56px grid and two radial glows; cards lift on hover into a mint
+glow ring; the h1 closes on a mint-to-violet gradient phrase; the footer sits on its own
+darker plane. Interactions are unchanged.
+
+**What changed in the CSS** — tokens only, plus the colour literals that had been written for a
+light page (shadows, glass fills, input borders). No layer was stacked on top of the old one:
+there is still a single cascade, and still no `!important`.
+
+**What print does** — the print block resets the tokens to ink-on-white before anything else,
+so the printed page is black text on white regardless of the screen theme.
+
+**Not verified here:** no browser binary exists in this sandbox, so layout, glow rendering,
+mono alignment and the hover states are unverified by eye. Contrast was computed, not
+eyeballed: ink 16.5:1, muted 8.7:1, mint-on-surface 9.3:1, on-mint ink 8.6:1, amber 9.4:1.
 
 ## Audit pass (CALL 9): tour, comparison table, no price
 
