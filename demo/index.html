@@ -10,6 +10,7 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="../fonts/Vazirmatn-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/Vazirmatn-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<script src="../assets/theme.js"></script>
 <style>
 /* ===== tokens ===== */
 @font-face{font-family:"Vazirmatn";src:url("../fonts/Vazirmatn-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
@@ -25,6 +26,15 @@
   --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 32px -18px rgba(0,0,0,.7);
   --shadow-lg:0 1px 2px rgba(0,0,0,.4),0 26px 50px -20px rgba(0,0,0,.8);
   --tap:44px;
+}
+[data-theme="light"]{
+  --mjy-primary:#0F766E;--mjy-primary-ink:#0B5C56;--mjy-accent:#B45309;--on-primary:#FFFFFF;
+  --mjy-bg:#F6FAFB;--mjy-surface:#FFFFFF;--mjy-surface-2:#F4F9FA;--mjy-ink:#08181A;--mjy-muted:#4C6165;
+  --mjy-line:#D9E5E7;--mjy-danger:#B3261E;
+  --tint:rgba(15,118,110,.08);--tint2:rgba(15,118,110,.15);
+  --amber:rgba(180,83,9,.10);--danger-bg:rgba(179,38,30,.07);
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 14px 32px -20px rgba(15,23,42,.25);
+  --shadow-lg:0 1px 2px rgba(15,23,42,.06),0 26px 50px -24px rgba(15,23,42,.3);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -57,6 +67,8 @@ button{background:none;border:0;padding:0;cursor:pointer}
 .dm-seg button[aria-selected="true"]{background:var(--mjy-primary);color:var(--on-primary)}
 .dm-seg button:hover{color:var(--mjy-ink)}
 .dm-seg button[aria-selected="true"]:hover{color:var(--on-primary)}
+.dm-theme{display:grid;place-items:center;inline-size:34px;block-size:34px;border:1px solid var(--mjy-line);border-radius:10px;background:transparent;color:var(--mjy-ink);flex:0 0 auto}
+.dm-theme:hover{border-color:var(--mjy-primary);color:var(--mjy-primary-ink)}
 .dm-back{font-size:13px;color:var(--mjy-muted);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(94,234,212,.3);min-block-size:var(--tap);display:inline-flex;align-items:center}
 .dm-back:hover{color:var(--mjy-primary-ink)}
 
@@ -263,6 +275,9 @@ button{background:none;border:0;padding:0;cursor:pointer}
       <button type="button" role="tab" id="tab-panel" aria-controls="pane-panel" aria-selected="false" tabindex="-1">پنل</button>
     </div>
 
+    <button class="dm-theme" id="theme-toggle" type="button" aria-label="تغییر تم" aria-pressed="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"></path></svg>
+    </button>
     <span class="dm-badge">دمو — داده‌های ساختگی</span>
     <a class="dm-back" href="../index.html#demo">بازگشت به صفحهٔ اصلی</a>
   </div>

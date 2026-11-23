@@ -89,6 +89,23 @@
     stage.addEventListener("pointerleave", function () { apply(0, 0); });
   }
 
+  /* ---------- reveal on scroll ---------- */
+  var reveal = [].slice.call(d.querySelectorAll("[data-reveal]"));
+  if (reveal.length) {
+    if (reduce || !("IntersectionObserver" in window)) {
+      reveal.forEach(function (el) { el.classList.add("is-in"); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.06 });
+      reveal.forEach(function (el) { io.observe(el); });
+    }
+  }
+
   /* ---------- screenshot tour ---------- */
   var tourEl = d.querySelector("[data-tour]");
   if (tourEl) {

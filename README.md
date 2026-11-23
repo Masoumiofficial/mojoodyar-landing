@@ -15,7 +15,8 @@ python3 -m http.server 8080      # then open http://localhost:8080
 ```
 index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
-assets/app.js         header state, hero form, 3D stage parallax, screenshot tour
+assets/app.js         header state, hero form, 3D stage parallax, reveal, screenshot tour
+assets/theme.js       light/dark bootstrap — runs before paint, remembers the choice
 assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
 assets/shots/         ten real plugin screenshots: 600px webp thumbnails + full/ for click-through
 fonts/                Vazirmatn 400/500/700 + JetBrains Mono 400/600 woff2 (OFL)
@@ -107,6 +108,36 @@ Every number and every product on the page now has a source. What changed:
 What is still synthetic, and says so where it appears: the demo's customer rows (the frame
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
+
+## Light and dark (CALL 12)
+
+The page now ships both themes. Dark is the default; `assets/theme.js` runs before the
+stylesheet and sets `data-theme` on `<html>` from, in order: the visitor's saved choice
+(`localStorage`), the OS preference (`prefers-color-scheme`), then dark. It also re-follows the
+OS while the page is open, unless the visitor has pressed the button themselves.
+
+Every colour is a token, so the light theme is a second token block, not a second stylesheet.
+Surfaces invert, mint becomes `#0F766E` with white ink, violet becomes `#6D4CE0`, amber becomes
+`#B45309` for the focus ring. Three things stay dark in both themes on purpose: the image-zoom
+badge, the floating hero chips and the mock's browser bar — they sit on top of imagery.
+
+Contrast, computed for the light palette: ink 17.3:1 · muted 6.2:1 · mint-text 7.5:1 ·
+white-on-mint 5.5:1 · focus amber 4.8:1 · danger 6.5:1 · violet 5.3:1.
+
+**The demo follows the same key**, so a visitor who picks light does not land on a dark demo.
+
+## Compatibility, reframed (CALL 12)
+
+The old section was an eleven-row table where seven rows said «داده در دسترس نیست». Honest,
+and it sold against the product. It is now four cards — the two PHP versions that were actually
+tested, plus WordPress, WooCommerce and HPOS marked «اعلامشده» — and one sentence that names
+what has not been tested (PHP 8.4, WP 5.x, multilingual) without turning the page into a
+confession. The claim that survives is exactly the claim the ledger supports: tested is tested,
+declared is declared.
+
+Two additions in the same pass: a «نصب در سه قدم» section, and scroll-reveal that only ever
+hides content when `theme.js` has run — with JS off, or with reduced motion, everything is
+visible from the first paint.
 
 ## Rebuild (CALL 11): a new page around a 3D hero
 
