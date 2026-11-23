@@ -736,6 +736,12 @@ h3 {
   background-clip: text;
   color: transparent;
 }
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .mjy-hero h1 em {
+    background: none;
+    color: var(--mint-2);
+  }
+}
 .mjy-lead {
   font-size: clamp(16px, 1.6vw, 18.5px);
   line-height: 1.95;
