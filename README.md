@@ -15,7 +15,7 @@ python3 -m http.server 8080      # then open http://localhost:8080
 ```
 index.html            page markup (semantic, one h1, landmarks)
 assets/style.css      tokens → reset → layout → components → sections → utilities → media → print
-assets/app.js         header state, in-view reveal, hero mock, demo state machine, copy-facts
+assets/app.js         header state, hero form, 3D stage parallax, screenshot tour
 assets/favicon.svg    tab icon, same three-part mark as the header (no extra request)
 assets/shots/         ten real plugin screenshots: 600px webp thumbnails + full/ for click-through
 fonts/                Vazirmatn 400/500/700 + JetBrains Mono 400/600 woff2 (OFL)
@@ -107,6 +107,41 @@ Every number and every product on the page now has a source. What changed:
 What is still synthetic, and says so where it appears: the demo's customer rows (the frame
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
+
+## Rebuild (CALL 11): a new page around a 3D hero
+
+The previous page was set aside and rebuilt from scratch — new markup, new stylesheet, new
+script. Nothing was layered over the old cascade: `style.css` and `app.js` are new files and
+`index.html` was written again. What survived is the content that is true: the ledger numbers,
+the six features, the comparison table, the ten real screenshots, the compatibility states and
+the FAQ.
+
+**The hero.** A perspective stage (`1400px`) with three depth planes:
+
+1. a floor grid rotated 74° into the ground, masked to fade out, plus two blurred glow orbs;
+2. a deck rotated `X 9° / Y −15° / Z −1.5°` that carries a working mock of the plugin's product
+   page — real product, real prices, a form you can actually type into;
+3. three floating chips at `translateZ(130px)` stating facts, not decoration.
+
+Pointer movement feeds `--mx` / `--my` into the stage and each plane shifts by a different
+amount, so the card tilts and the chips drift. On touch, on `prefers-reduced-motion`, or with
+no fine pointer, the whole thing stays flat and static. The deck also floats ±12px on an 8s
+loop, which stops under reduced motion.
+
+**What else changed.** Section order is now hero → numbers band → four steps → bento features →
+comparison → screenshots (tour + grid) → compatibility → demo band → FAQ → footer. Type is
+larger and tighter; the whole page runs on one accent (mint) with violet reserved for the h1
+gradient and amber for the success line and focus ring.
+
+**Weight.** Critical path fell from 26,344 B to **16,137 B gzipped** (index 7,077 + css 6,494 +
+js 2,566): the old page carried mark-up for sections that no longer exist.
+
+**Contrast, computed:** ink 17.8:1 · muted 8.9:1 · mint-text 13.5:1 · ink-on-mint 8.6:1 ·
+amber 10.0:1 · danger 9.9:1 · violet 7.4:1.
+
+**Honest limit, again:** there is no browser in this sandbox. The transforms are deterministic
+and the arithmetic is checked, but I have not seen the 3D stage render. The preview is the
+only way to judge it.
 
 ## Dark theme (CALL 10)
 
