@@ -68,8 +68,20 @@
     });
   }
 
-  /* ---------- 3D parallax on the hero stage ---------- */
+  /* ---------- 3D: scroll tilt, then pointer parallax ---------- */
   var stage = d.querySelector("[data-stage]");
+  if (stage && !reduce) {
+    var tilt = function () {
+      var r = stage.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      var p = ((r.top + r.height / 2) - vh / 2) / vh;
+      p = Math.max(-1, Math.min(1, p));
+      stage.style.setProperty("--sy", p.toFixed(3));
+    };
+    tilt();
+    window.addEventListener("scroll", tilt, { passive: true });
+    window.addEventListener("resize", tilt);
+  }
   if (stage && !reduce && window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
     var raf = 0;
     var apply = function (mx, my) {

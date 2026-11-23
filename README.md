@@ -109,6 +109,34 @@ What is still synthetic, and says so where it appears: the demo's customer rows 
 carries «دمو — داده‌های ساختگی»), the phone masks, and the Jalali dates. The gallery images
 are untouched captures of a real installation.
 
+## Figures and the floating chips (CALL 13)
+
+Two things were wrong and both came from the same mistake — treating coded text as if it were
+Latin text.
+
+**Numbers.** `--mono` listed only Latin monospace faces, so every Persian numeral (۰-۹) fell
+through the stack into whatever the operating system offered — a different typeface in the
+eyebrows, the numbers band, the tour counter and the mock's price. Now there is a separate
+`--figure` token: Vazirmatn with `font-variant-numeric: tabular-nums`, used by every Persian
+number on the page. `--mono` also gained Vazirmatn as its fallback so nothing can slip through
+again; JetBrains Mono is now used only where it belongs — Latin words, the mock URL and `.ltr`.
+
+**Chips.** The three floating labels had near-black backgrounds, mint text, mono type and a
+mint border: a different palette and a different voice from the rest of the hero. They now use
+the page's own surfaces, `--line-2` borders, ink text, the body typeface at 12px, and a mint dot
+before the label. In light theme they invert to white cards. One label was reworded to match
+the page's formal tone («سرور خودِ فروشگاه» instead of «خودت»).
+
+## More depth in the hero (CALL 13)
+
+Added on top of the existing stage: a slow conic halo behind the deck, a second plate rotated
+`3.2°` at `translateZ(−70px)` behind the card, a contact shadow under it, a diagonal sheen
+across the card face, and a scroll-driven tilt (`--sy`) that joins the pointer parallax. All of
+it disappears under `prefers-reduced-motion` and in print.
+
+The mock's browser bar now reads `etehadwp.com/product/…`. The path segment is a placeholder
+until the real product slug is supplied.
+
 ## Light and dark (CALL 12)
 
 The page now ships both themes. Dark is the default; `assets/theme.js` runs before the

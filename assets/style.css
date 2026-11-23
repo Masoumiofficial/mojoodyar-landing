@@ -95,7 +95,7 @@
   --overlay: rgba(5, 8, 15, 0.82);
   --overlay-fg: #EAF2FF;
   --panel: rgba(5, 8, 15, 0.55);
-  --chip-bg: rgba(7, 12, 22, 0.94);
+  --chip-bg: rgba(16, 26, 46, 0.94);
   --chip-fg: #5EEAD4;
   --band-grad: rgba(11, 18, 32, 0.7);
   --img-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.95);
@@ -104,9 +104,12 @@
   --amber-text-strong: #FFD79A;
   --glow-a-strong: rgba(45, 212, 191, 0.22);
   --glow-b-strong: rgba(167, 139, 250, 0.2);
+  --contact: rgba(0, 0, 0, 0.55);
+  --sheen: rgba(255, 255, 255, 0.07);
 
   --font: "Vazirmatn", system-ui, "Segoe UI", Tahoma, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mono: "JetBrains Mono", "Vazirmatn", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --figure: "Vazirmatn", system-ui, Tahoma, sans-serif;
 }
 
 /* light theme — same system, inverted surfaces. Toggled by <html data-theme="light">. */
@@ -153,13 +156,15 @@
   --overlay: rgba(8, 16, 20, 0.82);
   --overlay-fg: #F4FBFB;
   --panel: rgba(255, 255, 255, 0.75);
-  --chip-bg: rgba(8, 18, 22, 0.94);
-  --chip-fg: #7DF3E0;
+  --chip-bg: rgba(255, 255, 255, 0.95);
+  --chip-fg: #0B5C56;
   --band-grad: rgba(255, 255, 255, 0.65);
   --img-shadow: 0 24px 60px -34px rgba(15, 23, 42, 0.35);
   --chip-shadow: 0 20px 40px -26px rgba(15, 23, 42, 0.45);
   --amber-text: #7C3B00;
   --amber-text-strong: #6B3300;
+  --contact: rgba(15, 23, 42, 0.22);
+  --sheen: rgba(15, 23, 42, 0.05);
 
   --shadow: 0 30px 70px -44px rgba(15, 23, 42, 0.28);
   --shadow-soft: 0 18px 40px -30px rgba(15, 23, 42, 0.22);
@@ -337,7 +342,8 @@ section[id], main[id] { scroll-margin-block-start: 88px; }
   box-shadow: 0 8px 20px -12px rgba(45, 212, 191, 0.9);
 }
 .mjy-brand-ver {
-  font-family: var(--mono);
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
   font-size: 11px;
   font-weight: 400;
   color: var(--muted);
@@ -381,8 +387,15 @@ section[id], main[id] { scroll-margin-block-start: 88px; }
   background: var(--mint);
   box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.16);
 }
+.mjy-eyebrow::after {
+  content: "";
+  inline-size: 46px;
+  block-size: 1px;
+  background: linear-gradient(90deg, var(--mint-line), transparent);
+}
 .mjy-eyebrow-num {
-  font-family: var(--mono);
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
   font-size: 12px;
   color: var(--muted);
   border: 1px solid var(--line-2);
@@ -495,7 +508,8 @@ h3 {
 .mjy-tour-title { font-size: 14px; font-weight: 600; }
 .mjy-tour-count {
   margin-inline-start: 8px;
-  font-family: var(--mono);
+  font-family: var(--figure);
+  font-variant-numeric: tabular-nums;
   font-size: 12.5px;
   font-weight: 400;
   color: var(--muted);
@@ -723,7 +737,7 @@ h3 {
 .mjy-hero-copy { max-inline-size: 34em; }
 .mjy-hero h1 {
   margin-block: 18px 20px;
-  font-size: clamp(34px, 5.4vw, 62px);
+  font-size: clamp(35px, 5.8vw, 68px);
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: -0.2px;
@@ -763,9 +777,10 @@ h3 {
 }
 .mjy-hero-facts li { display: flex; align-items: baseline; gap: 8px; }
 .mjy-hero-facts b {
-  font-family: var(--mono);
+  font-family: var(--figure);
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--mint-2);
 }
 .mjy-hero-facts span { font-size: 13px; color: var(--muted); }
@@ -817,6 +832,22 @@ h3 {
   mask-image: linear-gradient(to top, #000 0%, transparent 82%);
   pointer-events: none;
 }
+.mjy-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  inline-size: min(640px, 108%);
+  block-size: min(640px, 108%);
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, transparent 0 30%, var(--mint-line) 44%, transparent 58% 100%);
+  filter: blur(48px);
+  opacity: 0.45;
+  z-index: 0;
+  pointer-events: none;
+  animation: mjy-spin 26s linear infinite;
+}
+
 .mjy-deck-float {
   position: relative;
   z-index: 1;
@@ -825,16 +856,41 @@ h3 {
   transform-style: preserve-3d;
   animation: mjy-float 8s ease-in-out infinite;
 }
+.mjy-deck-back {
+  position: absolute;
+  inset-block: 20px -16px;
+  inset-inline: -18px 18px;
+  z-index: -1;
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--surface-2), transparent 86%);
+  border: 1px solid var(--line);
+  transform: translateZ(-70px) rotateZ(3.2deg);
+  pointer-events: none;
+}
+
 .mjy-deck {
   position: relative;
   transform-style: preserve-3d;
   transform:
-    rotateX(calc(9deg - var(--my, 0) * 4deg))
+    rotateX(calc(9deg - var(--my, 0) * 4deg + var(--sy, 0) * 5deg))
     rotateY(calc(-15deg + var(--mx, 0) * 6deg))
     rotateZ(-1.5deg);
   transition: transform 240ms ease-out;
   will-change: transform;
 }
+.mjy-deck-float::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8%;
+  inset-block-end: -38px;
+  block-size: 50px;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, var(--contact), transparent 72%);
+  filter: blur(9px);
+  pointer-events: none;
+}
+
 .mjy-deck-card {
   position: relative;
   transform: translateZ(42px);
@@ -843,6 +899,15 @@ h3 {
   border: 1px solid var(--line-2);
   box-shadow: var(--ring-mint), var(--shadow);
   overflow: hidden;
+}
+.mjy-deck-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 32%, var(--sheen) 47%, transparent 62%);
+  pointer-events: none;
 }
 .mjy-mock-bar {
   display: flex;
@@ -918,30 +983,50 @@ h3 {
   border-radius: var(--r-sm);
 }
 .mjy-mock-price b {
-  font-family: var(--mono);
+  font-family: var(--figure);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--mint-2);
 }
 .mjy-mock-price s { color: var(--muted); font-weight: 400; margin-inline-end: 6px; }
 
 .mjy-chip-float {
   position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transform: translate3d(calc(var(--mx, 0) * 22px), calc(var(--my, 0) * 16px), 130px);
   transition: transform 240ms ease-out;
-  padding: 7px 13px;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  color: var(--mint-2);
+  padding-block: 7px;
+  padding-inline: 12px 14px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.7;
+  color: var(--ink);
   background: var(--chip-bg);
-  border: 1px solid var(--mint-line);
-  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
   box-shadow: var(--chip-shadow);
   white-space: nowrap;
+}
+.mjy-chip-float::before {
+  content: "";
+  inline-size: 7px;
+  block-size: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 3px var(--tint-2);
 }
 .mjy-chip-float--a { inset-block-start: 4px; inset-inline-start: -22px; }
 .mjy-chip-float--b { inset-block-end: 92px; inset-inline-end: -30px; }
 .mjy-chip-float--c { inset-block-end: -10px; inset-inline-start: 34px; }
+
+@keyframes mjy-spin {
+  to { transform: rotate(360deg); }
+}
 
 @keyframes mjy-float {
   0%, 100% { transform: translateY(0); }
@@ -961,10 +1046,11 @@ h3 {
 }
 .mjy-band-item b {
   display: block;
-  font-family: var(--mono);
+  font-family: var(--figure);
   font-size: clamp(26px, 3vw, 38px);
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
   color: var(--ink);
 }
 .mjy-band-item span { font-size: 13px; color: var(--muted); }
@@ -1230,6 +1316,7 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .mjy-deck-float { animation: none; }
+  .mjy-stage::after { animation: none; }
   .mjy-deck,
   .mjy-chip-float { transform: none; transition: none; }
   .mjy-card:hover,
@@ -1262,7 +1349,7 @@ h3 {
   .mjy-stage { min-block-size: 0; perspective: none; }
   .mjy-deck, .mjy-deck-float { animation: none; transform: none; }
   .mjy-deck-card { transform: none; box-shadow: none; }
-  .mjy-stage-glow, .mjy-stage-floor, .mjy-chip-float { display: none; }
+  .mjy-stage-glow, .mjy-stage-floor, .mjy-chip-float, .mjy-deck-back, .mjy-stage::after { display: none; }
   .mjy-sec, .mjy-hero, .mjy-ftr { padding-block: 16pt; }
   .mjy-card, .mjy-tour { box-shadow: none; border: 1px solid #C9D6D2; }
   .mjy-card:hover { transform: none; }
